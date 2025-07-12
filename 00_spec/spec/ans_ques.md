@@ -46,3 +46,15 @@
 - Sorting class: Comparision-based and non-comparison-based.
 - Adaptivity: Adaptive and Non-adaptive.
 - Stability: Stable or Non-stable.
+
+# Những việc cần làm
+
+- Thực hiện build một hệ thống các thoaạt toán so sánh giữa các thuật toán so sánh (sorting algorithm), sử dụng một mảng lớn chứa các dữ liệu, phân tích các loại dữ liệu khác nhau như: integer or non-integer, letters and words or characters, real number,...
+
+- Thực hiện các tính toán để có thể tính được time complexity and space complexity. Và làm cách nào chứng mình được nói tối ưu ở điểm nào.
+
+- Tìm hiểu về các thực hiện lên trên phần cứng. Và ứng dụng trên phần cứng như thế nào. Làm sao để có thể phù hợp ứng dụng thực tế.
+
+# All task
+
+- Using Cpp create all sorting algorithm
