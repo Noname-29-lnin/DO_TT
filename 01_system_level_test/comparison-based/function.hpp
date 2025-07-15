@@ -29,6 +29,19 @@ void SelectionSort(std::vector<T>& arr){
     }
 }
 
+// void SelectionSort_FPGA(std::vector<int>& i_arr, std::vector<int>& o_arr, int i_start, int o_done){
+    
+//     typedef enum {
+//         IDLE,
+//         FIND_MIN,
+//         SWAP,
+//         DONE 
+//     } state_t;
+
+    
+    
+// }
+
 template<typename T>
 void InsertionSort(std::vector<T>& arr){
     std::size_t n = arr.size();

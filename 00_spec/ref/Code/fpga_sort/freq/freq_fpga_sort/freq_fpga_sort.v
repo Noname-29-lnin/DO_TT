@@ -168,7 +168,7 @@ module freq_fpga_sort(
               `KEYW,
               `NUMW
               )
-  fpga_sort(
+  fpga_sort_unit(
             /* global clock and low-actived reset */
             clock,
             resetn,
