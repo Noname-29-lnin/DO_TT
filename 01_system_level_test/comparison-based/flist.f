@@ -1,2 +1,2 @@
-serial_realization.cpp
-parallel_realization.cpp
+function.cpp
+Verif.cpp

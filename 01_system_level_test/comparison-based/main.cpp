@@ -2,10 +2,10 @@
 #include <vector>
 #include <fstream>
 #include <string>
+#include <chrono>
 
 #include "function.hpp"
-#include "serial_realization.hpp"
-#include "parallel_realization.hpp"
+#include "Verif.hpp"
 
 int main(){
     
@@ -20,55 +20,76 @@ int main(){
         file.close();
     }
 
-    std::cout << "Cac so doc duoc: \n";
-    for(int x : data) std::cout << x << " ";
-    std::cout << "\n\n";
+    PrintArray("Original Array", data);
 
-    std::vector<int> insertiondata = data;
-    InsertionSort(insertiondata);
-    long long timeIns = MeasureSortTime(insertiondata, [](std::vector<int>& v){ InsertionSort(v); });
-    std::cout << "InsertionSort: ";
-    // PrintArray(insertiondata);
-    std::cout << "Time: " << timeIns << " ms\n\n";
+    std::vector<int> normalSortData = data;
+    long long normalSortTime = V_MeasureSortTime(normalSortData, [](std::vector<int>& arr) {
+        std::sort(arr.begin(), arr.end());
+    });
+    std::sort(normalSortData.begin(), normalSortData.end());
+    CheckSorted("Normal Sort", data, normalSortData);
+    PrintTime("Normal Sort", normalSortTime);
+    std::cout << "Starting sorting algorithms..." << std::endl;
+    
+    std::vector<int> insertionSortData = data;
+    long long insertionSortTime = V_MeasureSortTime(insertionSortData, F_InsertionSort);
+    F_InsertionSort(insertionSortData);
+    // PrintArray("Insertion Sort", insertionSortData);
+    CheckSorted("Insertion Sort", data, insertionSortData);
+    PrintTime("Insertion Sort", insertionSortTime);
 
-    std::vector<int> selectiondata = data;
-    long long timeSel = MeasureSortTime(selectiondata, [](std::vector<int>& v){ SelectionSort(v); });
-    SelectionSort(selectiondata);
-    std::cout << "SelectionSort: ";
-    // PrintArray(selectiondata);
-    std::cout << "Time: " << timeSel << " ms\n\n";
+    std::vector<int> selectionSortData = data;
+    long long selectionSortTime = V_MeasureSortTime(selectionSortData, F_SelectionSort);
+    F_SelectionSort(selectionSortData);
+    // PrintArray("Selection Sort", selectionSortData);
+    CheckSorted("Selection Sort", data, selectionSortData);
+    PrintTime("Selection Sort", selectionSortTime);
 
-    std::vector<int> bubbledata = data;
-    BubbleSort(bubbledata);
-    long long timeBubb = MeasureSortTime(bubbledata, [](std::vector<int>& v){ BubbleSort(v); });
-    std::cout << "BubbleSort: ";
-    // PrintArray(bubbledata);
-    std::cout << "Time: " << timeBubb << " ms\n\n";
+    std::vector<int> bubbleSortData = data;
+    long long bubbleSortTime = V_MeasureSortTime(bubbleSortData, F_BubbleSort);
+    F_BubbleSort(bubbleSortData);
+    // PrintArray("Bubble Sort", bubbleSortData);
+    CheckSorted("Bubble Sort", data, bubbleSortData);
+    PrintTime("Bubble Sort", bubbleSortTime);
 
-    std::vector<int> mergedata = data;
-    MergeSort(mergedata, 0, mergedata.size() - 1);
-    long long timeMerge = MeasureSortTime(mergedata, [](std::vector<int>& v){ MergeSort(v, 0, v.size() - 1); });
-    std::cout << "MergeSort: ";
-    PrintArray(mergedata);
-    std::cout << "Time: " << timeMerge << "ms\n\n";
+    std::vector<int> heapSortData = data;
+    long long heapSortTime = V_MeasureSortTime(heapSortData, F_HeapSort);
+    F_HeapSort(heapSortData);
+    // PrintArray("Heap Sort", heapSortData);
+    CheckSorted("Heap Sort", data, heapSortData);
+    PrintTime("Heap Sort", heapSortTime);
+
+    std::vector<int> quickSortData = data;
+    long long quickSortTime = V_MeasureSortTime(quickSortData, [](std::vector<int>& arr) {
+        F_QuickSort(arr, 0, arr.size() - 1);
+    });
+    F_QuickSort(quickSortData, 0, quickSortData.size() - 1);
+    // PrintArray("Quick Sort", quickSortData);
+    CheckSorted("Quick Sort", data, quickSortData);
+    PrintTime("Quick Sort", quickSortTime);
+
+    std::vector<int> mergeSortData = data;
+    long long mergeSortTime = V_MeasureSortTime(mergeSortData, [](std::vector<int>& arr) {
+        F_MergeSort(arr, 0, arr.size() - 1);
+    });
+    F_MergeSort(mergeSortData, 0, mergeSortData.size() - 1);
+    // PrintArray("Merge Sort", mergeSortData);
+    CheckSorted("Merge Sort", data, mergeSortData);
+    PrintTime("Merge Sort", mergeSortTime);
+
+    const int S_M = 1;
+    std::vector<int> serialRealizationData = data;
+    long long serialRealizationTime = V_MeasureSortTime(serialRealizationData, [](std::vector<int>& arr) {
+        S_Sort(arr, S_M);
+    });
+    S_Sort(serialRealizationData, S_M);
+    // PrintArray("Serial Realization Sort", serialRealizationData);
+    CheckSorted("Serial Realization Sort", data, serialRealizationData);
+    PrintTime("Serial Realization Sort", serialRealizationTime);
 
 
-    std::vector<int> serialdata = data;
-    int M = 16; // Example value for M, can be adjusted
-    // Division(serialdata, 0, serialdata.size() - 1, M);
-    Sort(serialdata, M);
-    // long long timeSerial = MeasureSortTime(serialdata, [&serialdata, M](){ Sort(serialdata, M); });
-    long long timeSerial = MeasureSortTime(serialdata, [](std::vector<int>& v){ Sort(v, 16); });
-    std::cout << "Serial Division Sort: ";
-    std::cout << "Time: " << timeSerial << " ms\n";
-    PrintArray(serialdata);
-
-    std::vector<int> parallelData = data;
-    ParallelSort( parallelData ,M);
-    // long long timeParallel = MeasureSortTime(parallelData, [](std::vector<int>& v){ ParallelSort(v, 16); });
-    std::cout << "Parallel Division Sort: ";
-    // std::cout << "Time: " << timeParallel << " ms\n";
-    PrintArray(parallelData);
+    std::cout << "Sorting completed." << std::endl;
+    std::cout << "All sorting algorithms executed successfully." << std::endl;
 
     return 0;
 }

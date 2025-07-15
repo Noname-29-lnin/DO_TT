@@ -1,26 +1,32 @@
 MAIN_TEST := main
-
 SRC_FILE := flist.f
-
-# Đọc danh sách file .cpp từ flist.f (nếu tồn tại), cộng thêm main.cpp
-ifeq ($(wildcard $(SRC_FILE)),)
-    SRCS := $(MAIN_TEST).cpp
-else
-    SRCS := $(shell cat $(SRC_FILE)) $(MAIN_TEST).cpp
-endif
-
+BUILD_DIR := build
 TARGET := $(MAIN_TEST)
 
 CXX := g++
 CXXFLAGS := -Wall -O2 -std=c++17
+LDFLAGS :=
 
-all: clean complite run
+ifeq ($(wildcard $(SRC_FILE)),)
+    SRC_LIST := $(MAIN_TEST).cpp
+else
+    SRC_LIST := $(shell cat $(SRC_FILE)) $(MAIN_TEST).cpp
+endif
 
-complite:
-	$(CXX) $(CXXFLAGS) $(SRCS) -o $(TARGET)
+OBJ_LIST := $(addprefix $(BUILD_DIR)/, $(SRC_LIST:.cpp=.o))
 
-run:
+all: clean $(TARGET) run
+
+$(TARGET): $(OBJ_LIST)
+	$(CXX) $(LDFLAGS) $^ -o $@
+
+$(BUILD_DIR)/%.o: %.cpp
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+run: $(TARGET)
 	./$(TARGET) | tee complite.log
 
 clean:
-	rm -rf $(TARGET) complite.log
+	rm -rf $(BUILD_DIR) $(TARGET) 
+

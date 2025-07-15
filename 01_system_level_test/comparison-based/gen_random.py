@@ -1,7 +1,8 @@
 import random
 
-# Tạo 10,000 số nguyên ngẫu nhiên trong khoảng từ 0 đến 99,999
-large_dataset = [str(random.randint(0, 99999)) for _ in range(10)]
+number = int(input("Enter the number of random integers to generate: "))
+
+large_dataset = [str(random.randint(0, 255)) for _ in range(number)]
 
 # Ghi vào file với cùng định dạng: một dòng, các số cách nhau bằng dấu cách
 file_path = "./unsorted.txt"
