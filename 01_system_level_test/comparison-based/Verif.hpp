@@ -19,6 +19,14 @@ long long V_MeasureSortTime(std::vector<int> arr, Func sortFunction){
     return duration.count();
 }
 
+template<typename Func>
+long long V_CAL_MeasureTime(Func func) {
+    auto start = std::chrono::high_resolution_clock::now();
+    func();
+    auto end = std::chrono::high_resolution_clock::now();
+    return std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
+}
+
 void PrintTime(const std::string& name, long long time);
 void CheckSorted(const std::string NameSort ,const std::vector<int>& normalarr, std::vector<int>& arr);
 

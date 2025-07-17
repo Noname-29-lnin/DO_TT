@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <cmath>
 #include <numeric> // std::accumulate
+#include <thread>
 
 void PrintArray(std::string name, const std::vector<int>& arr);
 void F_SelectionSort(std::vector<int>& arr);
@@ -17,6 +18,15 @@ void F_HeapSort(std::vector<int>& arr);
 void F_QuickSort(std::vector<int>& arr, int low, int high);
 void F_MergeSort(std::vector<int>& arr, int left, int right);
 
-void S_Sort(std::vector<int>& arr, int M);
+// Using Independent subarray sorting
+enum class CheckArrayStatus{
+    SIMILAR     = 0 ,
+    INCREASING      ,
+    DECREASING      ,
+    SORTED          ,
+    UNSORTED
+};
 
+void S_Sort(std::vector<int>& arr, int M);
+void P_Sort(std::vector<int>& arr, int M);
 #endif
