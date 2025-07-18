@@ -121,6 +121,13 @@ int main(){
     CheckSorted("Parallel Realization Sort", data, parallelRealizationData);
     PrintTime("Parallel Realization Sort", parallelRealizationTime);
 
+    std::vector<int> bitonicSortData = data;
+    long long bitonicSortTime = V_CAL_MeasureTime([&bitonicSortData]() {
+        bitonicSort(bitonicSortData, 0, bitonicSortData.size(), true);
+    });
+    CheckSorted("Bitonic Sort", data, bitonicSortData);
+    PrintTime("Bitonic Sort", bitonicSortTime);
+
     std::cout << "Sorting completed." << std::endl;
     std::cout << "All sorting algorithms executed successfully." << std::endl;
 

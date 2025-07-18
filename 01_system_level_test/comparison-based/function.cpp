@@ -1,3 +1,4 @@
+// Test code 1
 // #include "function.hpp"
 
 // void PrintArray(std::string name, const std::vector<int>& arr){
@@ -540,7 +541,7 @@
 
 
 
-
+// Test code 2
 #include "function.hpp"
 #include <thread>
 
@@ -792,4 +793,31 @@ void P_Sort(std::vector<int>& arr, int M){
     if(arr.empty() || arr.size() <= 1) return;
     if(!P_SS_CoreCheck(arr, 0, arr.size() - 1)) return;
     P_Division(arr, 0, arr.size() - 1, M, 0);
+}
+
+//////////////////// Bitonic Sort //////////////////
+void compareAndSwap(std::vector<int>& arr, int i, int j, bool ascending) {
+    if (ascending == (arr[i] > arr[j])) {
+        std::swap(arr[i], arr[j]);
+    }
+}
+
+void bitonicMerge(std::vector<int>& arr, int low, int cnt, bool ascending) {
+    if (cnt > 1) {
+        int k = cnt / 2;
+        for (int i = low; i < low + k; ++i) {
+            compareAndSwap(arr, i, i + k, ascending);
+        }
+        bitonicMerge(arr, low, k, ascending);
+        bitonicMerge(arr, low + k, k, ascending);
+    }
+}
+
+void bitonicSort(std::vector<int>& arr, int low, int cnt, bool ascending) {
+    if (cnt > 1) {
+        int k = cnt / 2;
+        bitonicSort(arr, low, k, true);         // nửa đầu tăng
+        bitonicSort(arr, low + k, k, false);    // nửa sau giảm
+        bitonicMerge(arr, low, cnt, ascending); // trộn bitonic
+    }
 }

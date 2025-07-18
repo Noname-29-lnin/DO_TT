@@ -29,4 +29,6 @@ enum class CheckArrayStatus{
 
 void S_Sort(std::vector<int>& arr, int M);
 void P_Sort(std::vector<int>& arr, int M);
+void bitonicSort(std::vector<int>& arr, int low, int cnt, bool ascending);
+
 #endif
