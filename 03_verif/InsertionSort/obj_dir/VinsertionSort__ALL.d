@@ -5,9 +5,11 @@ VinsertionSort__ALL.o: VinsertionSort__ALL.cpp VinsertionSort.cpp \
  /usr/share/verilator/include/verilated_types.h \
  /usr/share/verilator/include/verilated_funcs.h VinsertionSort__Syms.h \
  VinsertionSort.h VinsertionSort___024root.h \
+ /usr/share/verilator/include/verilated_timing.h \
+ /usr/share/verilator/include/verilated.h \
  VinsertionSort___024root__DepSet_hc634da59__0.cpp \
  VinsertionSort___024root__DepSet_hf31ad784__0.cpp \
- VinsertionSort___024root__Slow.cpp \
+ VinsertionSort__main.cpp VinsertionSort___024root__Slow.cpp \
  VinsertionSort___024root__DepSet_hc634da59__0__Slow.cpp \
  VinsertionSort___024root__DepSet_hf31ad784__0__Slow.cpp \
  VinsertionSort__Syms.cpp

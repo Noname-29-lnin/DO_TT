@@ -6,6 +6,7 @@
 #define VERILATED_VINSERTIONSORT___024ROOT_H_  // guard
 
 #include "verilated.h"
+#include "verilated_timing.h"
 
 
 class VinsertionSort__Syms;
@@ -14,28 +15,30 @@ class alignas(VL_CACHE_LINE_BYTES) VinsertionSort___024root final : public Veril
   public:
 
     // DESIGN SPECIFIC STATE
-    VL_IN8(i_clk,0,0);
-    VL_IN8(i_rst_n,0,0);
-    VL_IN8(i_start,0,0);
-    VL_OUT8(o_done,0,0);
-    CData/*2:0*/ insertionSort__DOT__state;
-    CData/*2:0*/ insertionSort__DOT__n_state;
-    CData/*7:0*/ insertionSort__DOT__key;
-    CData/*3:0*/ insertionSort__DOT__i;
-    CData/*3:0*/ insertionSort__DOT__j;
+    CData/*0:0*/ tb_insertionSort__DOT__i_clk;
+    CData/*0:0*/ tb_insertionSort__DOT__i_rst_n;
+    CData/*0:0*/ tb_insertionSort__DOT__i_start;
+    CData/*0:0*/ tb_insertionSort__DOT__o_done;
+    CData/*1:0*/ tb_insertionSort__DOT__DUT__DOT__state;
+    CData/*1:0*/ tb_insertionSort__DOT__DUT__DOT__n_state;
+    CData/*7:0*/ tb_insertionSort__DOT__DUT__DOT__key;
+    CData/*3:0*/ tb_insertionSort__DOT__DUT__DOT__i;
+    CData/*3:0*/ tb_insertionSort__DOT__DUT__DOT__j;
     CData/*0:0*/ __VstlFirstIteration;
-    CData/*0:0*/ __VicoFirstIteration;
-    CData/*0:0*/ __Vtrigprevexpr___TOP__i_clk__0;
-    CData/*0:0*/ __Vtrigprevexpr___TOP__i_rst_n__0;
+    CData/*0:0*/ __Vtrigprevexpr___TOP__tb_insertionSort__DOT__i_clk__0;
+    CData/*0:0*/ __Vtrigprevexpr___TOP__tb_insertionSort__DOT__i_rst_n__0;
+    CData/*0:0*/ __Vtrigprevexpr___TOP__tb_insertionSort__DOT__o_done__0;
+    CData/*0:0*/ __VactDidInit;
     CData/*0:0*/ __VactContinue;
     IData/*31:0*/ __VactIterCount;
-    VL_IN8(i_data[8],7,0);
-    VL_OUT8(o_data[8],7,0);
-    VlUnpacked<CData/*7:0*/, 8> insertionSort__DOT__arr;
+    VlUnpacked<CData/*7:0*/, 8> tb_insertionSort__DOT__i_data;
+    VlUnpacked<CData/*7:0*/, 8> tb_insertionSort__DOT__o_data;
+    VlUnpacked<CData/*7:0*/, 8> tb_insertionSort__DOT__DUT__DOT__arr;
+    VlDelayScheduler __VdlySched;
+    VlTriggerScheduler __VtrigSched_h4238c561__0;
     VlTriggerVec<1> __VstlTriggered;
-    VlTriggerVec<1> __VicoTriggered;
-    VlTriggerVec<1> __VactTriggered;
-    VlTriggerVec<1> __VnbaTriggered;
+    VlTriggerVec<3> __VactTriggered;
+    VlTriggerVec<3> __VnbaTriggered;
 
     // INTERNAL VARIABLES
     VinsertionSort__Syms* const vlSymsp;

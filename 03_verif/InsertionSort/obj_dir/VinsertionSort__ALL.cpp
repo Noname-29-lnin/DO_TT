@@ -3,6 +3,7 @@
 #include "VinsertionSort.cpp"
 #include "VinsertionSort___024root__DepSet_hc634da59__0.cpp"
 #include "VinsertionSort___024root__DepSet_hf31ad784__0.cpp"
+#include "VinsertionSort__main.cpp"
 #include "VinsertionSort___024root__Slow.cpp"
 #include "VinsertionSort___024root__DepSet_hc634da59__0__Slow.cpp"
 #include "VinsertionSort___024root__DepSet_hf31ad784__0__Slow.cpp"

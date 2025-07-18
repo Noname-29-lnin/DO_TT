@@ -10,6 +10,7 @@ void VinsertionSort___024root___ctor_var_reset(VinsertionSort___024root* vlSelf)
 
 VinsertionSort___024root::VinsertionSort___024root(VinsertionSort__Syms* symsp, const char* v__name)
     : VerilatedModule{v__name}
+    , __VdlySched{*symsp->_vm_contextp__}
     , vlSymsp{symsp}
  {
     // Reset structure values

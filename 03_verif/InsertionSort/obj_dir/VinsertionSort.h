@@ -24,12 +24,6 @@ class alignas(VL_CACHE_LINE_BYTES) VinsertionSort VL_NOT_FINAL : public Verilate
     // PORTS
     // The application code writes and reads these signals to
     // propagate new values into/out from the Verilated model.
-    VL_IN8(&i_clk,0,0);
-    VL_IN8(&i_rst_n,0,0);
-    VL_IN8(&i_start,0,0);
-    VL_OUT8(&o_done,0,0);
-    VL_IN8((&i_data)[8],7,0);
-    VL_OUT8((&o_data)[8],7,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.

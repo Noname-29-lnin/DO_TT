@@ -9,12 +9,6 @@
 VinsertionSort::VinsertionSort(VerilatedContext* _vcontextp__, const char* _vcname__)
     : VerilatedModel{*_vcontextp__}
     , vlSymsp{new VinsertionSort__Syms(contextp(), _vcname__, this)}
-    , i_clk{vlSymsp->TOP.i_clk}
-    , i_rst_n{vlSymsp->TOP.i_rst_n}
-    , i_start{vlSymsp->TOP.i_start}
-    , o_done{vlSymsp->TOP.o_done}
-    , i_data{vlSymsp->TOP.i_data}
-    , o_data{vlSymsp->TOP.o_data}
     , rootp{&(vlSymsp->TOP)}
 {
     // Register model with the context
@@ -66,12 +60,9 @@ void VinsertionSort::eval_step() {
 
 //============================================================
 // Events and timing
-bool VinsertionSort::eventsPending() { return false; }
+bool VinsertionSort::eventsPending() { return !vlSymsp->TOP.__VdlySched.empty(); }
 
-uint64_t VinsertionSort::nextTimeSlot() {
-    VL_FATAL_MT(__FILE__, __LINE__, "", "%Error: No delays in the design");
-    return 0;
-}
+uint64_t VinsertionSort::nextTimeSlot() { return vlSymsp->TOP.__VdlySched.nextTimeSlot(); }
 
 //============================================================
 // Utilities
