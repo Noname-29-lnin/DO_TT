@@ -1,0 +1,8 @@
+
+State Machine - |insertionSort|state
+Name state.INSERT state.COMPARE state.LOAD state.IDLE state.CHECK 
+state.IDLE 0 0 0 0 0 
+state.LOAD 0 0 1 1 0 
+state.COMPARE 0 1 0 1 0 
+state.INSERT 1 0 0 1 0 
+state.CHECK 0 0 0 1 1 
