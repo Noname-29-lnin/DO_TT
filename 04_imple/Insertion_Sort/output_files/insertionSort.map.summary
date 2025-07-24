@@ -1,14 +1,20 @@
-Analysis & Synthesis Status : Successful - Sun Jul 20 20:38:13 2025
-Quartus II 64-Bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
+Analysis & Synthesis Status : Successful - Thu Jul 24 10:59:48 2025
+Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 Revision Name : insertionSort
 Top-level Entity Name : insertionSort
-Family : Cyclone II
-Total logic elements : 247
-    Total combinational functions : 174
-    Dedicated logic registers : 150
-Total registers : 150
-Total pins : 132
+Family : Arria II GX
+Logic utilization : N/A
+    Combinational ALUTs : 242
+    Memory ALUTs : 0
+    Dedicated logic registers : 129
+Total registers : 129
+Total pins : 84
 Total virtual pins : 0
-Total memory bits : 0
-Embedded Multiplier 9-bit elements : 0
+Total block memory bits : 0
+DSP block 18-bit elements : 0
+Total GXB Receiver Channel PCS : 0
+Total GXB Receiver Channel PMA : 0
+Total GXB Transmitter Channel PCS : 0
+Total GXB Transmitter Channel PMA : 0
 Total PLLs : 0
+Total DLLs : 0

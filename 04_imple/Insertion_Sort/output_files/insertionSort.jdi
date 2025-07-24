@@ -1,8 +1,8 @@
 <sld_project_info>
   <project>
-    <hash md5_digest_80b="c369d1d38590de1ee60b"/>
+    <hash md5_digest_80b="2c1005493d1a99e50bac"/>
   </project>
   <file_info>
-    <file device="EP2C35F672C8" path="insertionSort.sof" usercode="0xFFFFFFFF"/>
+    <file device="EP2AGX45CU17I3" path="insertionSort.sof" usercode="0xFFFFFFFF"/>
   </file_info>
 </sld_project_info>

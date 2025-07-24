@@ -1,262 +1,156 @@
-// module insertionSort #(
-//     parameter SIZE_DATA     = 8,
-//     parameter NUMBER_ARR    = 8
-// )(
-//     input  logic                     i_clk,
-//     input  logic                     i_rst_n,
-//     input  logic                     i_start,
-//     input  logic [SIZE_DATA-1:0]     i_data [NUMBER_ARR],
-//     output logic [SIZE_DATA-1:0]     o_data [NUMBER_ARR],
-//     output logic                     o_done
-// );
-//     // Block update i
-//     logic [$clog2(SIZE_DATA)-1:0] i, i_n;
-//     logic w_init_i, w_update_i;
-//     always_comb begin
-//         i = (w_init_i) ? 1 : i_n;
-//     end
-//     always_ff @(posedge i_clk or negedge i_rst_n) begin
-//         if(~i_rst_n)
-//             i_n     <= '0;
-//         else
-//             i_n     <= (w_update_i) ? i + 1'b1 : i;
-//     end
-
-//     // Block update j
-//     logic [$clog2(SIZE_DATA)-1:0] j, j_n;
-//     logic w_init_j, w_update_j;
-//     always_comb begin
-//         j = (w_init_j) ? i - 1 : j_n;
-//     end
-//     always_ff @(posedge i_clk or negedge i_rst_n) begin
-//         if(~i_rst_n)
-//             j_n     <= '0;
-//         else
-//             j_n     <= (w_update_j) ? j - 1 : j;
-//     end
-
-//     // Block FSM
-//     typedef enum logic [1:0] {
-//         IDLE,
-//         LOAD,
-//         COMPARE,
-//         DONE
-//     } state_e;
-//     state_e state, n_state;
-
-//     logic [SIZE_DATA-1:0] arr [0:NUMBER_ARR-1];
-//     always_comb begin
-//         for(int i = 0; i < NUMBER_ARR; i++) begin
-//             arr[i] = (i_start) ? i_data[i] : '0;
-//         end
-//     end
-
-//     logic [SIZE_DATA-1:0] key;
-//     assign key = (state == LOAD) ? arr[i] : key;
-//     assign arr[j+1] = (state == DONE) ? key : arr[j+1];
-
-//     logic w_update_load, w_update_compare;
-
-//     assign w_update_load = (i < NUMBER_ARR);
-//     assign w_update_compare = (arr[j] > key);
-
-//     always_comb begin : proc_next_state_FSM
-//         case(state)
-//             IDLE: 
-//                 n_state = (i_start) ? LOAD : IDLE;
-//             LOAD:
-//                 n_state = (w_update_load) ? COMPARE : DONE;
-//             COMPARE:
-//                 n_state = (w_update_compare) ? COMPARE : DONE;
-//             DONE:
-//                 n_state = (w_update_load) ? LOAD : IDLE;
-//         endcase
-//     end
-//     always_ff @(posedge i_clk or negedge i_rst_n) begin : proc_next_state_FSM
-//         if(~i_rst_n)
-//             state <= IDLE;
-//         else
-//             state <= n_state;
-//     end
-//     always_comb begin : proc_output_FSM
-//         case(state)
-//             IDLE: begin
-//                 w_init_i = 1'b1;
-//                 w_init_j = 1'b1;
-//                 w_update_i = 1'b0;
-//                 w_update_j = 1'b0;
-//             end
-//             LOAD: begin
-//                 w_init_i = 1'b0;
-//                 w_init_j = 1'b1;
-//                 w_update_i = 1'b0;
-//                 w_update_j = 1'b0;
-//             end
-//             COMPARE: begin
-//                 w_init_i = 1'b0;
-//                 w_init_j = 1'b0;
-//                 w_update_i = 1'b0;
-//                 w_update_j = 1'b1;
-//             end 
-//             DONE: begin
-//                 w_init_i = 1'b0;
-//                 w_init_j = 1'b0;
-//                 w_update_i = 1'b1;
-//                 w_update_j = 1'b0;
-//             end
-//             default: begin
-//                 w_init_i = 1'b1;
-//                 w_init_j = 1'b1;
-//                 w_update_i = 1'b0;
-//                 w_update_j = 1'b0;
-//             end
-//         endcase
-//     end
-
-//     always_ff @(posedge i_clk or negedge i_rst_n or negedge w_update_load) begin
-//         if(~i_rst_n)
-//             o_done <= 1'b0;
-//         else if(~w_update_load)
-//             o_done <= 1'b1;
-//         else
-//             o_done <= 1'b0;
-//     end
-
-// endmodule
-
-// // version 2
 module insertionSort #(
-    parameter SIZE_DATA  = 8,
-    parameter NUMBER_ARR = 8
+    parameter NUM_VALS = 5,
+    parameter SIZE_DATA = 8
 )(
-    input  logic                     i_clk,
-    input  logic                     i_rst_n,
-    input  logic                     i_start,
-    input  logic [SIZE_DATA-1:0]     i_data [NUMBER_ARR],
-    output logic [SIZE_DATA-1:0]     o_data [NUMBER_ARR],
-    output logic                     o_done
+    input  logic                         i_clk,
+    input  logic                         i_rst_n,
+    input  logic                         i_start,
+    input  logic [NUM_VALS*SIZE_DATA-1:0] i_data,
+    output logic                         o_done,
+    output logic [NUM_VALS*SIZE_DATA-1:0] o_data
 );
-    // Thanh ghi và biến
-    logic [$clog2(NUMBER_ARR)-1:0] i, j;
-    logic [SIZE_DATA-1:0] arr [0:NUMBER_ARR-1];
-    logic [SIZE_DATA-1:0] key_reg;
-    logic load_condition, compare_condition;
 
-    // FSM
+    // State encoding
     typedef enum logic [2:0] {
-        IDLE,
-        LOAD,
-        COMPARE,
-        INSERT,
-        CHECK
-    } state_e;
-    state_e state, n_state;
+        b0, // Reset/init
+        b1, // Load data into internal array
+        b2, // Wait for start
+        b3, // Use compare_block for first two elements
+        b4, // Select key
+        b5, // While loop condition
+        b6, // Shift and insert
+        b7  // Done
+    } state_t;
 
-    // Consolidated arr updates in a single always_ff block
-    always_ff @(posedge i_clk or negedge i_rst_n) begin
-        if (~i_rst_n) begin
-            for (int k = 0; k < NUMBER_ARR; k++) begin
-                arr[k] <= '0;
-            end
-        end else if (i_start && state == IDLE) begin
-            // Initialize arr with input data
-            for (int k = 0; k < NUMBER_ARR; k++) begin
-                arr[k] <= i_data[k];
-            end
-        end else if (state == COMPARE && compare_condition) begin
-            // Shift: arr[j+1] = arr[j]
-            arr[j+1] <= arr[j];
-        end else if (state == INSERT) begin
-            // Insert: arr[j+1] = key_reg
-            arr[j+1] <= key_reg;
-        end
-    end
+    state_t state;
 
-    // Pipeline: Lấy key
-    always_ff @(posedge i_clk or negedge i_rst_n) begin
-        if (~i_rst_n)
-            key_reg <= '0;
-        else if (state == LOAD)
-            key_reg <= arr[i];
-    end
+    // Internal array
+    logic [SIZE_DATA-1:0] arr_temp [NUM_VALS-1:0];
+    logic [SIZE_DATA-1:0] key;
+    integer i_sign; // current index of insertion
 
-    // Pipeline: So sánh
-    always_ff @(posedge i_clk or negedge i_rst_n) begin
-        if (~i_rst_n)
-            compare_condition <= 1'b0;
-        else if (state == COMPARE)
-            compare_condition <= (j < NUMBER_ARR && arr[j] > key_reg); // Add j bounds check
-    end
+    // Compare block outputs
+    logic [SIZE_DATA-1:0] w_less_data;
+    logic [SIZE_DATA-1:0] w_greater_data;
 
-    // Cập nhật i, j
+    // FSM & datapath
     always_ff @(posedge i_clk or negedge i_rst_n) begin
-        if (~i_rst_n) begin
-            i <= '0;
-            j <= '0;
+        if (!i_rst_n) begin
+            state <= b0;
+            o_done <= 1'b0;
+            i_sign <= 0;
         end else begin
             case (state)
-                IDLE: begin
-                    i <= 1;
-                    j <= '0;
+                b0: begin
+                    o_done <= 1'b0;
+                    state <= b1;
                 end
-                LOAD: begin
-                    j <= i - 1;
+
+                b1: begin
+                    // Load input data to internal array
+                    for (int i = 0; i < NUM_VALS; i++) begin
+                        arr_temp[i] <= i_data[i*SIZE_DATA +: SIZE_DATA];
+                    end
+                    state <= b2;
                 end
-                COMPARE: begin
-                    if (compare_condition)
-                        j <= j - 1;
+
+                b2: begin
+                    // Wait for start signal
+                    if (i_start)
+                        state <= b3;
                 end
-                CHECK: begin
-                    i <= i + 1;
+
+                b3: begin
+                    // Use compare_block to sort first 2 elements
+                    arr_temp[0] <= w_less_data;
+                    arr_temp[1] <= w_greater_data;
+                    i_sign <= 2; // Start insertion from 3rd element
+                    state <= b4;
                 end
+
+                b4: begin
+                    if (i_sign < NUM_VALS) begin
+                        key <= arr_temp[i_sign];
+                        i_sign <= i_sign - 1;
+                        state <= b5;
+                    end else begin
+                        state <= b7;
+                    end
+                end
+
+                b5: begin
+                    if ((i_sign >= 0) && (key < arr_temp[i_sign])) begin
+                        arr_temp[i_sign + 1] <= arr_temp[i_sign];
+                        i_sign <= i_sign - 1;
+                        state <= b5; // Repeat
+                    end else begin
+                        state <= b6;
+                    end
+                end
+
+                b6: begin
+                    arr_temp[i_sign + 1] <= key;
+                    i_sign <= i_sign + 2;
+                    state <= b4;
+                end
+
+                b7: begin
+                    // Sorting done
+                    for (int i = 0; i < NUM_VALS; i++) begin
+                        o_data[i*SIZE_DATA +: SIZE_DATA] <= arr_temp[i];
+                    end
+                    o_done <= 1'b1;
+                    state <= b0; // reset for next run
+                end
+
+                default: state <= b0;
             endcase
         end
     end
 
-    // Điều kiện chuyển trạng thái
-    always_ff @(posedge i_clk or negedge i_rst_n) begin
-        if (~i_rst_n)
-            load_condition <= 1'b0;
-        else
-            load_condition <= (i < NUMBER_ARR);
-    end
+    // === Compare block instantiation ===
+    compare_block #(
+        .SIZE_DATA(SIZE_DATA)
+    ) u_compare_block (
+        .i_data_a(arr_temp[0]),
+        .i_data_b(arr_temp[1]),
+        .o_less_data(w_less_data),
+        .o_greater_data(w_greater_data)
+    );
 
-    // FSM chuyển trạng thái
-    always_comb begin
-        case (state)
-            IDLE:    n_state = (i_start) ? LOAD : IDLE;
-            LOAD:    n_state = (load_condition) ? COMPARE : CHECK;
-            COMPARE: n_state = (compare_condition) ? INSERT : CHECK;
-            INSERT:  n_state = COMPARE;
-            CHECK:   n_state = (load_condition) ? LOAD : IDLE;
-            default: n_state = IDLE;
-        endcase
-    end
-
-    always_ff @(posedge i_clk or negedge i_rst_n) begin
-        if (~i_rst_n)
-            state <= IDLE;
-        else
-            state <= n_state;
-    end
-
-    // Đầu ra
-    always_ff @(posedge i_clk or negedge i_rst_n) begin
-        if (~i_rst_n) begin
-            for (int k = 0; k < NUMBER_ARR; k++)
-                o_data[k] <= '0;
-        end else if (state == CHECK && !load_condition) begin
-            for (int k = 0; k < NUMBER_ARR; k++)
-                o_data[k] <= arr[k];
-        end
-    end
-
-    always_ff @(posedge i_clk or negedge i_rst_n) begin
-        if (~i_rst_n)
-            o_done <= 1'b0;
-        else if (state == CHECK && !load_condition)
-            o_done <= 1'b1;
-        else
-            o_done <= 1'b0;
-    end
 endmodule
+
+//module insertionSort #(
+//    parameter NUM_VALS = 5,
+//    parameter SIZE     = 16
+//)(  input  wire clk,
+//    input  wire [NUM_VALS*SIZE-1:0] in,
+//    output reg  [NUM_VALS*SIZE-1:0] out
+//);
+//    reg [NUM_VALS*SIZE-1:0] sorted_bus;
+//    always @(posedge clk) begin
+//        out <= sorted_bus;
+//    end
+//
+//    integer i, j;
+//    reg [SIZE-1:0] temp;
+//    reg [SIZE-1:0] array [1:NUM_VALS-1];
+//    always @* begin
+//        for (i = 0; i < NUM_VALS; i = i + 1) begin
+//            array[i+1] = in[i*SIZE +: SIZE];
+//        end
+//
+//        for (j = 2; j < NUM_VALS + 1; j = j + 1) begin
+//				i = j-1;
+//				temp = array[j];
+//            while((i > 0)&&(temp < array[i])) begin
+//                    array[i+1] = array[i];
+//						  i=i-1;
+//						  end
+//				array[i+1]=temp;
+//            end    
+//       for (i = 0; i < NUM_VALS; i = i + 1) begin
+//            sorted_bus[i*SIZE +: SIZE] = array[i+1];
+//       end
+//    end
+//endmodule

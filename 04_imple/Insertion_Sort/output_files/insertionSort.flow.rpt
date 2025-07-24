@@ -1,6 +1,6 @@
 Flow report for insertionSort
-Sun Jul 20 20:38:24 2025
-Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+Thu Jul 24 11:00:06 2025
+Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
 ---------------------
@@ -21,42 +21,49 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 1991-2013 Altera Corporation
-Your use of Altera Corporation's design tools, logic functions 
-and other software and tools, and its AMPP partner logic 
+Copyright (C) 2020  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
 functions, and any output files from any of the foregoing 
 (including device programming or simulation files), and any 
 associated documentation or information are expressly subject 
-to the terms and conditions of the Altera Program License 
-Subscription Agreement, Altera MegaCore Function License 
-Agreement, or other applicable license agreement, including, 
-without limitation, that your use is for the sole purpose of 
-programming logic devices manufactured by Altera and sold by 
-Altera or its authorized distributors.  Please refer to the 
-applicable agreement for further details.
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
 
 
 
-+--------------------------------------------------------------------------------------+
-; Flow Summary                                                                         ;
-+------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Sun Jul 20 20:38:22 2025           ;
-; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
-; Revision Name                      ; insertionSort                                   ;
-; Top-level Entity Name              ; insertionSort                                   ;
-; Family                             ; Cyclone II                                      ;
-; Device                             ; EP2C35F672C8                                    ;
-; Timing Models                      ; Final                                           ;
-; Total logic elements               ; 247 / 33,216 ( < 1 % )                          ;
-;     Total combinational functions  ; 175 / 33,216 ( < 1 % )                          ;
-;     Dedicated logic registers      ; 150 / 33,216 ( < 1 % )                          ;
-; Total registers                    ; 150                                             ;
-; Total pins                         ; 132 / 475 ( 28 % )                              ;
-; Total virtual pins                 ; 0                                               ;
-; Total memory bits                  ; 0 / 483,840 ( 0 % )                             ;
-; Embedded Multiplier 9-bit elements ; 0 / 70 ( 0 % )                                  ;
-; Total PLLs                         ; 0 / 4 ( 0 % )                                   ;
-+------------------------------------+-------------------------------------------------+
++---------------------------------------------------------------------------------+
+; Flow Summary                                                                    ;
++-----------------------------------+---------------------------------------------+
+; Flow Status                       ; Successful - Thu Jul 24 11:00:03 2025       ;
+; Quartus Prime Version             ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
+; Revision Name                     ; insertionSort                               ;
+; Top-level Entity Name             ; insertionSort                               ;
+; Family                            ; Arria II GX                                 ;
+; Logic utilization                 ; < 1 %                                       ;
+;     Combinational ALUTs           ; 242 / 36,100 ( < 1 % )                      ;
+;     Memory ALUTs                  ; 0 / 18,050 ( 0 % )                          ;
+;     Dedicated logic registers     ; 129 / 36,100 ( < 1 % )                      ;
+; Total registers                   ; 129                                         ;
+; Total pins                        ; 84 / 176 ( 48 % )                           ;
+; Total virtual pins                ; 0                                           ;
+; Total block memory bits           ; 0 / 2,939,904 ( 0 % )                       ;
+; DSP block 18-bit elements         ; 0 / 232 ( 0 % )                             ;
+; Total GXB Receiver Channel PCS    ; 0 / 4 ( 0 % )                               ;
+; Total GXB Receiver Channel PMA    ; 0 / 4 ( 0 % )                               ;
+; Total GXB Transmitter Channel PCS ; 0 / 4 ( 0 % )                               ;
+; Total GXB Transmitter Channel PMA ; 0 / 4 ( 0 % )                               ;
+; Total PLLs                        ; 0 / 4 ( 0 % )                               ;
+; Total DLLs                        ; 0 / 2 ( 0 % )                               ;
+; Device                            ; EP2AGX45CU17I3                              ;
+; Timing Models                     ; Final                                       ;
++-----------------------------------+---------------------------------------------+
 
 
 +-----------------------------------------+
@@ -64,50 +71,48 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 07/20/2025 20:38:12 ;
+; Start date & time ; 07/24/2025 10:59:40 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; insertionSort       ;
 +-------------------+---------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                 ;
-+-------------------------------------+---------------------------------+---------------+-------------+------------+
-; Assignment Name                     ; Value                           ; Default Value ; Entity Name ; Section Id ;
-+-------------------------------------+---------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 220449206541281.175301869216928 ; --            ; --          ; --         ;
-; MAX_CORE_JUNCTION_TEMP              ; 85                              ; --            ; --          ; --         ;
-; MIN_CORE_JUNCTION_TEMP              ; 0                               ; --            ; --          ; --         ;
-; PARTITION_COLOR                     ; 16764057                        ; --            ; --          ; Top        ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; PLACEMENT_AND_ROUTING           ; --            ; --          ; Top        ;
-; PARTITION_NETLIST_TYPE              ; SOURCE                          ; --            ; --          ; Top        ;
-; PROJECT_OUTPUT_DIRECTORY            ; output_files                    ; --            ; --          ; --         ;
-+-------------------------------------+---------------------------------+---------------+-------------+------------+
++-------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                        ;
++-------------------------------------+----------------------------------------+---------------+-------------+------------+
+; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
++-------------------------------------+----------------------------------------+---------------+-------------+------------+
+; COMPILER_SIGNATURE_ID               ; 220449206541281.175332957922908        ; --            ; --          ; --         ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
+; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --            ; --          ; --         ;
++-------------------------------------+----------------------------------------+---------------+-------------+------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------+
-; Flow Elapsed Time                                                                                                             ;
-+---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
-+---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:01     ; 1.0                     ; 4591 MB             ; 00:00:01                           ;
-; Fitter                    ; 00:00:06     ; 1.0                     ; 4885 MB             ; 00:00:05                           ;
-; Assembler                 ; 00:00:02     ; 1.0                     ; 4565 MB             ; 00:00:01                           ;
-; TimeQuest Timing Analyzer ; 00:00:01     ; 1.0                     ; 4545 MB             ; 00:00:01                           ;
-; Total                     ; 00:00:10     ; --                      ; --                  ; 00:00:08                           ;
-+---------------------------+--------------+-------------------------+---------------------+------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                        ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis ; 00:00:09     ; 1.0                     ; 4840 MB             ; 00:00:22                           ;
+; Fitter               ; 00:00:10     ; 1.0                     ; 5851 MB             ; 00:00:12                           ;
+; Assembler            ; 00:00:03     ; 1.0                     ; 4814 MB             ; 00:00:03                           ;
+; Timing Analyzer      ; 00:00:02     ; 1.0                     ; 4919 MB             ; 00:00:02                           ;
+; Total                ; 00:00:24     ; --                      ; --                  ; 00:00:39                           ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
-+----------------------------------------------------------------------------------------+
-; Flow OS Summary                                                                        ;
-+---------------------------+------------------+-----------+------------+----------------+
-; Module Name               ; Machine Hostname ; OS Name   ; OS Version ; Processor type ;
-+---------------------------+------------------+-----------+------------+----------------+
-; Analysis & Synthesis      ; NguyenDong       ; Windows 7 ; 6.2        ; x86_64         ;
-; Fitter                    ; NguyenDong       ; Windows 7 ; 6.2        ; x86_64         ;
-; Assembler                 ; NguyenDong       ; Windows 7 ; 6.2        ; x86_64         ;
-; TimeQuest Timing Analyzer ; NguyenDong       ; Windows 7 ; 6.2        ; x86_64         ;
-+---------------------------+------------------+-----------+------------+----------------+
++------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                    ;
++----------------------+------------------+------------+------------+----------------+
+; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
++----------------------+------------------+------------+------------+----------------+
+; Analysis & Synthesis ; NguyenDong       ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; NguyenDong       ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; NguyenDong       ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; NguyenDong       ; Windows 10 ; 10.0       ; x86_64         ;
++----------------------+------------------+------------+------------+----------------+
 
 
 ------------

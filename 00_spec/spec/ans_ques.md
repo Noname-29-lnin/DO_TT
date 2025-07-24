@@ -58,3 +58,5 @@
 # All task
 
 - Using Cpp create all sorting algorithm
+
+# When designing a sorting module in Verilog, what does "in-place" mean, and how does it difference form a non-in-place soring implementation.
