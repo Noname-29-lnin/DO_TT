@@ -60,3 +60,15 @@
 - Using Cpp create all sorting algorithm
 
 # When designing a sorting module in Verilog, what does "in-place" mean, and how does it difference form a non-in-place soring implementation.
+
+```mermaid
+graph TD
+  Generator --> Agent
+  Agent --> Driver
+  Agent --> Monitor
+  Driver -->|Signal via Interface| DUT
+  DUT -->|Signal via Interface| Monitor
+  Monitor --> Checker
+  Checker --> Scoreboard
+  DUT --> Assertion
+```
