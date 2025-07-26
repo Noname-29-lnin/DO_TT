@@ -21,10 +21,3 @@ function bit check_sorted(input logic [`NUM_VALS-1:0][`SIZE_DATA-1:0] data);
     end
     return 1;
 endfunction
-
-task print_wate;
-    begin
-        $dumpfile("tb_top_test.vcd");
-        $dumpvars(0, tb_top_test);
-    end
-endtask 

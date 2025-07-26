@@ -10,11 +10,10 @@ module top_test;
 
     initial tsk_clock_gen(i_clk, 10);
     initial tsk_reset(i_rst_n, 10);
-    initial print_wate();
+
     initial begin
         bit sorted;
         sorted = check_sorted(w_odata);
-        // Optionally, display result or use 'sorted' as needed
     end
 
     logic [`NUM_VALS-1:0][`SIZE_DATA-1:0] w_idata, w_odata;
