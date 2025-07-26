@@ -1,0 +1,16 @@
+Fitter Status : Successful - Fri Jul 25 21:41:38 2025
+Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+Revision Name : bubbleSort
+Top-level Entity Name : bubbleSort
+Family : Cyclone 10 LP
+Device : 10CL120ZF780I8G
+Timing Models : Final
+Total logic elements : 472 / 119,088 ( < 1 % )
+    Total combinational functions : 386 / 119,088 ( < 1 % )
+    Dedicated logic registers : 366 / 119,088 ( < 1 % )
+Total registers : 366
+Total pins : 132 / 526 ( 25 % )
+Total virtual pins : 0
+Total memory bits : 160 / 3,981,312 ( < 1 % )
+Embedded Multiplier 9-bit elements : 0 / 576 ( 0 % )
+Total PLLs : 0 / 4 ( 0 % )

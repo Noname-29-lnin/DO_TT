@@ -54,10 +54,10 @@ module tb_insertionSort;
         #10;
         i_data = {
             8'd12,  // MSB
-            8'd5,
+            8'd1,
             8'd1, 
             8'd20,
-            8'd3,
+            8'd0,
             8'd15,
             8'd29,
             8'd1   // LSB
