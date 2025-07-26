@@ -24,7 +24,7 @@ $(BUILD_DIR)/%.o: %.cpp
 	@mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-run: $(TARGET)
+run:
 	./$(TARGET) | tee complite.log
 
 clean:

@@ -1,0 +1,25 @@
+Original Array: 
+241 109 140 111 98 121 227 41 145 155 230 144 65 103 18 96 133 3 236 249 152 217 125 84 36 185 96 51 94 244 45 149 248 61 99 200 6 42 52 126 151 216 39 179 2 114 3 170 205 225 15 231 199 8 15 24 210 40 44 90 103 223 33 37 28 72 21 5 93 207 159 232 95 139 245 64 218 45 77 251 219 54 3 68 168 4 20 99 63 43 195 124 56 7 172 241 113 107 115 66 
+Normal Sort -> PASS
+Normal Sort took 2201 ns.
+Starting sorting algorithms...
+Insertion Sort -> PASS
+Insertion Sort took 1834 ns.
+Selection Sort -> PASS
+Selection Sort took 4767 ns.
+Bubble Sort -> PASS
+Bubble Sort took 16135 ns.
+Heap Sort -> PASS
+Heap Sort took 2750 ns.
+Quick Sort -> PASS
+Quick Sort took 2475 ns.
+Merge Sort -> PASS
+Merge Sort took 6783 ns.
+Serial Realization Sort -> PASS
+Serial Realization Sort took 6142 ns.
+Parallel Realization Sort -> FAIL
+Parallel Realization Sort took 691943 ns.
+Bitonic Sort -> FAIL
+Bitonic Sort took 5317 ns.
+Sorting completed.
+All sorting algorithms executed successfully.

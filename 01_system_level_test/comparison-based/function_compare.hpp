@@ -1,6 +1,6 @@
 //#pragma once
-#ifndef FUNCTION_H
-#define FUNCTION_H
+#ifndef FUNCTION_COMPARE_H
+#define FUNCTION_COMPARE_H
 
 #include <iostream>
 #include <vector>

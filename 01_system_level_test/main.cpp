@@ -4,8 +4,8 @@
 #include <string>
 #include <chrono>
 
-#include "function.hpp"
-#include "Verif.hpp"
+#include "./comparison-based/function_compare.hpp"
+#include "./Verification/Verif.hpp"
 
 int main(){
     
