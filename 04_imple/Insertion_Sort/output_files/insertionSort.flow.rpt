@@ -1,5 +1,5 @@
 Flow report for insertionSort
-Thu Jul 24 11:00:06 2025
+Sat Jul 26 22:18:17 2025
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -41,13 +41,13 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------------------------+
 ; Flow Summary                                                                    ;
 +-----------------------------------+---------------------------------------------+
-; Flow Status                       ; Successful - Thu Jul 24 11:00:03 2025       ;
+; Flow Status                       ; Successful - Sat Jul 26 22:18:14 2025       ;
 ; Quartus Prime Version             ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                     ; insertionSort                               ;
 ; Top-level Entity Name             ; insertionSort                               ;
 ; Family                            ; Arria II GX                                 ;
 ; Logic utilization                 ; < 1 %                                       ;
-;     Combinational ALUTs           ; 242 / 36,100 ( < 1 % )                      ;
+;     Combinational ALUTs           ; 243 / 36,100 ( < 1 % )                      ;
 ;     Memory ALUTs                  ; 0 / 18,050 ( 0 % )                          ;
 ;     Dedicated logic registers     ; 129 / 36,100 ( < 1 % )                      ;
 ; Total registers                   ; 129                                         ;
@@ -71,7 +71,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 07/24/2025 10:59:40 ;
+; Start date & time ; 07/26/2025 22:17:51 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; insertionSort       ;
 +-------------------+---------------------+
@@ -82,7 +82,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 220449206541281.175332957922908        ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 220449206541281.175354307115076        ; --            ; --          ; --         ;
 ; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
 ; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
 ; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
@@ -95,11 +95,11 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:09     ; 1.0                     ; 4840 MB             ; 00:00:22                           ;
-; Fitter               ; 00:00:10     ; 1.0                     ; 5851 MB             ; 00:00:12                           ;
-; Assembler            ; 00:00:03     ; 1.0                     ; 4814 MB             ; 00:00:03                           ;
-; Timing Analyzer      ; 00:00:02     ; 1.0                     ; 4919 MB             ; 00:00:02                           ;
-; Total                ; 00:00:24     ; --                      ; --                  ; 00:00:39                           ;
+; Analysis & Synthesis ; 00:00:08     ; 1.0                     ; 4839 MB             ; 00:00:17                           ;
+; Fitter               ; 00:00:12     ; 1.0                     ; 5846 MB             ; 00:00:15                           ;
+; Assembler            ; 00:00:02     ; 1.0                     ; 4813 MB             ; 00:00:02                           ;
+; Timing Analyzer      ; 00:00:02     ; 1.0                     ; 4918 MB             ; 00:00:02                           ;
+; Total                ; 00:00:24     ; --                      ; --                  ; 00:00:36                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

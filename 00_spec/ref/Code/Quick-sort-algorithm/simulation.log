@@ -1,0 +1,13 @@
+Time 5: Sorting complete, Qcomp = 1
+0 0 0 0 0 0 0 0 
+Time 10: Loading vec[0] = 73
+Time 20: Loading vec[1] = 4
+Time 30: Loading vec[2] = 54
+Time 40: Loading vec[3] = 61
+Time 50: Loading vec[4] = 73
+Time 60: Loading vec[5] = 1
+Time 70: Loading vec[6] = 26
+Time 80: Loading vec[7] = 59
+73 4 54 61 73 1 26 59 
+Error: Simulation timed out waiting for Qcomp
+- Qtest.v:64: Verilog $finish

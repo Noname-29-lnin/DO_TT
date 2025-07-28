@@ -1,4 +1,4 @@
-Fitter Status : Successful - Thu Jul 24 10:59:59 2025
+Fitter Status : Successful - Sat Jul 26 22:18:11 2025
 Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 Revision Name : insertionSort
 Top-level Entity Name : insertionSort
@@ -6,7 +6,7 @@ Family : Arria II GX
 Device : EP2AGX45CU17I3
 Timing Models : Final
 Logic utilization : < 1 %
-    Combinational ALUTs : 242 / 36,100 ( < 1 % )
+    Combinational ALUTs : 243 / 36,100 ( < 1 % )
     Memory ALUTs : 0 / 18,050 ( 0 % )
     Dedicated logic registers : 129 / 36,100 ( < 1 % )
 Total registers : 129

@@ -1,6 +1,7 @@
 === Testbench: Insertion Sort ===
 Input data: 
-1 29 15 0 20 1 1 12 
+12 1 1 20 0 15 29 1 
 Sorted output: 
 0 1 1 1 12 15 20 29 
-- tb_insertionSort.sv:79: Verilog $finish
+Insertion sort took 63 clock cycles
+- tb_insertionSort.sv:90: Verilog $finish

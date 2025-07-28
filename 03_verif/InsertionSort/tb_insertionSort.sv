@@ -9,9 +9,9 @@ module tb_insertionSort;
     logic i_clk;
     logic i_rst_n;
     logic i_start;
-    logic [NUM_VALS*SIZE_DATA-1:0] i_data;
+    logic [SIZE_DATA-1:0] i_data [NUM_VALS];
     logic o_done;
-    logic [NUM_VALS*SIZE_DATA-1:0] o_data;
+    logic [SIZE_DATA-1:0] o_data [NUM_VALS];
 
     // Clock generation
     initial begin
@@ -27,54 +27,65 @@ module tb_insertionSort;
         .i_clk(i_clk),
         .i_rst_n(i_rst_n),
         .i_start(i_start),
+        // .i_mode(1'b0),        // ascending
         .i_data(i_data),
         .o_done(o_done),
         .o_data(o_data)
     );
 
     // Task to print output array
-    task automatic print_array(input [NUM_VALS*SIZE_DATA-1:0] arr);
+    task automatic print_array(input [SIZE_DATA-1:0] arr [NUM_VALS]);
         for (int i = 0; i < NUM_VALS; i++) begin
-            $write("%0d ", arr[i*SIZE_DATA +: SIZE_DATA]);
+            $write("%0d ", arr[i]);
         end
         $write("\n");
     endtask
 
+    initial begin
+        $dumpfile("tb_insertionSort.vcd");
+        $dumpvars(0, tb_insertionSort);
+    end
+
     // Stimulus
+        int execution_cycles;
     initial begin
         $display("=== Testbench: Insertion Sort ===");
         i_rst_n = 0;
         i_start = 0;
-        i_data = 0;
-
         #20;
         i_rst_n = 1;
+        #10;
 
         // Test case 1: unsorted input
-        #10;
-        i_data = {
-            8'd12,  // MSB
-            8'd1,
-            8'd1, 
-            8'd20,
-            8'd0,
-            8'd15,
-            8'd29,
-            8'd1   // LSB
-        };
+        i_data[0] = 8'd12;
+        i_data[1] = 8'd1;
+        i_data[2] = 8'd1;
+        i_data[3] = 8'd20;
+        i_data[4] = 8'd0;
+        i_data[5] = 8'd15;
+        i_data[6] = 8'd29;
+        i_data[7] = 8'd1;
+
         $display("Input data: ");
         print_array(i_data);
 
+        // Start sorting
         #10;
         i_start = 1;
-        #10;
-        i_start = 0;
 
+        execution_cycles = 0;
+
+            // Đếm chu kỳ cho đến khi i_done == 1
+        while (o_done == 1'b0) begin
+            @(posedge i_clk);
+            execution_cycles++;
+        end
         // Wait for done signal
-        wait (o_done == 1);
+        // @(posedge o_done);
+        // #10000;
         $display("Sorted output: ");
         print_array(o_data);
-
+        $display("Insertion sort took %0d clock cycles", execution_cycles);
         #10;
         $finish;
     end
