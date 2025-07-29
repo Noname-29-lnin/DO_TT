@@ -6,6 +6,8 @@
 #include <chrono>
 #include <functional>
 #include <algorithm>
+#include <iomanip> // using std::setw
+#include <fstream>
 
 template<typename Func>
 long long V_MeasureSortTime(std::vector<int> arr, Func sortFunction){
@@ -29,5 +31,17 @@ long long V_CAL_MeasureTime(Func func) {
 
 void PrintTime(const std::string& name, long long time);
 void CheckSorted(const std::string NameSort ,const std::vector<int>& normalarr, std::vector<int>& arr);
+
+struct SortResult {
+    std::string algorithm_name;
+    std::string check_sorted;
+    long long time_run;
+    int count_swap;
+    int count_compare;
+};
+std::string CheckSortedString(const std::vector<int>& arr);
+void Print_Table_Result(const std::vector<SortResult>& results);
+
+void writeVectorToFile(const std::vector<int>& vec, const std::string& filename);
 
 #endif // VERIF_H

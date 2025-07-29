@@ -26,3 +26,4 @@ module stack(clk,val1,val2,push,pop,ret1,ret2,empty);
     empty<=(counter==0);
   end
 endmodule
+ 
