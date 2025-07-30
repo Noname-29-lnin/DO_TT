@@ -4,8 +4,8 @@ BUILD_DIR := build
 TARGET := $(MAIN_TEST)
 
 CXX := g++
-CXXFLAGS := -Wall -O2 -std=c++17
-LDFLAGS :=
+CXXFLAGS := -Wall -O2 -std=c++11
+LDFLAGS := -pthread
 
 ifeq ($(wildcard $(SRC_FILE)),)
     SRC_LIST := $(MAIN_TEST).cpp
@@ -28,4 +28,4 @@ run:
 	./$(TARGET) | tee complite.log
 
 clean:
-	rm -rf $(BUILD_DIR) $(TARGET) 
+	rm -rf $(BUILD_DIR) 

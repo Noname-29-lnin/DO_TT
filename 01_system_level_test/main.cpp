@@ -190,6 +190,11 @@ int main(){
         S_Sort(serialRealizationData, S_M, serialRealizationSwap, serialRealizationCompare, serialRealizationSimilar, serialRealizationIncreasing, serialRealizationDecreasing);
     });
 
+    std::vector<int> paralleData = data;
+    long long parallelTime = V_CAL_MeasureTime([&paralleData]() {
+        P_Sort(paralleData, 2);
+    });
+
     std::vector<SortResult> results;
     results.push_back({"NormalData", CheckSortedString(data), 0, 0, 0});
     results.push_back({"NormalSort", CheckSortedString(normalSortData), normalSortTime, 0, 0});
@@ -200,6 +205,7 @@ int main(){
     results.push_back({"QuickSort", CheckSortedString(quickSortData), quickSortTime, quickSortSwap, quickSortCompare});
     results.push_back({"MergeSort", CheckSortedString(mergeSortData), mergeSortTime, 0, mergeSortCompare});
     results.push_back({"SerialRealizationSort", CheckSortedString(serialRealizationData), serialRealizationTime, serialRealizationSwap, serialRealizationCompare});
+    results.push_back({"ParallelRealizationSort", CheckSortedString(paralleData), parallelTime, 0, 0});
     
     Print_Table_Result(results);
     

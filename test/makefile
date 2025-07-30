@@ -1,0 +1,1 @@
+g++ -std=c++17 -o test_multitasking test_multitasking.cpp && ./test_multitasking | tee complite.log

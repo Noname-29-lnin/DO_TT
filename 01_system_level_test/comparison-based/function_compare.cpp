@@ -1,5 +1,6 @@
 #include "function_compare.hpp"
 #include "./../Verification/Verif.hpp"
+#include <thread>
 
 void PrintArray(std::string name, const std::vector<int>& arr){
     std::cout << name << ": " << std::endl;
@@ -257,7 +258,7 @@ void S_Division(std::vector<int>& arr, size_t si, size_t ei, int M, int& S_cnt, 
             S_cnt = 1;
         }
         S_Division(arr, bi+1, ei, M, S_cnt, count_swap, count_compare, count_similar, count_increasing, count_decreasing);
-    } else {
+    } else { // core-sort
         // std::cout <<"F_subarray: si = " << si << " ei = " << ei << std::endl;
         // F_QuickSort(arr, si, ei, count_swap);
         F_MergeSort(arr, si, ei, count_compare);
@@ -269,6 +270,90 @@ void S_Sort(std::vector<int>& arr, int M, int& count_swap, int& count_compare, i
     int cnt = 0;
     S_Division(arr, 0, arr.size() - 1, M, cnt, count_swap, count_compare, count_similar, count_increasing, count_decreasing);
 }
+
+//////////////////////////////////////////////////
+
+
+bool P_CoreSSChecker(std::vector<int>& arr, int si, int ei) {
+    CheckArrayStatus status = SS_Check(arr, si, ei);
+    if (status == CheckArrayStatus::DECREASING) {
+        F_Reverse_Array(arr, si, ei);
+        return true;
+    }
+    return (status != CheckArrayStatus::UNSORTED);
+}
+
+int P_Partition(std::vector<int>& arr, int si, int ei, double mean) {
+    int bi = si;
+    for (int i = si; i <= ei; ++i) {
+        if (arr[i] < mean) {
+            std::swap(arr[i], arr[bi]);
+            ++bi;
+        }
+    }
+    return bi; // vị trí phân chia: arr[si..bi-1] < mean, arr[bi..ei] >= mean
+}
+
+void P_Division(std::vector<int>& arr, int si, int ei, int M, int level) {
+    if (level >= (1 << M) - 1) {
+        if (!P_CoreSSChecker(arr, si, ei)) {
+            std::sort(arr.begin() + si, arr.begin() + ei + 1);
+        }
+        return;
+    }
+
+    int parts = 1 << level;
+    int len = (ei - si + 1) / parts;
+
+    std::vector<int> partSI(parts), partEI(parts);
+    for (int i = 0; i < parts; ++i) {
+        partSI[i] = si + i * len;
+        partEI[i] = (i == parts - 1) ? ei : (si + (i + 1) * len - 1);
+    }
+
+    // Song song P_CoreSSChecker
+    std::vector<std::thread> check_threads;
+    std::vector<bool> valid_parts(parts, false);
+
+    for (int i = 0; i < parts; ++i) {
+        check_threads.emplace_back([&, i]() {
+            valid_parts[i] = P_CoreSSChecker(arr, partSI[i], partEI[i]);
+        });
+    }
+    for (auto& t : check_threads) t.join();
+
+    if (!std::all_of(valid_parts.begin(), valid_parts.end(), [](bool v) { return v; })) {
+        return;
+    }
+
+    // Song song tính tổng để lấy mean
+    std::vector<int> part_sums(parts, 0);
+    std::vector<std::thread> sum_threads;
+
+    for (int i = 0; i < parts; ++i) {
+        sum_threads.emplace_back([&, i]() {
+            part_sums[i] = std::accumulate(arr.begin() + partSI[i], arr.begin() + partEI[i] + 1, 0);
+        });
+    }
+    for (auto& t : sum_threads) t.join();
+
+    int total_sum = std::accumulate(part_sums.begin(), part_sums.end(), 0);
+    double mean = static_cast<double>(total_sum) / (ei - si + 1);
+
+    // Partition toàn mảng theo mean
+    int mid = P_Partition(arr, si, ei, mean); // arr[si..mid-1] < mean, arr[mid..ei] >= mean
+
+    // Đệ quy song song 2 phần
+    std::thread t1(P_Division, std::ref(arr), si, mid - 1, M, level + 1);
+    std::thread t2(P_Division, std::ref(arr), mid, ei, M, level + 1);
+    t1.join();
+    t2.join();
+}
+
+void P_Sort(std::vector<int>& arr, int M) {
+    P_Division(arr, 0, arr.size() - 1, M, 0);
+}
+
 
 //////////////////// Bitonic Sort //////////////////
 void compareAndSwap(std::vector<int>& arr, int i, int j, bool ascending) {
