@@ -1,24 +1,11 @@
 #include <iostream>
-#include <thread>
-
-void funtion1(){
-    for(int i = 0; i < 100; i++){
-        std::cout << "-" ;
+int main(int argc, char** argv) {
+    std::cout << "argc = " << argc << "\n";
+    for(int i = 0; i < argc; ++i) {
+        std::cout << "argv[" << i << "] = " << argv[i] << "\n";
     }
-}
-void funtion2(){
-    for(int i = 0; i < 100; i++){
-        std::cout << "+" ;
+    for(int i = 0; i < 10; i++){
+        std::cout << " 1 ";
     }
-}
-
-int main(){
-
-    std::thread worker1(funtion1);
-    std::thread worker2(funtion2);
-
-    worker1.join();
-    worker2.join();
-    
     return 0;
 }

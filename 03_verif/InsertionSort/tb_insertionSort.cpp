@@ -1,5 +1,5 @@
 #include <verilated.h>
-#include "VinsertionSort.h"  // Thay bằng tên chính xác file Verilator tạo ra
+#include "VinsertionSort.h"
 #include <iostream>
 #include <vector>
 
@@ -25,23 +25,16 @@ int main(int argc, char** argv) {
 
     // Start sorting
     top->i_start = 1;
-    for (int cycle = 0; cycle < 100; ++cycle) {
-        top->i_clk ^= 1;  // Toggle clock
-
-        if (cycle == 2) top->i_start = 0;  // Clear start after few cycles
+    while (1){
+        top->i_clk ^= 1;
 
         top->eval();
-
-        if (top->o_done == 1) {
-            std::cout << "Sorting done at cycle: " << cycle << "\nSorted output:\n";
-            for (int i = 0; i < 8; ++i) {
-                std::cout << (int)top->o_data[i] << " ";
-            }
-            std::cout << "\n";
+        if(top->o_done == 1){
+            std::cout << "Sort done" << std::endl;
+            top->i_start = 0;
             break;
         }
     }
-
     delete top;
     return 0;
 }

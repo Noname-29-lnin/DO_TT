@@ -3,7 +3,7 @@
 #include <thread>
 
 void PrintArray(std::string name, const std::vector<int>& arr){
-    std::cout << name << ": " << std::endl;
+    std::cout << name << ": ";
     for(const auto& elem : arr){
         std::cout << elem << " ";
     }
@@ -136,10 +136,12 @@ void F_MergeSort(std::vector<int>& arr, int left, int right, int& count_compare)
     }
 }
 
+////////////////////////////////////////////////////////////////
+
 int F_Cal_mean(const std::vector<int>& arr, int si, int ei){
     int sum = 0;
-    for(int i = si; i <= ei; ++i){ sum += arr[i]; }
-    return sum / (ei - si + 1);
+    for(int i = si; i <= ei; i++){ sum += arr[i]; }
+    return (int) sum / (ei - si + 1);
 }
 
 CheckArrayStatus SS_Check(std::vector<int>& arr, int si, int ei){
@@ -150,118 +152,69 @@ CheckArrayStatus SS_Check(std::vector<int>& arr, int si, int ei){
         if(arr[i] < arr[i - 1]) isAsc = false;
         if(arr[i] > arr[i - 1]) isDesc = false;
     }
-    if(isEqual) return CheckArrayStatus::SIMILAR;
-    if(isAsc) return CheckArrayStatus::INCREASING;
-    if(isDesc) return CheckArrayStatus::DECREASING;
-    return CheckArrayStatus::UNSORTED;
+    if(isEqual)     return CheckArrayStatus::SIMILAR;
+    else if(isAsc)  return CheckArrayStatus::INCREASING;
+    else if(isDesc) return CheckArrayStatus::DECREASING;
+    else            return CheckArrayStatus::UNSORTED;
 }
 
 void F_Reverse_Array(std::vector<int>& arr, int si, int ei){
     while(si < ei){ std::swap(arr[si++], arr[ei--]); }
 }
 
-// void S_Partition(std::vector<int>& arr, int si, int ei, int& left, int& right, int &count_swap){
-//     int mean = F_Cal_mean(arr, si, ei);
-//     left = si - 1;
-//     right = ei + 1;
-//     int i = si;
-//     while(i < right){
-//         if(arr[i] < mean){ 
-//             std::swap(arr[++left], arr[i++]); 
-//             count_swap++;
-//         }
-//         else if(arr[i] > mean){ 
-//             std::swap(arr[i], arr[--right]); 
-//             count_swap++;
-//         }
-//         else { ++i; }
-//     }
-// }
-
 int S_Partition(std::vector<int>& arr, int si, int ei, int& count_swap, int& count_compare){
     int bi = si - 1;
     int mean = F_Cal_mean(arr, si, ei);
-    for(int i = si; i < ei; i++){
+    std::cout << "Mean = " << mean << std::endl;
+    for(int i = si; i <= ei; i++){
         count_compare++;
-        if(arr[i] >= mean){
-            bi = bi + 1;
+        if(arr[i] <= mean){
+            ++bi;
             std::swap(arr[bi], arr[i]);
             count_swap++;
         }
     }
+    std::cout << "Bi = " << bi << std::endl;
     return bi;
 }
-
-// void S_Division(std::vector<int>& arr, size_t si, size_t ei, int M, int& S_cnt, int& count_swap){
-//     if(ei <= si) return;
-//     CheckArrayStatus status = SS_Check(arr, si, ei);
-//     // const char* statusStr = "";
-//     // switch(status) {
-//     //     case CheckArrayStatus::SIMILAR: statusStr = "SIMILAR"; break;
-//     //     case CheckArrayStatus::INCREASING: statusStr = "INCREASING"; break;
-//     //     case CheckArrayStatus::DECREASING: statusStr = "DECREASING"; break;
-//     //     case CheckArrayStatus::UNSORTED: statusStr = "UNSORTED"; break;
-//     //     default: statusStr = "UNKNOWN"; break;
-//     // }
-//     // std::cout << "SS_Check = " << statusStr << std::endl;
-//     if(status == CheckArrayStatus::INCREASING || status == CheckArrayStatus::SIMILAR) return;
-//     if(status == CheckArrayStatus::DECREASING){
-//         F_Reverse_Array(arr, si, ei);
-//         return;
-//     }
-//     if(S_cnt < (1 << (M - 1))){
-//         int left, right;
-//         S_Partition(arr, si, ei, left, right, count_swap);
-//         S_cnt++;
-//         S_Division(arr, si, left, M, S_cnt, count_swap);
-//         // std::cout << "D1: Si = " << si << " left = " << left << std::endl;
-//         if(si == 0 || ei == arr.size() - 1) S_cnt = 1;
-//         S_Division(arr, right, ei, M, S_cnt, count_swap);
-//         // std::cout << "D2: Right = " << right << " ei = " << ei << std::endl;
-//     } else {
-//         // std::cout <<"F_subarray: si = " << si << " ei = " << ei << std::endl;
-//         F_QuickSort(arr, si, ei, count_swap);
-//         // F_MergeSort(arr, si, ei);
-//     }
-// }
-void S_Division(std::vector<int>& arr, size_t si, size_t ei, int M, int& S_cnt, int& count_swap, int& count_compare, int& count_similar, int& count_increasing, int& count_decreasing){
-    if(ei <= si) return;
-    CheckArrayStatus status = SS_Check(arr, si, ei);
-    //     // const char* statusStr = "";
-    //     // switch(status) {
-    //     //     case CheckArrayStatus::SIMILAR: statusStr = "SIMILAR"; break;
-    //     //     case CheckArrayStatus::INCREASING: statusStr = "INCREASING"; break;
-    //     //     case CheckArrayStatus::DECREASING: statusStr = "DECREASING"; break;
-    //     //     case CheckArrayStatus::UNSORTED: statusStr = "UNSORTED"; break;
-    //     //     default: statusStr = "UNKNOWN"; break;
-    //     // }
-    //     // std::cout << "SS_Check = " << statusStr << std::endl;
-    if(status == CheckArrayStatus::SIMILAR) {
-        count_similar++;
-        return;
-    }
-    if(status == CheckArrayStatus::INCREASING) {
-        count_increasing++;    
-        return;
-    }
-    if(status == CheckArrayStatus::DECREASING){
-        count_decreasing++;
-        F_Reverse_Array(arr, si, ei);
-        return;
-    }
-    if(S_cnt < (1 << (M - 1))){
-        int bi = F_Partition(arr, si, ei, count_swap, count_compare);
-        S_cnt++;
-        // writeVectorToFile(arr, "test.txt");
-        S_Division(arr, si, bi, M, S_cnt, count_swap, count_compare, count_similar, count_increasing, count_decreasing);
-        if((si == 0) || (ei == arr.size() - 1)) {
-            S_cnt = 1;
+void S_Division(std::vector<int>& arr, int si, int ei, int M, int& S_cnt, int& count_swap, int& count_compare, int& count_similar, int& count_increasing, int& count_decreasing){
+    if(si < ei){
+        std::cout << "si = " << si << " ei = " << ei << " Scnt = " << S_cnt << std::endl;
+        CheckArrayStatus status = SS_Check(arr, si, ei);
+        if(status == CheckArrayStatus::SIMILAR) {
+            std::cout <<"Status = " << "SIMILAR" << std::endl;
+            count_similar++;
+            return;
         }
-        S_Division(arr, bi+1, ei, M, S_cnt, count_swap, count_compare, count_similar, count_increasing, count_decreasing);
-    } else { // core-sort
-        // std::cout <<"F_subarray: si = " << si << " ei = " << ei << std::endl;
-        // F_QuickSort(arr, si, ei, count_swap);
-        F_MergeSort(arr, si, ei, count_compare);
+        else if(status == CheckArrayStatus::INCREASING) {
+            std::cout <<"Status = " << "INCREASING" << std::endl;
+            count_increasing++;    
+            return;
+        }
+        else if(status == CheckArrayStatus::DECREASING){
+            std::cout <<"Status = " << "DECREASING" << std::endl;
+            count_decreasing++;
+            F_Reverse_Array(arr, si, ei);
+            return;
+        }
+        else {
+            if(S_cnt < (1 << (M))){
+                int bi = S_Partition(arr, si, ei, count_swap, count_compare);
+                S_cnt++;
+                PrintArray("D0", arr);
+                S_Division(arr, si, bi, M, S_cnt, count_swap, count_compare, count_similar, count_increasing, count_decreasing);
+                // if((si == 0) || (ei == arr.size() - 1)) {
+                //     S_cnt = 1;
+                // }
+                PrintArray("D1", arr);
+                S_Division(arr, bi+1, ei, M, S_cnt, count_swap, count_compare, count_similar, count_increasing, count_decreasing);
+                PrintArray("D2", arr);
+            } else { // core-sort
+                // std::cout <<"F_subarray: si = " << si << " ei = " << ei << std::endl;
+                F_QuickSort(arr, si, ei, count_swap, count_compare);
+                // F_MergeSort(arr, si, ei, count_compare);
+            }
+        }
     }
 }
 
