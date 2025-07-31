@@ -182,17 +182,17 @@ void S_Division(std::vector<int>& arr, int si, int ei, int M, int& S_cnt, int& c
         std::cout << "si = " << si << " ei = " << ei << " Scnt = " << S_cnt << std::endl;
         CheckArrayStatus status = SS_Check(arr, si, ei);
         if(status == CheckArrayStatus::SIMILAR) {
-            std::cout <<"Status = " << "SIMILAR" << std::endl;
+            // std::cout <<"Status = " << "SIMILAR" << std::endl;
             count_similar++;
             return;
         }
         else if(status == CheckArrayStatus::INCREASING) {
-            std::cout <<"Status = " << "INCREASING" << std::endl;
+            // std::cout <<"Status = " << "INCREASING" << std::endl;
             count_increasing++;    
             return;
         }
         else if(status == CheckArrayStatus::DECREASING){
-            std::cout <<"Status = " << "DECREASING" << std::endl;
+            // std::cout <<"Status = " << "DECREASING" << std::endl;
             count_decreasing++;
             F_Reverse_Array(arr, si, ei);
             return;
@@ -201,14 +201,14 @@ void S_Division(std::vector<int>& arr, int si, int ei, int M, int& S_cnt, int& c
             if(S_cnt < (1 << (M))){
                 int bi = S_Partition(arr, si, ei, count_swap, count_compare);
                 S_cnt++;
-                PrintArray("D0", arr);
+                // PrintArray("D0", arr);
                 S_Division(arr, si, bi, M, S_cnt, count_swap, count_compare, count_similar, count_increasing, count_decreasing);
-                // if((si == 0) || (ei == arr.size() - 1)) {
-                //     S_cnt = 1;
-                // }
-                PrintArray("D1", arr);
+                if((si == 0) || (ei == static_cast<int>(arr.size()) - 1)) {
+                    S_cnt = 1;
+                }
+                // PrintArray("D1", arr);
                 S_Division(arr, bi+1, ei, M, S_cnt, count_swap, count_compare, count_similar, count_increasing, count_decreasing);
-                PrintArray("D2", arr);
+                // PrintArray("D2", arr);
             } else { // core-sort
                 // std::cout <<"F_subarray: si = " << si << " ei = " << ei << std::endl;
                 F_QuickSort(arr, si, ei, count_swap, count_compare);
@@ -226,6 +226,43 @@ void S_Sort(std::vector<int>& arr, int M, int& count_swap, int& count_compare, i
 
 //////////////////////////////////////////////////
 
+// 1 thread process: 
+//  + check status
+//  + cal sum
+
+bool P_CoreChecker(std::vector<int>& arr, int si, int ei){
+    CheckArrayStatus status = SS_Check(arr, si, ei);
+    switch(status){
+        case CheckArrayStatus::SIMILAR:
+            return false;
+        case CheckArrayStatus::INCREASING:
+            return false;
+        case CheckArrayStatus::DECREASING:
+            F_Reverse_Array(arr, si, ei);
+            return false;
+        default:
+            return true;
+    }
+}
+
+int P_Cal_Sum(std::vector<int>& arr, int si, int ei){
+    int sum = 0;
+    for(int i = si; i <= ei; ++i){
+        sum += arr[i];
+    }
+    return sum;
+}
+
+void P_A_Thread(std::vector<int>& arr, int si, int ei, bool& status, int &sum){
+    status = P_CoreChecker(arr, si, ei);
+    sum = P_Cal_Sum(arr, si, ei);
+}
+
+void P_Division(std::vector<int>& arr, int si, int ei, int M, int& S_cnt){
+    std::vector<std::thread> Number_thread;
+    
+}
+
 
 bool P_CoreSSChecker(std::vector<int>& arr, int si, int ei) {
     CheckArrayStatus status = SS_Check(arr, si, ei);
@@ -239,12 +276,12 @@ bool P_CoreSSChecker(std::vector<int>& arr, int si, int ei) {
 int P_Partition(std::vector<int>& arr, int si, int ei, double mean) {
     int bi = si;
     for (int i = si; i <= ei; ++i) {
-        if (arr[i] < mean) {
-            std::swap(arr[i], arr[bi]);
+        if (arr[i] <= mean) {
             ++bi;
+            std::swap(arr[i], arr[bi]);
         }
     }
-    return bi; // vị trí phân chia: arr[si..bi-1] < mean, arr[bi..ei] >= mean
+    return bi;
 }
 
 void P_Division(std::vector<int>& arr, int si, int ei, int M, int level) {
@@ -278,7 +315,7 @@ void P_Division(std::vector<int>& arr, int si, int ei, int M, int level) {
     if (!std::all_of(valid_parts.begin(), valid_parts.end(), [](bool v) { return v; })) {
         return;
     }
-
+    
     // Song song tính tổng để lấy mean
     std::vector<int> part_sums(parts, 0);
     std::vector<std::thread> sum_threads;

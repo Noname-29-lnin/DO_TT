@@ -7,7 +7,7 @@
 #include "./comparison-based/function_compare.hpp"
 #include "./Verification/Verif.hpp"
 
-int main(){
+int main(int argc, char** argv){
     
     std::ifstream file("unsorted.txt");
     std::vector<int> data;
@@ -182,18 +182,17 @@ int main(){
     int serialRealizationSimilar = 0;
     int serialRealizationIncreasing = 0;
     int serialRealizationDecreasing = 0;
-    int S_M;
-    std::cout << "Input S_M: ";
-    std::cin >> S_M;
+    int S_M = std::stoi(argv[1]);
+    std::cout << "Input S_M: " << S_M << std::endl;
     std::vector<int> serialRealizationData = data;
     long long serialRealizationTime = V_CAL_MeasureTime([&serialRealizationData, S_M, &serialRealizationSwap, &serialRealizationCompare, &serialRealizationSimilar, &serialRealizationIncreasing, &serialRealizationDecreasing]() {
         S_Sort(serialRealizationData, S_M, serialRealizationSwap, serialRealizationCompare, serialRealizationSimilar, serialRealizationIncreasing, serialRealizationDecreasing);
     });
 
-    // std::vector<int> paralleData = data;
-    // long long parallelTime = V_CAL_MeasureTime([&paralleData]() {
-    //     P_Sort(paralleData, 2);
-    // });
+    std::vector<int> paralleData = data;
+    long long parallelTime = V_CAL_MeasureTime([&paralleData]() {
+        P_Sort(paralleData, 2);
+    });
 
     std::vector<SortResult> results;
     results.push_back({"NormalData", CheckSortedString(data), 0, 0, 0});
@@ -205,7 +204,7 @@ int main(){
     results.push_back({"QuickSort", CheckSortedString(quickSortData), quickSortTime, quickSortSwap, quickSortCompare});
     results.push_back({"MergeSort", CheckSortedString(mergeSortData), mergeSortTime, 0, mergeSortCompare});
     results.push_back({"SerialRealizationSort", CheckSortedString(serialRealizationData), serialRealizationTime, serialRealizationSwap, serialRealizationCompare});
-    // results.push_back({"ParallelRealizationSort", CheckSortedString(paralleData), parallelTime, 0, 0});
+    results.push_back({"ParallelRealizationSort", CheckSortedString(paralleData), parallelTime, 0, 0});
     
     Print_Table_Result(results);
     
