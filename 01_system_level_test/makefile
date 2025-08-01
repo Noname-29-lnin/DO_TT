@@ -28,7 +28,7 @@ $(BUILD_DIR)/%.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 run:
-	./$(TARGET) $(VALUE_SERIAL) | tee complite.log
+	./$(TARGET) $(VALUE_SERIAL) $(VALUE_PARALLEL) | tee complite.log
 
 clean:
 	rm -rf $(BUILD_DIR) 

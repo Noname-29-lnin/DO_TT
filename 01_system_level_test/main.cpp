@@ -3,6 +3,8 @@
 #include <fstream>
 #include <string>
 #include <chrono>
+#include <thread>
+
 
 #include "./comparison-based/function_compare.hpp"
 #include "./Verification/Verif.hpp"
@@ -188,10 +190,14 @@ int main(int argc, char** argv){
     long long serialRealizationTime = V_CAL_MeasureTime([&serialRealizationData, S_M, &serialRealizationSwap, &serialRealizationCompare, &serialRealizationSimilar, &serialRealizationIncreasing, &serialRealizationDecreasing]() {
         S_Sort(serialRealizationData, S_M, serialRealizationSwap, serialRealizationCompare, serialRealizationSimilar, serialRealizationIncreasing, serialRealizationDecreasing);
     });
-
+    
+    int parallelRealizationCompare = 0;
+    int parallelRealizationSwap = 0;
+    int P_M = std::stoi(argv[2]);
+    std::cout << "Input P_M: " << P_M << std::endl;
     std::vector<int> paralleData = data;
-    long long parallelTime = V_CAL_MeasureTime([&paralleData]() {
-        P_Sort(paralleData, 2);
+    long long parallelTime = V_CAL_MeasureTime([&paralleData, &P_M, &parallelRealizationCompare, &parallelRealizationSwap]() {
+        P_Sort(paralleData, P_M, parallelRealizationSwap, parallelRealizationCompare);
     });
 
     std::vector<SortResult> results;
@@ -204,7 +210,7 @@ int main(int argc, char** argv){
     results.push_back({"QuickSort", CheckSortedString(quickSortData), quickSortTime, quickSortSwap, quickSortCompare});
     results.push_back({"MergeSort", CheckSortedString(mergeSortData), mergeSortTime, 0, mergeSortCompare});
     results.push_back({"SerialRealizationSort", CheckSortedString(serialRealizationData), serialRealizationTime, serialRealizationSwap, serialRealizationCompare});
-    results.push_back({"ParallelRealizationSort", CheckSortedString(paralleData), parallelTime, 0, 0});
+    results.push_back({"ParallelRealizationSort", CheckSortedString(paralleData), parallelTime, parallelRealizationSwap, parallelRealizationCompare});
     
     Print_Table_Result(results);
     

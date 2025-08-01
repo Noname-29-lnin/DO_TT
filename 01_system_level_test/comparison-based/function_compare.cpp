@@ -165,7 +165,7 @@ void F_Reverse_Array(std::vector<int>& arr, int si, int ei){
 int S_Partition(std::vector<int>& arr, int si, int ei, int& count_swap, int& count_compare){
     int bi = si - 1;
     int mean = F_Cal_mean(arr, si, ei);
-    std::cout << "Mean = " << mean << std::endl;
+    // std::cout << "Mean = " << mean << std::endl;
     for(int i = si; i <= ei; i++){
         count_compare++;
         if(arr[i] <= mean){
@@ -174,12 +174,12 @@ int S_Partition(std::vector<int>& arr, int si, int ei, int& count_swap, int& cou
             count_swap++;
         }
     }
-    std::cout << "Bi = " << bi << std::endl;
+    // std::cout << "Bi = " << bi << std::endl;
     return bi;
 }
 void S_Division(std::vector<int>& arr, int si, int ei, int M, int& S_cnt, int& count_swap, int& count_compare, int& count_similar, int& count_increasing, int& count_decreasing){
     if(si < ei){
-        std::cout << "si = " << si << " ei = " << ei << " Scnt = " << S_cnt << std::endl;
+        // std::cout << "si = " << si << " ei = " << ei << " Scnt = " << S_cnt << std::endl;
         CheckArrayStatus status = SS_Check(arr, si, ei);
         if(status == CheckArrayStatus::SIMILAR) {
             // std::cout <<"Status = " << "SIMILAR" << std::endl;
@@ -226,122 +226,100 @@ void S_Sort(std::vector<int>& arr, int M, int& count_swap, int& count_compare, i
 
 //////////////////////////////////////////////////
 
-// 1 thread process: 
-//  + check status
-//  + cal sum
-
-bool P_CoreChecker(std::vector<int>& arr, int si, int ei){
+bool P_CoreSSCheck(std::vector<int>& arr, int si, int ei){
     CheckArrayStatus status = SS_Check(arr, si, ei);
-    switch(status){
-        case CheckArrayStatus::SIMILAR:
-            return false;
-        case CheckArrayStatus::INCREASING:
-            return false;
-        case CheckArrayStatus::DECREASING:
-            F_Reverse_Array(arr, si, ei);
-            return false;
-        default:
-            return true;
-    }
-}
-
-int P_Cal_Sum(std::vector<int>& arr, int si, int ei){
-    int sum = 0;
-    for(int i = si; i <= ei; ++i){
-        sum += arr[i];
-    }
-    return sum;
-}
-
-void P_A_Thread(std::vector<int>& arr, int si, int ei, bool& status, int &sum){
-    status = P_CoreChecker(arr, si, ei);
-    sum = P_Cal_Sum(arr, si, ei);
-}
-
-void P_Division(std::vector<int>& arr, int si, int ei, int M, int& S_cnt){
-    std::vector<std::thread> Number_thread;
-    
-}
-
-
-bool P_CoreSSChecker(std::vector<int>& arr, int si, int ei) {
-    CheckArrayStatus status = SS_Check(arr, si, ei);
-    if (status == CheckArrayStatus::DECREASING) {
+    if(status == CheckArrayStatus::INCREASING) return false;
+    else if(status == CheckArrayStatus::DECREASING){
         F_Reverse_Array(arr, si, ei);
-        return true;
-    }
-    return (status != CheckArrayStatus::UNSORTED);
+        return false;
+    } else if(status == CheckArrayStatus::SIMILAR) return true;
+    else return false;
 }
 
-int P_Partition(std::vector<int>& arr, int si, int ei, double mean) {
-    int bi = si;
-    for (int i = si; i <= ei; ++i) {
-        if (arr[i] <= mean) {
-            ++bi;
-            std::swap(arr[i], arr[bi]);
-        }
-    }
-    return bi;
+int P_Cal_Sum(const std::vector<int>& arr, int si, int ei){
+    return std::accumulate(arr.begin() + si, arr.begin() + ei + 1, 0);
 }
 
-void P_Division(std::vector<int>& arr, int si, int ei, int M, int level) {
-    if (level >= (1 << M) - 1) {
-        if (!P_CoreSSChecker(arr, si, ei)) {
-            std::sort(arr.begin() + si, arr.begin() + ei + 1);
-        }
-        return;
+void P_Partition(const std::vector<int>& arr, int si, int ei, int mean, std::vector<int>& less, std::vector<int>& greater){
+    for(int i = si; i < ei; i++){
+        if(arr[i] <= mean) less.push_back(arr[i]);
+        else greater.push_back(arr[i]);
+    }
+}
+void P_Division(std::vector<int>& arr, int si, int ei, int M, int S_cnt, int& count_swap, int& count_compare) {
+    if (si < 0 || ei >= arr.size() || si > ei) return;
+
+    int total_size = ei - si + 1;
+    if (static_cast<size_t>(total_size) > arr.max_size()) {
+        throw std::length_error("Subarray size exceeds vector max_size");
     }
 
-    int parts = 1 << level;
-    int len = (ei - si + 1) / parts;
+    int num_parts = std::min(1 << (M - S_cnt), 1024);
+    int size_part = total_size / num_parts;
+    if (size_part == 0) return;
 
-    std::vector<int> partSI(parts), partEI(parts);
-    for (int i = 0; i < parts; ++i) {
-        partSI[i] = si + i * len;
-        partEI[i] = (i == parts - 1) ? ei : (si + (i + 1) * len - 1);
+    std::vector<int> partSI(num_parts), partEI(num_parts), partSum(num_parts);
+    std::vector<bool> partCoreSSCheck(num_parts);
+    std::vector<std::future<void>> futures;
+
+    for (int i = 0; i < num_parts; ++i) {
+        partSI[i] = si + i * size_part;
+        partEI[i] = (i == num_parts - 1) ? ei : (partSI[i] + size_part - 1);
     }
 
-    // Song song P_CoreSSChecker
-    std::vector<std::thread> check_threads;
-    std::vector<bool> valid_parts(parts, false);
+    // Tính tổng và kiểm tra SS song song
+    for (int i = 0; i < num_parts; ++i) {
+        futures.emplace_back(std::async(std::launch::async, [&, i]() {
+            partSum[i] = P_Cal_Sum(arr, partSI[i], partEI[i]);
+            partCoreSSCheck[i] = P_CoreSSCheck(arr, partSI[i], partEI[i]);
+        }));
+    }
+    for (auto& f : futures) f.get();
 
-    for (int i = 0; i < parts; ++i) {
-        check_threads.emplace_back([&, i]() {
-            valid_parts[i] = P_CoreSSChecker(arr, partSI[i], partEI[i]);
+    // Nếu tất cả phần đã sắp xếp thì thoát
+    if (std::all_of(partCoreSSCheck.begin(), partCoreSSCheck.end(), [](bool b) { return b; })) return;
+
+    int mean = F_Cal_mean(partSum, 0, num_parts - 1);
+
+    std::vector<std::vector<int>> LessThanMean(num_parts), GreaterThanMean(num_parts);
+    futures.clear();
+
+    for (int i = 0; i < num_parts; ++i) {
+        LessThanMean[i].reserve(size_part);
+        GreaterThanMean[i].reserve(size_part);
+        futures.emplace_back(std::async(std::launch::async, [&, i]() {
+            P_Partition(arr, partSI[i], partEI[i], mean, LessThanMean[i], GreaterThanMean[i]);
+        }));
+    }
+    for (auto& f : futures) f.get();
+
+    // Kết hợp lại vào mảng mới
+    std::vector<int> new_arr;
+    new_arr.reserve(total_size);
+    for (const auto& less : LessThanMean) new_arr.insert(new_arr.end(), less.begin(), less.end());
+    int mid = new_arr.size();
+    for (const auto& greater : GreaterThanMean) new_arr.insert(new_arr.end(), greater.begin(), greater.end());
+    std::copy(new_arr.begin(), new_arr.end(), arr.begin() + si);
+
+    // Tiếp tục chia tiếp hoặc gọi quicksort song song nếu đã đạt độ sâu
+    if (S_cnt + 1 < (1 << M)) {
+        P_Division(arr, si, si + mid - 1, M, S_cnt + 1, count_swap, count_compare);
+        P_Division(arr, si + mid, ei, M, S_cnt + 1, count_swap, count_compare);
+    } else {
+        std::future<void> fut1 = std::async(std::launch::async, [&]() {
+            F_QuickSort(arr, si, si + mid - 1, count_swap, count_compare);
         });
-    }
-    for (auto& t : check_threads) t.join();
-
-    if (!std::all_of(valid_parts.begin(), valid_parts.end(), [](bool v) { return v; })) {
-        return;
-    }
-    
-    // Song song tính tổng để lấy mean
-    std::vector<int> part_sums(parts, 0);
-    std::vector<std::thread> sum_threads;
-
-    for (int i = 0; i < parts; ++i) {
-        sum_threads.emplace_back([&, i]() {
-            part_sums[i] = std::accumulate(arr.begin() + partSI[i], arr.begin() + partEI[i] + 1, 0);
+        std::future<void> fut2 = std::async(std::launch::async, [&]() {
+            F_QuickSort(arr, si + mid, ei, count_swap, count_compare);
         });
+        fut1.get();
+        fut2.get();
     }
-    for (auto& t : sum_threads) t.join();
-
-    int total_sum = std::accumulate(part_sums.begin(), part_sums.end(), 0);
-    double mean = static_cast<double>(total_sum) / (ei - si + 1);
-
-    // Partition toàn mảng theo mean
-    int mid = P_Partition(arr, si, ei, mean); // arr[si..mid-1] < mean, arr[mid..ei] >= mean
-
-    // Đệ quy song song 2 phần
-    std::thread t1(P_Division, std::ref(arr), si, mid - 1, M, level + 1);
-    std::thread t2(P_Division, std::ref(arr), mid, ei, M, level + 1);
-    t1.join();
-    t2.join();
 }
 
-void P_Sort(std::vector<int>& arr, int M) {
-    P_Division(arr, 0, arr.size() - 1, M, 0);
+void P_Sort(std::vector<int>& arr, int M, int& count_swap, int& count_compare){
+    int S_cnt = 0;
+    P_Division(arr, 0, arr.size() - 1, M, S_cnt, count_swap, count_compare);
 }
 
 
