@@ -8,16 +8,16 @@ void writeVectorToFile(const std::vector<int>& vec, const std::string& filename)
     std::ofstream outFile(filename); // Mở file để ghi
 
     if (!outFile.is_open()) {
-        std::cerr << "Lỗi: Không thể mở file '" << filename << "' để ghi.\n";
+        std::cerr << "Error: Can't open file '" << filename << std::endl;
         return;
     }
 
     for (const int& val : vec) {
-        outFile << val << "\n"; // Mỗi phần tử ghi trên một dòng
+        outFile << val << " "; // Mỗi phần tử ghi trên một dòng
     }
 
     outFile.close();
-    std::cout << "Đã ghi vector vào file '" << filename << "'.\n";
+    std::cout << "Finish write file '" << filename << "'.\n";
 }
 
 void CheckSorted(const std::string NameSort ,const std::vector<int>& normalarr, std::vector<int>& arr) {

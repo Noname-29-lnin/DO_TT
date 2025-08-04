@@ -237,89 +237,89 @@ bool P_CoreSSCheck(std::vector<int>& arr, int si, int ei){
 }
 
 int P_Cal_Sum(const std::vector<int>& arr, int si, int ei){
-    return std::accumulate(arr.begin() + si, arr.begin() + ei + 1, 0);
+    // return std::accumulate(arr.begin() + si, arr.begin() + ei + 1, 0);
+    int sum = 0;
+    for(int i = si; i <= ei; ++i){
+        sum += arr[i];
+    }
+    return sum;
 }
 
 void P_Partition(const std::vector<int>& arr, int si, int ei, int mean, std::vector<int>& less, std::vector<int>& greater){
-    for(int i = si; i < ei; i++){
+    for(int i = si; i <= ei; i++){
         if(arr[i] <= mean) less.push_back(arr[i]);
         else greater.push_back(arr[i]);
     }
 }
-void P_Division(std::vector<int>& arr, int si, int ei, int M, int S_cnt, int& count_swap, int& count_compare) {
-    if (si < 0 || ei >= arr.size() || si > ei) return;
 
-    int total_size = ei - si + 1;
-    if (static_cast<size_t>(total_size) > arr.max_size()) {
-        throw std::length_error("Subarray size exceeds vector max_size");
-    }
+int count = 0;
 
-    int num_parts = std::min(1 << (M - S_cnt), 1024);
-    int size_part = total_size / num_parts;
-    if (size_part == 0) return;
+void P_Division(std::vector<int>& arr, int si, int ei, int M, int S_cnt, int size_part, int& count_swap, int& count_compare) {
+    if(S_cnt < (1 << M)){
+        int total_size = ei - si + 1;
+        int num_parts = total_size / size_part;
+        
+        std::vector<int> partSI(num_parts), partEI(num_parts), partSum(num_parts);
+        std::vector<bool> partCoreSSCheck(num_parts);
 
-    std::vector<int> partSI(num_parts), partEI(num_parts), partSum(num_parts);
-    std::vector<bool> partCoreSSCheck(num_parts);
-    std::vector<std::future<void>> futures;
+        for (int i = 0; i < num_parts; ++i) {
+            partSI[i] = si + i * size_part;
+            partEI[i] = (i == num_parts - 1) ? ei : (partSI[i] + size_part - 1);
+        }
 
-    for (int i = 0; i < num_parts; ++i) {
-        partSI[i] = si + i * size_part;
-        partEI[i] = (i == num_parts - 1) ? ei : (partSI[i] + size_part - 1);
-    }
+        std::vector<std::thread> cores;
 
-    // Tính tổng và kiểm tra SS song song
-    for (int i = 0; i < num_parts; ++i) {
-        futures.emplace_back(std::async(std::launch::async, [&, i]() {
-            partSum[i] = P_Cal_Sum(arr, partSI[i], partEI[i]);
-            partCoreSSCheck[i] = P_CoreSSCheck(arr, partSI[i], partEI[i]);
-        }));
-    }
-    for (auto& f : futures) f.get();
+        for (int i = 0; i < num_parts; ++i) {
+            cores.emplace_back([&, i]() {
+                partSum[i] = P_Cal_Sum(arr, partSI[i], partEI[i]);
+                partCoreSSCheck[i] = P_CoreSSCheck(arr, partSI[i], partEI[i]);
+            });
+        }
+        for (auto& t : cores) {
+            if (t.joinable()) t.join();
+        }
 
-    // Nếu tất cả phần đã sắp xếp thì thoát
-    if (std::all_of(partCoreSSCheck.begin(), partCoreSSCheck.end(), [](bool b) { return b; })) return;
+        if (std::all_of(partCoreSSCheck.begin(), partCoreSSCheck.end(), [](bool b) { return b; })) return;
 
-    int mean = F_Cal_mean(partSum, 0, num_parts - 1);
+        int mean = F_Cal_mean(arr, si, ei);
+        std::vector<std::vector<int>> LessThanMean(num_parts), GreaterThanMean(num_parts);
+        cores.clear();
 
-    std::vector<std::vector<int>> LessThanMean(num_parts), GreaterThanMean(num_parts);
-    futures.clear();
+        for (int i = 0; i < num_parts; ++i) {
+            LessThanMean[i].reserve(size_part);
+            GreaterThanMean[i].reserve(size_part);
+            cores.emplace_back([&, i]() {
+                P_Partition(arr, partSI[i], partEI[i], mean, LessThanMean[i], GreaterThanMean[i]);
+            });
+        }
+        for (auto& t : cores) {
+            if (t.joinable()) t.join();
+        }
 
-    for (int i = 0; i < num_parts; ++i) {
-        LessThanMean[i].reserve(size_part);
-        GreaterThanMean[i].reserve(size_part);
-        futures.emplace_back(std::async(std::launch::async, [&, i]() {
-            P_Partition(arr, partSI[i], partEI[i], mean, LessThanMean[i], GreaterThanMean[i]);
-        }));
-    }
-    for (auto& f : futures) f.get();
+        std::vector<int> new_arr;
+        new_arr.reserve(total_size);
+        new_arr.clear();
+        // new_arr.capacity();
+        for (const auto& less : LessThanMean) new_arr.insert(new_arr.end(), less.begin(), less.end());
+        int mid = new_arr.size();
+        for (const auto& greater : GreaterThanMean) new_arr.insert(new_arr.end(), greater.begin(), greater.end());
+        std::copy(new_arr.begin(), new_arr.end(), arr.begin() + si);
 
-    // Kết hợp lại vào mảng mới
-    std::vector<int> new_arr;
-    new_arr.reserve(total_size);
-    for (const auto& less : LessThanMean) new_arr.insert(new_arr.end(), less.begin(), less.end());
-    int mid = new_arr.size();
-    for (const auto& greater : GreaterThanMean) new_arr.insert(new_arr.end(), greater.begin(), greater.end());
-    std::copy(new_arr.begin(), new_arr.end(), arr.begin() + si);
-
-    // Tiếp tục chia tiếp hoặc gọi quicksort song song nếu đã đạt độ sâu
-    if (S_cnt + 1 < (1 << M)) {
-        P_Division(arr, si, si + mid - 1, M, S_cnt + 1, count_swap, count_compare);
-        P_Division(arr, si + mid, ei, M, S_cnt + 1, count_swap, count_compare);
+        P_Division(arr, si, si + mid - 1, M, S_cnt+1, size_part, count_swap, count_compare);
+        P_Division(arr, si + mid, ei, M, S_cnt+1, size_part, count_swap, count_compare);
     } else {
-        std::future<void> fut1 = std::async(std::launch::async, [&]() {
-            F_QuickSort(arr, si, si + mid - 1, count_swap, count_compare);
-        });
-        std::future<void> fut2 = std::async(std::launch::async, [&]() {
-            F_QuickSort(arr, si + mid, ei, count_swap, count_compare);
-        });
-        fut1.get();
-        fut2.get();
+        // std::cout << "using QuickSort " << count++ << std::endl;
+        F_QuickSort(arr, si, ei, count_swap, count_compare);
     }
 }
 
+
 void P_Sort(std::vector<int>& arr, int M, int& count_swap, int& count_compare){
     int S_cnt = 0;
-    P_Division(arr, 0, arr.size() - 1, M, S_cnt, count_swap, count_compare);
+    int si = 0;
+    int ei = arr.size() - 1;
+    int size_part = (ei - si + 1) / (1 << M);
+    P_Division(arr, si, ei, M, S_cnt, size_part, count_swap, count_compare);
 }
 
 
