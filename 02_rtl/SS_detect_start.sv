@@ -1,3 +1,5 @@
+// if i_start is high while i_done is high, w_start is held low.
+// once i_done goes low, w_start follows i_start on the next clock edge
 module SS_detect_start(
     input logic                         i_clk       ,
     input logic                         i_rst_n     ,

@@ -1,0 +1,55 @@
+|SS_write_data
+i_clk => i_clk.IN1
+i_rst_n => i_rst_n.IN1
+i_start_write_data => i_start_write_data.IN1
+i_en_write_data => w_update_en.IN1
+i_data_ram[0] => o_data_ram.DATAB
+i_data_ram[1] => o_data_ram.DATAB
+i_data_ram[2] => o_data_ram.DATAB
+i_data_ram[3] => o_data_ram.DATAB
+i_data_ram[4] => o_data_ram.DATAB
+i_data_ram[5] => o_data_ram.DATAB
+i_data_ram[6] => o_data_ram.DATAB
+i_data_ram[7] => o_data_ram.DATAB
+i_si_ram[0] => o_addr_ram.DATAB
+i_si_ram[1] => o_addr_ram.DATAB
+i_si_ram[2] => o_addr_ram.DATAB
+i_si_ram[3] => o_addr_ram.DATAB
+i_si_ram[4] => o_addr_ram.DATAB
+i_si_ram[5] => o_addr_ram.DATAB
+i_ei_ram[0] => w_compare_ei.IN1
+i_ei_ram[1] => w_compare_ei.IN1
+i_ei_ram[2] => w_compare_ei.IN1
+i_ei_ram[3] => w_compare_ei.IN1
+i_ei_ram[4] => w_compare_ei.IN1
+i_ei_ram[5] => w_compare_ei.IN1
+o_we_ram << o_we_ram~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_addr_ram[0] << o_addr_ram[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_addr_ram[1] << o_addr_ram[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_addr_ram[2] << o_addr_ram[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_addr_ram[3] << o_addr_ram[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_addr_ram[4] << o_addr_ram[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_addr_ram[5] << o_addr_ram[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_data_ram[0] << o_data_ram[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_data_ram[1] << o_data_ram[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_data_ram[2] << o_data_ram[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_data_ram[3] << o_data_ram[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_data_ram[4] << o_data_ram[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_data_ram[5] << o_data_ram[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_data_ram[6] << o_data_ram[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_data_ram[7] << o_data_ram[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_done_write_data << o_done_write_data~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SS_write_data|SS_detect_edge:detect_edge_unit
+i_clk => o_signal~reg0.CLK
+i_clk => w_p_signal.CLK
+i_rst_n => o_signal~reg0.ACLR
+i_rst_n => w_p_signal.ACLR
+i_pos_edge => o_signal.OUTPUTSELECT
+i_signal => o_signal.IN1
+i_signal => w_p_signal.DATAIN
+i_signal => o_signal.IN1
+o_signal <= o_signal~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+

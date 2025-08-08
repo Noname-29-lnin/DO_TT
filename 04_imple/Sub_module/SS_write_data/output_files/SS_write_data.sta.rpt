@@ -1,0 +1,1022 @@
+Timing Analyzer report for SS_write_data
+Fri Aug  8 10:11:22 2025
+Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Timing Analyzer Summary
+  3. Parallel Compilation
+  4. Clocks
+  5. Slow 1000mV 100C Model Fmax Summary
+  6. Timing Closure Recommendations
+  7. Slow 1000mV 100C Model Setup Summary
+  8. Slow 1000mV 100C Model Hold Summary
+  9. Slow 1000mV 100C Model Recovery Summary
+ 10. Slow 1000mV 100C Model Removal Summary
+ 11. Slow 1000mV 100C Model Minimum Pulse Width Summary
+ 12. Slow 1000mV 100C Model Setup: 'i_clk'
+ 13. Slow 1000mV 100C Model Hold: 'i_clk'
+ 14. Slow 1000mV 100C Model Metastability Summary
+ 15. Slow 1000mV -40C Model Fmax Summary
+ 16. Slow 1000mV -40C Model Setup Summary
+ 17. Slow 1000mV -40C Model Hold Summary
+ 18. Slow 1000mV -40C Model Recovery Summary
+ 19. Slow 1000mV -40C Model Removal Summary
+ 20. Slow 1000mV -40C Model Minimum Pulse Width Summary
+ 21. Slow 1000mV -40C Model Setup: 'i_clk'
+ 22. Slow 1000mV -40C Model Hold: 'i_clk'
+ 23. Slow 1000mV -40C Model Metastability Summary
+ 24. Fast 1000mV -40C Model Setup Summary
+ 25. Fast 1000mV -40C Model Hold Summary
+ 26. Fast 1000mV -40C Model Recovery Summary
+ 27. Fast 1000mV -40C Model Removal Summary
+ 28. Fast 1000mV -40C Model Minimum Pulse Width Summary
+ 29. Fast 1000mV -40C Model Setup: 'i_clk'
+ 30. Fast 1000mV -40C Model Hold: 'i_clk'
+ 31. Fast 1000mV -40C Model Metastability Summary
+ 32. Multicorner Timing Analysis Summary
+ 33. Board Trace Model Assignments
+ 34. Input Transition Times
+ 35. Signal Integrity Metrics (Slow 1000mv n40c Model)
+ 36. Signal Integrity Metrics (Slow 1000mv 100c Model)
+ 37. Signal Integrity Metrics (Fast 1000mv n40c Model)
+ 38. Setup Transfers
+ 39. Hold Transfers
+ 40. Report TCCS
+ 41. Report RSKM
+ 42. Unconstrained Paths Summary
+ 43. Clock Status Summary
+ 44. Unconstrained Input Ports
+ 45. Unconstrained Output Ports
+ 46. Unconstrained Input Ports
+ 47. Unconstrained Output Ports
+ 48. Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2025  Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Altera and sold by Altera or its authorized distributors.  Please
+refer to the Altera Software License Subscription Agreements 
+on the Quartus Prime software download page.
+
+
+
++---------------------------------------------------------------------------------+
+; Timing Analyzer Summary                                                         ;
++-----------------------+---------------------------------------------------------+
+; Quartus Prime Version ; Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
+; Timing Analyzer       ; Timing Analyzer                                         ;
+; Revision Name         ; SS_write_data                                           ;
+; Device Family         ; Cyclone 10 LP                                           ;
+; Device Name           ; 10CL120ZF484I8G                                         ;
+; Timing Models         ; Final                                                   ;
+; Delay Model           ; Combined                                                ;
+; Rise/Fall Delays      ; Enabled                                                 ;
++-----------------------+---------------------------------------------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.04        ;
+; Maximum used               ; 4           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-4         ;   1.4%      ;
++----------------------------+-------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clocks                                                                                                                                                                            ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+-----------+
+; Clock Name ; Type ; Period ; Frequency  ; Rise  ; Fall  ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets   ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+-----------+
+; i_clk      ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { i_clk } ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+-----------+
+
+
++----------------------------------------------------------------------------------------------------------+
+; Slow 1000mV 100C Model Fmax Summary                                                                      ;
++-----------+-----------------+------------+---------------------------------------------------------------+
+; Fmax      ; Restricted Fmax ; Clock Name ; Note                                                          ;
++-----------+-----------------+------------+---------------------------------------------------------------+
+; 400.0 MHz ; 250.0 MHz       ; i_clk      ; limit due to minimum period restriction (max I/O toggle rate) ;
++-----------+-----------------+------------+---------------------------------------------------------------+
+This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
+
+
+----------------------------------
+; Timing Closure Recommendations ;
+----------------------------------
+HTML report is unavailable in plain text report export.
+
+
++--------------------------------------+
+; Slow 1000mV 100C Model Setup Summary ;
++-------+--------+---------------------+
+; Clock ; Slack  ; End Point TNS       ;
++-------+--------+---------------------+
+; i_clk ; -1.500 ; -19.267             ;
++-------+--------+---------------------+
+
+
++-------------------------------------+
+; Slow 1000mV 100C Model Hold Summary ;
++-------+-------+---------------------+
+; Clock ; Slack ; End Point TNS       ;
++-------+-------+---------------------+
+; i_clk ; 0.542 ; 0.000               ;
++-------+-------+---------------------+
+
+
+-------------------------------------------
+; Slow 1000mV 100C Model Recovery Summary ;
+-------------------------------------------
+No paths to report.
+
+
+------------------------------------------
+; Slow 1000mV 100C Model Removal Summary ;
+------------------------------------------
+No paths to report.
+
+
++----------------------------------------------------+
+; Slow 1000mV 100C Model Minimum Pulse Width Summary ;
++-------+--------+-----------------------------------+
+; Clock ; Slack  ; End Point TNS                     ;
++-------+--------+-----------------------------------+
+; i_clk ; -3.000 ; -34.734                           ;
++-------+--------+-----------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow 1000mV 100C Model Setup: 'i_clk'                                                                                                                                ;
++--------+--------------------------------------------+------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node                                  ; To Node                                  ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+--------------------------------------------+------------------------------------------+--------------+-------------+--------------+------------+------------+
+; -1.500 ; o_addr_ram[2]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 1.000        ; -0.100     ; 2.404      ;
+; -1.446 ; o_addr_ram[1]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 2.351      ;
+; -1.430 ; o_addr_ram[1]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 2.335      ;
+; -1.402 ; o_addr_ram[0]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 2.307      ;
+; -1.316 ; o_addr_ram[0]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 2.221      ;
+; -1.287 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 2.192      ;
+; -1.287 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 2.192      ;
+; -1.287 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[0]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 2.192      ;
+; -1.287 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 2.192      ;
+; -1.287 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[1]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 2.192      ;
+; -1.287 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 2.192      ;
+; -1.286 ; o_addr_ram[1]~reg0                         ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 2.191      ;
+; -1.272 ; o_addr_ram[2]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 2.177      ;
+; -1.270 ; o_addr_ram[1]~reg0                         ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 2.175      ;
+; -1.269 ; o_addr_ram[3]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 2.174      ;
+; -1.264 ; o_done_write_data~reg0                     ; o_addr_ram[1]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.098     ; 2.170      ;
+; -1.264 ; o_done_write_data~reg0                     ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.098     ; 2.170      ;
+; -1.264 ; o_done_write_data~reg0                     ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.098     ; 2.170      ;
+; -1.264 ; o_done_write_data~reg0                     ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.098     ; 2.170      ;
+; -1.264 ; o_done_write_data~reg0                     ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.098     ; 2.170      ;
+; -1.264 ; o_done_write_data~reg0                     ; o_addr_ram[0]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.098     ; 2.170      ;
+; -1.253 ; o_addr_ram[3]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 2.158      ;
+; -1.242 ; o_addr_ram[0]~reg0                         ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 2.147      ;
+; -1.221 ; o_addr_ram[1]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 1.000        ; -0.100     ; 2.125      ;
+; -1.186 ; o_addr_ram[2]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 2.091      ;
+; -1.156 ; o_addr_ram[0]~reg0                         ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 2.061      ;
+; -1.135 ; o_addr_ram[3]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 1.000        ; -0.100     ; 2.039      ;
+; -1.112 ; o_addr_ram[2]~reg0                         ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 2.017      ;
+; -1.090 ; o_addr_ram[4]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 1.995      ;
+; -1.082 ; o_addr_ram[0]~reg0                         ; o_addr_ram[1]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 1.987      ;
+; -1.059 ; o_done_write_data~reg0                     ; o_data_ram[1]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.109     ; 1.954      ;
+; -1.059 ; o_done_write_data~reg0                     ; o_data_ram[0]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.109     ; 1.954      ;
+; -1.058 ; o_done_write_data~reg0                     ; o_data_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.109     ; 1.953      ;
+; -1.056 ; o_done_write_data~reg0                     ; o_data_ram[3]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.109     ; 1.951      ;
+; -1.055 ; o_done_write_data~reg0                     ; o_data_ram[2]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.109     ; 1.950      ;
+; -1.055 ; o_done_write_data~reg0                     ; o_data_ram[4]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.109     ; 1.950      ;
+; -1.054 ; o_done_write_data~reg0                     ; o_we_ram~reg0                            ; i_clk        ; i_clk       ; 1.000        ; -0.109     ; 1.949      ;
+; -1.053 ; o_done_write_data~reg0                     ; o_data_ram[6]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.109     ; 1.948      ;
+; -1.053 ; o_done_write_data~reg0                     ; o_data_ram[7]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.109     ; 1.948      ;
+; -1.010 ; o_addr_ram[0]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 1.000        ; -0.100     ; 1.914      ;
+; -0.932 ; o_addr_ram[4]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 1.000        ; -0.100     ; 1.836      ;
+; -0.722 ; o_addr_ram[5]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 1.000        ; -0.100     ; 1.626      ;
+; -0.567 ; o_addr_ram[2]~reg0                         ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 1.472      ;
+; -0.559 ; o_addr_ram[4]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 1.464      ;
+; -0.537 ; o_addr_ram[0]~reg0                         ; o_addr_ram[0]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 1.442      ;
+; -0.519 ; o_addr_ram[1]~reg0                         ; o_addr_ram[1]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 1.424      ;
+; -0.502 ; o_addr_ram[3]~reg0                         ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 1.407      ;
+; -0.241 ; SS_detect_edge:detect_edge_unit|w_p_signal ; SS_detect_edge:detect_edge_unit|o_signal ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 1.146      ;
+; -0.128 ; o_addr_ram[5]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.099     ; 1.033      ;
++--------+--------------------------------------------+------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow 1000mV 100C Model Hold: 'i_clk'                                                                                                                                ;
++-------+--------------------------------------------+------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                                  ; To Node                                  ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+--------------------------------------------+------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 0.542 ; o_addr_ram[5]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 0.882      ;
+; 0.661 ; SS_detect_edge:detect_edge_unit|w_p_signal ; SS_detect_edge:detect_edge_unit|o_signal ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.001      ;
+; 0.789 ; o_addr_ram[3]~reg0                         ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.129      ;
+; 0.790 ; o_addr_ram[4]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.130      ;
+; 0.808 ; o_addr_ram[1]~reg0                         ; o_addr_ram[1]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.148      ;
+; 0.811 ; o_addr_ram[2]~reg0                         ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.151      ;
+; 0.813 ; o_addr_ram[0]~reg0                         ; o_addr_ram[0]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.153      ;
+; 1.019 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[0]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.359      ;
+; 1.019 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.359      ;
+; 1.019 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.359      ;
+; 1.019 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[1]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.359      ;
+; 1.019 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.359      ;
+; 1.019 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.359      ;
+; 1.105 ; o_addr_ram[5]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 0.000        ; 0.098      ; 1.444      ;
+; 1.192 ; o_addr_ram[0]~reg0                         ; o_addr_ram[1]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.532      ;
+; 1.200 ; o_addr_ram[4]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.540      ;
+; 1.200 ; o_addr_ram[3]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.540      ;
+; 1.201 ; o_addr_ram[0]~reg0                         ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.541      ;
+; 1.219 ; o_addr_ram[1]~reg0                         ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.559      ;
+; 1.221 ; o_addr_ram[2]~reg0                         ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.561      ;
+; 1.230 ; o_addr_ram[2]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.570      ;
+; 1.259 ; o_addr_ram[4]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 0.000        ; 0.098      ; 1.598      ;
+; 1.345 ; o_addr_ram[3]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.685      ;
+; 1.346 ; o_addr_ram[0]~reg0                         ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.686      ;
+; 1.355 ; o_addr_ram[0]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.695      ;
+; 1.364 ; o_addr_ram[1]~reg0                         ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.704      ;
+; 1.373 ; o_addr_ram[1]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.713      ;
+; 1.375 ; o_addr_ram[2]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.715      ;
+; 1.395 ; o_addr_ram[0]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 0.000        ; 0.098      ; 1.734      ;
+; 1.478 ; o_done_write_data~reg0                     ; o_data_ram[6]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.089      ; 1.808      ;
+; 1.479 ; o_done_write_data~reg0                     ; o_data_ram[7]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.089      ; 1.809      ;
+; 1.480 ; o_done_write_data~reg0                     ; o_data_ram[2]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.089      ; 1.810      ;
+; 1.480 ; o_done_write_data~reg0                     ; o_data_ram[4]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.089      ; 1.810      ;
+; 1.480 ; o_done_write_data~reg0                     ; o_we_ram~reg0                            ; i_clk        ; i_clk       ; 0.000        ; 0.089      ; 1.810      ;
+; 1.481 ; o_done_write_data~reg0                     ; o_data_ram[3]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.089      ; 1.811      ;
+; 1.482 ; o_addr_ram[3]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 0.000        ; 0.098      ; 1.821      ;
+; 1.483 ; o_done_write_data~reg0                     ; o_data_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.089      ; 1.813      ;
+; 1.483 ; o_done_write_data~reg0                     ; o_data_ram[0]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.089      ; 1.813      ;
+; 1.483 ; o_done_write_data~reg0                     ; o_data_ram[1]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.089      ; 1.813      ;
+; 1.500 ; o_addr_ram[0]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.840      ;
+; 1.518 ; o_addr_ram[1]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.099      ; 1.858      ;
+; 1.561 ; o_addr_ram[1]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 0.000        ; 0.098      ; 1.900      ;
+; 1.805 ; o_addr_ram[2]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 0.000        ; 0.098      ; 2.144      ;
+; 1.824 ; o_done_write_data~reg0                     ; o_addr_ram[0]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.100      ; 2.165      ;
+; 1.824 ; o_done_write_data~reg0                     ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.100      ; 2.165      ;
+; 1.824 ; o_done_write_data~reg0                     ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.100      ; 2.165      ;
+; 1.824 ; o_done_write_data~reg0                     ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.100      ; 2.165      ;
+; 1.824 ; o_done_write_data~reg0                     ; o_addr_ram[1]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.100      ; 2.165      ;
+; 1.824 ; o_done_write_data~reg0                     ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.100      ; 2.165      ;
++-------+--------------------------------------------+------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
+------------------------------------------------
+; Slow 1000mV 100C Model Metastability Summary ;
+------------------------------------------------
+No synchronizer chains to report.
+
+
++----------------------------------------------------------------------------------------------------------+
+; Slow 1000mV -40C Model Fmax Summary                                                                      ;
++-----------+-----------------+------------+---------------------------------------------------------------+
+; Fmax      ; Restricted Fmax ; Clock Name ; Note                                                          ;
++-----------+-----------------+------------+---------------------------------------------------------------+
+; 412.2 MHz ; 250.0 MHz       ; i_clk      ; limit due to minimum period restriction (max I/O toggle rate) ;
++-----------+-----------------+------------+---------------------------------------------------------------+
+This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
+
+
++--------------------------------------+
+; Slow 1000mV -40C Model Setup Summary ;
++-------+--------+---------------------+
+; Clock ; Slack  ; End Point TNS       ;
++-------+--------+---------------------+
+; i_clk ; -1.426 ; -18.407             ;
++-------+--------+---------------------+
+
+
++-------------------------------------+
+; Slow 1000mV -40C Model Hold Summary ;
++-------+-------+---------------------+
+; Clock ; Slack ; End Point TNS       ;
++-------+-------+---------------------+
+; i_clk ; 0.513 ; 0.000               ;
++-------+-------+---------------------+
+
+
+-------------------------------------------
+; Slow 1000mV -40C Model Recovery Summary ;
+-------------------------------------------
+No paths to report.
+
+
+------------------------------------------
+; Slow 1000mV -40C Model Removal Summary ;
+------------------------------------------
+No paths to report.
+
+
++----------------------------------------------------+
+; Slow 1000mV -40C Model Minimum Pulse Width Summary ;
++-------+--------+-----------------------------------+
+; Clock ; Slack  ; End Point TNS                     ;
++-------+--------+-----------------------------------+
+; i_clk ; -3.000 ; -34.734                           ;
++-------+--------+-----------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow 1000mV -40C Model Setup: 'i_clk'                                                                                                                                ;
++--------+--------------------------------------------+------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node                                  ; To Node                                  ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+--------------------------------------------+------------------------------------------+--------------+-------------+--------------+------------+------------+
+; -1.426 ; o_addr_ram[2]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 1.000        ; -0.095     ; 2.347      ;
+; -1.367 ; o_addr_ram[1]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 2.289      ;
+; -1.333 ; o_addr_ram[1]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 2.255      ;
+; -1.319 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 2.241      ;
+; -1.319 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 2.241      ;
+; -1.319 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[0]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 2.241      ;
+; -1.319 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 2.241      ;
+; -1.319 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 2.241      ;
+; -1.319 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[1]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 2.241      ;
+; -1.296 ; o_addr_ram[0]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 2.218      ;
+; -1.240 ; o_done_write_data~reg0                     ; o_addr_ram[0]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.093     ; 2.163      ;
+; -1.240 ; o_done_write_data~reg0                     ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.093     ; 2.163      ;
+; -1.240 ; o_done_write_data~reg0                     ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.093     ; 2.163      ;
+; -1.240 ; o_done_write_data~reg0                     ; o_addr_ram[1]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.093     ; 2.163      ;
+; -1.240 ; o_done_write_data~reg0                     ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.093     ; 2.163      ;
+; -1.240 ; o_done_write_data~reg0                     ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.093     ; 2.163      ;
+; -1.239 ; o_addr_ram[0]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 2.161      ;
+; -1.223 ; o_addr_ram[1]~reg0                         ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 2.145      ;
+; -1.203 ; o_addr_ram[3]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 2.125      ;
+; -1.190 ; o_addr_ram[1]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 1.000        ; -0.095     ; 2.111      ;
+; -1.189 ; o_addr_ram[1]~reg0                         ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 2.111      ;
+; -1.179 ; o_addr_ram[2]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 2.101      ;
+; -1.169 ; o_addr_ram[3]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 2.091      ;
+; -1.152 ; o_addr_ram[0]~reg0                         ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 2.074      ;
+; -1.126 ; o_addr_ram[2]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 2.048      ;
+; -1.095 ; o_addr_ram[0]~reg0                         ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 2.017      ;
+; -1.065 ; o_addr_ram[3]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 1.000        ; -0.095     ; 1.986      ;
+; -1.035 ; o_addr_ram[2]~reg0                         ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 1.957      ;
+; -1.016 ; o_addr_ram[4]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 1.938      ;
+; -1.008 ; o_addr_ram[0]~reg0                         ; o_addr_ram[1]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 1.930      ;
+; -0.976 ; o_done_write_data~reg0                     ; o_data_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.103     ; 1.889      ;
+; -0.976 ; o_done_write_data~reg0                     ; o_data_ram[1]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.103     ; 1.889      ;
+; -0.976 ; o_done_write_data~reg0                     ; o_data_ram[0]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.103     ; 1.889      ;
+; -0.974 ; o_done_write_data~reg0                     ; o_data_ram[3]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.103     ; 1.887      ;
+; -0.973 ; o_done_write_data~reg0                     ; o_data_ram[2]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.103     ; 1.886      ;
+; -0.973 ; o_done_write_data~reg0                     ; o_data_ram[4]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.103     ; 1.886      ;
+; -0.972 ; o_done_write_data~reg0                     ; o_we_ram~reg0                            ; i_clk        ; i_clk       ; 1.000        ; -0.103     ; 1.885      ;
+; -0.971 ; o_done_write_data~reg0                     ; o_data_ram[7]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.103     ; 1.884      ;
+; -0.970 ; o_done_write_data~reg0                     ; o_data_ram[6]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.103     ; 1.883      ;
+; -0.959 ; o_addr_ram[0]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 1.000        ; -0.095     ; 1.880      ;
+; -0.895 ; o_addr_ram[4]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 1.000        ; -0.095     ; 1.816      ;
+; -0.679 ; o_addr_ram[5]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 1.000        ; -0.095     ; 1.600      ;
+; -0.534 ; o_addr_ram[2]~reg0                         ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 1.456      ;
+; -0.527 ; o_addr_ram[4]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 1.449      ;
+; -0.503 ; o_addr_ram[0]~reg0                         ; o_addr_ram[0]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 1.425      ;
+; -0.494 ; o_addr_ram[1]~reg0                         ; o_addr_ram[1]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 1.416      ;
+; -0.474 ; o_addr_ram[3]~reg0                         ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 1.396      ;
+; -0.244 ; SS_detect_edge:detect_edge_unit|w_p_signal ; SS_detect_edge:detect_edge_unit|o_signal ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 1.166      ;
+; -0.123 ; o_addr_ram[5]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.094     ; 1.045      ;
++--------+--------------------------------------------+------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow 1000mV -40C Model Hold: 'i_clk'                                                                                                                                ;
++-------+--------------------------------------------+------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                                  ; To Node                                  ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+--------------------------------------------+------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 0.513 ; o_addr_ram[5]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 0.868      ;
+; 0.629 ; SS_detect_edge:detect_edge_unit|w_p_signal ; SS_detect_edge:detect_edge_unit|o_signal ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 0.984      ;
+; 0.756 ; o_addr_ram[4]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.111      ;
+; 0.757 ; o_addr_ram[3]~reg0                         ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.112      ;
+; 0.771 ; o_addr_ram[0]~reg0                         ; o_addr_ram[0]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.126      ;
+; 0.772 ; o_addr_ram[1]~reg0                         ; o_addr_ram[1]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.127      ;
+; 0.775 ; o_addr_ram[2]~reg0                         ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.130      ;
+; 0.985 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[0]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.340      ;
+; 0.985 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.340      ;
+; 0.985 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.340      ;
+; 0.985 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[1]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.340      ;
+; 0.985 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.340      ;
+; 0.985 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.340      ;
+; 1.050 ; o_addr_ram[5]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 0.000        ; 0.093      ; 1.404      ;
+; 1.132 ; o_addr_ram[0]~reg0                         ; o_addr_ram[1]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.487      ;
+; 1.138 ; o_addr_ram[4]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.493      ;
+; 1.159 ; o_addr_ram[2]~reg0                         ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.514      ;
+; 1.169 ; o_addr_ram[0]~reg0                         ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.524      ;
+; 1.176 ; o_addr_ram[3]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.531      ;
+; 1.191 ; o_addr_ram[1]~reg0                         ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.546      ;
+; 1.196 ; o_addr_ram[2]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.551      ;
+; 1.200 ; o_addr_ram[4]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 0.000        ; 0.093      ; 1.554      ;
+; 1.272 ; o_addr_ram[0]~reg0                         ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.627      ;
+; 1.279 ; o_addr_ram[3]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.634      ;
+; 1.294 ; o_addr_ram[1]~reg0                         ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.649      ;
+; 1.299 ; o_addr_ram[2]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.654      ;
+; 1.309 ; o_addr_ram[0]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.664      ;
+; 1.327 ; o_addr_ram[0]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 0.000        ; 0.093      ; 1.681      ;
+; 1.331 ; o_addr_ram[1]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.686      ;
+; 1.396 ; o_addr_ram[3]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 0.000        ; 0.093      ; 1.750      ;
+; 1.398 ; o_done_write_data~reg0                     ; o_data_ram[6]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.084      ; 1.743      ;
+; 1.399 ; o_done_write_data~reg0                     ; o_data_ram[7]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.084      ; 1.744      ;
+; 1.400 ; o_done_write_data~reg0                     ; o_we_ram~reg0                            ; i_clk        ; i_clk       ; 0.000        ; 0.084      ; 1.745      ;
+; 1.400 ; o_done_write_data~reg0                     ; o_data_ram[4]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.084      ; 1.745      ;
+; 1.401 ; o_done_write_data~reg0                     ; o_data_ram[3]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.084      ; 1.746      ;
+; 1.401 ; o_done_write_data~reg0                     ; o_data_ram[2]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.084      ; 1.746      ;
+; 1.403 ; o_done_write_data~reg0                     ; o_data_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.084      ; 1.748      ;
+; 1.403 ; o_done_write_data~reg0                     ; o_data_ram[0]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.084      ; 1.748      ;
+; 1.403 ; o_done_write_data~reg0                     ; o_data_ram[1]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.084      ; 1.748      ;
+; 1.412 ; o_addr_ram[0]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.767      ;
+; 1.434 ; o_addr_ram[1]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.094      ; 1.789      ;
+; 1.488 ; o_addr_ram[1]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 0.000        ; 0.093      ; 1.842      ;
+; 1.705 ; o_addr_ram[2]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 0.000        ; 0.093      ; 2.059      ;
+; 1.827 ; o_done_write_data~reg0                     ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.095      ; 2.183      ;
+; 1.827 ; o_done_write_data~reg0                     ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.095      ; 2.183      ;
+; 1.827 ; o_done_write_data~reg0                     ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.095      ; 2.183      ;
+; 1.827 ; o_done_write_data~reg0                     ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.095      ; 2.183      ;
+; 1.827 ; o_done_write_data~reg0                     ; o_addr_ram[1]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.095      ; 2.183      ;
+; 1.827 ; o_done_write_data~reg0                     ; o_addr_ram[0]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.095      ; 2.183      ;
++-------+--------------------------------------------+------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
+------------------------------------------------
+; Slow 1000mV -40C Model Metastability Summary ;
+------------------------------------------------
+No synchronizer chains to report.
+
+
++--------------------------------------+
+; Fast 1000mV -40C Model Setup Summary ;
++-------+--------+---------------------+
+; Clock ; Slack  ; End Point TNS       ;
++-------+--------+---------------------+
+; i_clk ; -0.365 ; -3.358              ;
++-------+--------+---------------------+
+
+
++-------------------------------------+
+; Fast 1000mV -40C Model Hold Summary ;
++-------+-------+---------------------+
+; Clock ; Slack ; End Point TNS       ;
++-------+-------+---------------------+
+; i_clk ; 0.287 ; 0.000               ;
++-------+-------+---------------------+
+
+
+-------------------------------------------
+; Fast 1000mV -40C Model Recovery Summary ;
+-------------------------------------------
+No paths to report.
+
+
+------------------------------------------
+; Fast 1000mV -40C Model Removal Summary ;
+------------------------------------------
+No paths to report.
+
+
++----------------------------------------------------+
+; Fast 1000mV -40C Model Minimum Pulse Width Summary ;
++-------+--------+-----------------------------------+
+; Clock ; Slack  ; End Point TNS                     ;
++-------+--------+-----------------------------------+
+; i_clk ; -3.000 ; -34.734                           ;
++-------+--------+-----------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fast 1000mV -40C Model Setup: 'i_clk'                                                                                                                                ;
++--------+--------------------------------------------+------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node                                  ; To Node                                  ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+--------------------------------------------+------------------------------------------+--------------+-------------+--------------+------------+------------+
+; -0.365 ; o_addr_ram[2]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 1.000        ; -0.055     ; 1.305      ;
+; -0.310 ; o_addr_ram[1]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.251      ;
+; -0.301 ; o_addr_ram[1]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.242      ;
+; -0.263 ; o_addr_ram[0]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.204      ;
+; -0.255 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.196      ;
+; -0.255 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[0]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.196      ;
+; -0.255 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.196      ;
+; -0.255 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.196      ;
+; -0.255 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[1]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.196      ;
+; -0.255 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.196      ;
+; -0.234 ; o_done_write_data~reg0                     ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.175      ;
+; -0.234 ; o_done_write_data~reg0                     ; o_addr_ram[0]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.175      ;
+; -0.234 ; o_done_write_data~reg0                     ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.175      ;
+; -0.234 ; o_done_write_data~reg0                     ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.175      ;
+; -0.234 ; o_done_write_data~reg0                     ; o_addr_ram[1]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.175      ;
+; -0.234 ; o_done_write_data~reg0                     ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.175      ;
+; -0.233 ; o_addr_ram[0]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.174      ;
+; -0.222 ; o_addr_ram[1]~reg0                         ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.163      ;
+; -0.213 ; o_addr_ram[3]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.154      ;
+; -0.213 ; o_addr_ram[1]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 1.000        ; -0.055     ; 1.153      ;
+; -0.213 ; o_addr_ram[1]~reg0                         ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.154      ;
+; -0.204 ; o_addr_ram[3]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.145      ;
+; -0.191 ; o_addr_ram[2]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.132      ;
+; -0.175 ; o_addr_ram[0]~reg0                         ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.116      ;
+; -0.162 ; o_addr_ram[2]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.103      ;
+; -0.159 ; o_addr_ram[3]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 1.000        ; -0.055     ; 1.099      ;
+; -0.154 ; o_done_write_data~reg0                     ; o_data_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.065     ; 1.084      ;
+; -0.154 ; o_done_write_data~reg0                     ; o_data_ram[1]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.065     ; 1.084      ;
+; -0.154 ; o_done_write_data~reg0                     ; o_data_ram[0]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.065     ; 1.084      ;
+; -0.151 ; o_done_write_data~reg0                     ; o_data_ram[3]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.065     ; 1.081      ;
+; -0.151 ; o_done_write_data~reg0                     ; o_data_ram[2]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.065     ; 1.081      ;
+; -0.150 ; o_done_write_data~reg0                     ; o_data_ram[4]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.065     ; 1.080      ;
+; -0.150 ; o_done_write_data~reg0                     ; o_we_ram~reg0                            ; i_clk        ; i_clk       ; 1.000        ; -0.065     ; 1.080      ;
+; -0.149 ; o_done_write_data~reg0                     ; o_data_ram[6]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.065     ; 1.079      ;
+; -0.149 ; o_done_write_data~reg0                     ; o_data_ram[7]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.065     ; 1.079      ;
+; -0.145 ; o_addr_ram[0]~reg0                         ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.086      ;
+; -0.103 ; o_addr_ram[2]~reg0                         ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.044      ;
+; -0.095 ; o_addr_ram[0]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 1.000        ; -0.055     ; 1.035      ;
+; -0.094 ; o_addr_ram[4]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.035      ;
+; -0.087 ; o_addr_ram[0]~reg0                         ; o_addr_ram[1]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 1.028      ;
+; -0.051 ; o_addr_ram[4]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 1.000        ; -0.055     ; 0.991      ;
+; 0.061  ; o_addr_ram[5]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 1.000        ; -0.055     ; 0.879      ;
+; 0.154  ; o_addr_ram[2]~reg0                         ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 0.787      ;
+; 0.157  ; o_addr_ram[4]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 0.784      ;
+; 0.171  ; o_addr_ram[0]~reg0                         ; o_addr_ram[0]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 0.770      ;
+; 0.172  ; o_addr_ram[1]~reg0                         ; o_addr_ram[1]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 0.769      ;
+; 0.181  ; o_addr_ram[3]~reg0                         ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 0.760      ;
+; 0.329  ; SS_detect_edge:detect_edge_unit|w_p_signal ; SS_detect_edge:detect_edge_unit|o_signal ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 0.612      ;
+; 0.390  ; o_addr_ram[5]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 1.000        ; -0.054     ; 0.551      ;
++--------+--------------------------------------------+------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fast 1000mV -40C Model Hold: 'i_clk'                                                                                                                                ;
++-------+--------------------------------------------+------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                                  ; To Node                                  ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+--------------------------------------------+------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 0.287 ; o_addr_ram[5]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.469      ;
+; 0.349 ; SS_detect_edge:detect_edge_unit|w_p_signal ; SS_detect_edge:detect_edge_unit|o_signal ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.531      ;
+; 0.415 ; o_addr_ram[4]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.597      ;
+; 0.415 ; o_addr_ram[3]~reg0                         ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.597      ;
+; 0.423 ; o_addr_ram[1]~reg0                         ; o_addr_ram[1]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.605      ;
+; 0.424 ; o_addr_ram[2]~reg0                         ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.606      ;
+; 0.425 ; o_addr_ram[0]~reg0                         ; o_addr_ram[0]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.607      ;
+; 0.541 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[0]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.723      ;
+; 0.541 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.723      ;
+; 0.541 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.723      ;
+; 0.541 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[1]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.723      ;
+; 0.541 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.723      ;
+; 0.541 ; SS_detect_edge:detect_edge_unit|o_signal   ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.723      ;
+; 0.578 ; o_addr_ram[5]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.760      ;
+; 0.628 ; o_addr_ram[0]~reg0                         ; o_addr_ram[1]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.810      ;
+; 0.634 ; o_addr_ram[4]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.816      ;
+; 0.637 ; o_addr_ram[3]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.819      ;
+; 0.638 ; o_addr_ram[0]~reg0                         ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.820      ;
+; 0.644 ; o_addr_ram[2]~reg0                         ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.826      ;
+; 0.645 ; o_addr_ram[1]~reg0                         ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.827      ;
+; 0.654 ; o_addr_ram[2]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.836      ;
+; 0.660 ; o_addr_ram[4]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.842      ;
+; 0.711 ; o_addr_ram[3]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.893      ;
+; 0.712 ; o_addr_ram[0]~reg0                         ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.894      ;
+; 0.719 ; o_addr_ram[1]~reg0                         ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.901      ;
+; 0.722 ; o_addr_ram[0]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.904      ;
+; 0.726 ; o_addr_ram[0]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.908      ;
+; 0.728 ; o_addr_ram[2]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.910      ;
+; 0.729 ; o_addr_ram[1]~reg0                         ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.911      ;
+; 0.768 ; o_addr_ram[3]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.950      ;
+; 0.782 ; o_done_write_data~reg0                     ; o_data_ram[7]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.044      ; 0.954      ;
+; 0.782 ; o_done_write_data~reg0                     ; o_data_ram[6]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.044      ; 0.954      ;
+; 0.783 ; o_done_write_data~reg0                     ; o_we_ram~reg0                            ; i_clk        ; i_clk       ; 0.000        ; 0.044      ; 0.955      ;
+; 0.784 ; o_done_write_data~reg0                     ; o_data_ram[3]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.044      ; 0.956      ;
+; 0.784 ; o_done_write_data~reg0                     ; o_data_ram[4]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.044      ; 0.956      ;
+; 0.784 ; o_done_write_data~reg0                     ; o_data_ram[2]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.044      ; 0.956      ;
+; 0.786 ; o_done_write_data~reg0                     ; o_data_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.044      ; 0.958      ;
+; 0.786 ; o_done_write_data~reg0                     ; o_data_ram[0]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.044      ; 0.958      ;
+; 0.787 ; o_done_write_data~reg0                     ; o_data_ram[1]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.044      ; 0.959      ;
+; 0.796 ; o_addr_ram[0]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.978      ;
+; 0.803 ; o_addr_ram[1]~reg0                         ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.985      ;
+; 0.815 ; o_addr_ram[1]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 0.997      ;
+; 0.936 ; o_addr_ram[2]~reg0                         ; o_done_write_data~reg0                   ; i_clk        ; i_clk       ; 0.000        ; 0.054      ; 1.118      ;
+; 0.989 ; o_done_write_data~reg0                     ; o_addr_ram[1]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.055      ; 1.172      ;
+; 0.989 ; o_done_write_data~reg0                     ; o_addr_ram[4]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.055      ; 1.172      ;
+; 0.989 ; o_done_write_data~reg0                     ; o_addr_ram[2]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.055      ; 1.172      ;
+; 0.989 ; o_done_write_data~reg0                     ; o_addr_ram[5]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.055      ; 1.172      ;
+; 0.989 ; o_done_write_data~reg0                     ; o_addr_ram[0]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.055      ; 1.172      ;
+; 0.989 ; o_done_write_data~reg0                     ; o_addr_ram[3]~reg0                       ; i_clk        ; i_clk       ; 0.000        ; 0.055      ; 1.172      ;
++-------+--------------------------------------------+------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
+------------------------------------------------
+; Fast 1000mV -40C Model Metastability Summary ;
+------------------------------------------------
+No synchronizer chains to report.
+
+
++-------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                           ;
++------------------+---------+-------+----------+---------+---------------------+
+; Clock            ; Setup   ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
++------------------+---------+-------+----------+---------+---------------------+
+; Worst-case Slack ; -1.500  ; 0.287 ; N/A      ; N/A     ; -3.000              ;
+;  i_clk           ; -1.500  ; 0.287 ; N/A      ; N/A     ; -3.000              ;
+; Design-wide TNS  ; -19.267 ; 0.0   ; 0.0      ; 0.0     ; -34.734             ;
+;  i_clk           ; -19.267 ; 0.000 ; N/A      ; N/A     ; -34.734             ;
++------------------+---------+-------+----------+---------+---------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Board Trace Model Assignments                                                                                                                                                                                                                                                                                                                                                                                        ;
++-------------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
+; Pin               ; I/O Standard ; Near Tline Length ; Near Tline L per Length ; Near Tline C per Length ; Near Series R ; Near Differential R ; Near Pull-up R ; Near Pull-down R ; Near C ; Far Tline Length ; Far Tline L per Length ; Far Tline C per Length ; Far Series R ; Far Pull-up R ; Far Pull-down R ; Far C ; Termination Voltage ; Far Differential R ; EBD File Name ; EBD Signal Name ; EBD Far-end ;
++-------------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
+; o_we_ram          ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; o_addr_ram[0]     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; o_addr_ram[1]     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; o_addr_ram[2]     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; o_addr_ram[3]     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; o_addr_ram[4]     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; o_addr_ram[5]     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; o_data_ram[0]     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; o_data_ram[1]     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; o_data_ram[2]     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; o_data_ram[3]     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; o_data_ram[4]     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; o_data_ram[5]     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; o_data_ram[6]     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; o_data_ram[7]     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; o_done_write_data ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ~ALTERA_DCLK~     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ~ALTERA_nCEO~     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
++-------------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
+
+
++----------------------------------------------------------------------------+
+; Input Transition Times                                                     ;
++-------------------------+--------------+-----------------+-----------------+
+; Pin                     ; I/O Standard ; 10-90 Rise Time ; 90-10 Fall Time ;
++-------------------------+--------------+-----------------+-----------------+
+; i_en_write_data         ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; i_clk                   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; i_rst_n                 ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; i_si_ram[0]             ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; i_si_ram[1]             ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; i_si_ram[2]             ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; i_si_ram[3]             ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; i_si_ram[4]             ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; i_si_ram[5]             ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; i_data_ram[0]           ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; i_data_ram[1]           ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; i_data_ram[2]           ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; i_data_ram[3]           ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; i_data_ram[4]           ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; i_data_ram[5]           ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; i_data_ram[6]           ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; i_data_ram[7]           ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; i_ei_ram[0]             ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; i_ei_ram[1]             ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; i_ei_ram[2]             ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; i_ei_ram[3]             ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; i_ei_ram[4]             ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; i_ei_ram[5]             ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; i_start_write_data      ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; ~ALTERA_ASDO_DATA1~     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; ~ALTERA_FLASH_nCE_nCSO~ ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; ~ALTERA_DATA0~          ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
++-------------------------+--------------+-----------------+-----------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Signal Integrity Metrics (Slow 1000mv n40c Model)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ;
++-------------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; Pin               ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
++-------------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; o_we_ram          ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.77e-09 V                   ; 2.4 V               ; -0.0305 V           ; 0.177 V                              ; 0.04 V                               ; 2.77e-10 s                  ; 3.05e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.77e-09 V                  ; 2.4 V              ; -0.0305 V          ; 0.177 V                             ; 0.04 V                              ; 2.77e-10 s                 ; 3.05e-10 s                 ; Yes                       ; Yes                       ;
+; o_addr_ram[0]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.77e-09 V                   ; 2.4 V               ; -0.0305 V           ; 0.177 V                              ; 0.04 V                               ; 2.77e-10 s                  ; 3.05e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.77e-09 V                  ; 2.4 V              ; -0.0305 V          ; 0.177 V                             ; 0.04 V                              ; 2.77e-10 s                 ; 3.05e-10 s                 ; Yes                       ; Yes                       ;
+; o_addr_ram[1]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.77e-09 V                   ; 2.4 V               ; -0.0305 V           ; 0.177 V                              ; 0.04 V                               ; 2.77e-10 s                  ; 3.05e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.77e-09 V                  ; 2.4 V              ; -0.0305 V          ; 0.177 V                             ; 0.04 V                              ; 2.77e-10 s                 ; 3.05e-10 s                 ; Yes                       ; Yes                       ;
+; o_addr_ram[2]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.77e-09 V                   ; 2.4 V               ; -0.0305 V           ; 0.177 V                              ; 0.04 V                               ; 2.77e-10 s                  ; 3.05e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.77e-09 V                  ; 2.4 V              ; -0.0305 V          ; 0.177 V                             ; 0.04 V                              ; 2.77e-10 s                 ; 3.05e-10 s                 ; Yes                       ; Yes                       ;
+; o_addr_ram[3]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.77e-09 V                   ; 2.4 V               ; -0.0305 V           ; 0.177 V                              ; 0.04 V                               ; 2.77e-10 s                  ; 3.05e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.77e-09 V                  ; 2.4 V              ; -0.0305 V          ; 0.177 V                             ; 0.04 V                              ; 2.77e-10 s                 ; 3.05e-10 s                 ; Yes                       ; Yes                       ;
+; o_addr_ram[4]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.77e-09 V                   ; 2.4 V               ; -0.0305 V           ; 0.177 V                              ; 0.04 V                               ; 2.77e-10 s                  ; 3.05e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.77e-09 V                  ; 2.4 V              ; -0.0305 V          ; 0.177 V                             ; 0.04 V                              ; 2.77e-10 s                 ; 3.05e-10 s                 ; Yes                       ; Yes                       ;
+; o_addr_ram[5]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.77e-09 V                   ; 2.4 V               ; -0.0305 V           ; 0.177 V                              ; 0.04 V                               ; 2.77e-10 s                  ; 3.05e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.77e-09 V                  ; 2.4 V              ; -0.0305 V          ; 0.177 V                             ; 0.04 V                              ; 2.77e-10 s                 ; 3.05e-10 s                 ; Yes                       ; Yes                       ;
+; o_data_ram[0]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.77e-09 V                   ; 2.34 V              ; -0.0088 V           ; 0.237 V                              ; 0.134 V                              ; 2.48e-09 s                  ; 2.31e-09 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.77e-09 V                  ; 2.34 V             ; -0.0088 V          ; 0.237 V                             ; 0.134 V                             ; 2.48e-09 s                 ; 2.31e-09 s                 ; No                        ; Yes                       ;
+; o_data_ram[1]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.77e-09 V                   ; 2.4 V               ; -0.0305 V           ; 0.177 V                              ; 0.04 V                               ; 2.77e-10 s                  ; 3.05e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.77e-09 V                  ; 2.4 V              ; -0.0305 V          ; 0.177 V                             ; 0.04 V                              ; 2.77e-10 s                 ; 3.05e-10 s                 ; Yes                       ; Yes                       ;
+; o_data_ram[2]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.77e-09 V                   ; 2.4 V               ; -0.0305 V           ; 0.177 V                              ; 0.04 V                               ; 2.77e-10 s                  ; 3.05e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.77e-09 V                  ; 2.4 V              ; -0.0305 V          ; 0.177 V                             ; 0.04 V                              ; 2.77e-10 s                 ; 3.05e-10 s                 ; Yes                       ; Yes                       ;
+; o_data_ram[3]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.77e-09 V                   ; 2.4 V               ; -0.0305 V           ; 0.177 V                              ; 0.04 V                               ; 2.77e-10 s                  ; 3.05e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.77e-09 V                  ; 2.4 V              ; -0.0305 V          ; 0.177 V                             ; 0.04 V                              ; 2.77e-10 s                 ; 3.05e-10 s                 ; Yes                       ; Yes                       ;
+; o_data_ram[4]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.77e-09 V                   ; 2.4 V               ; -0.0305 V           ; 0.177 V                              ; 0.04 V                               ; 2.77e-10 s                  ; 3.05e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.77e-09 V                  ; 2.4 V              ; -0.0305 V          ; 0.177 V                             ; 0.04 V                              ; 2.77e-10 s                 ; 3.05e-10 s                 ; Yes                       ; Yes                       ;
+; o_data_ram[5]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.77e-09 V                   ; 2.4 V               ; -0.0305 V           ; 0.177 V                              ; 0.04 V                               ; 2.77e-10 s                  ; 3.05e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.77e-09 V                  ; 2.4 V              ; -0.0305 V          ; 0.177 V                             ; 0.04 V                              ; 2.77e-10 s                 ; 3.05e-10 s                 ; Yes                       ; Yes                       ;
+; o_data_ram[6]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.77e-09 V                   ; 2.4 V               ; -0.0305 V           ; 0.177 V                              ; 0.04 V                               ; 2.77e-10 s                  ; 3.05e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.77e-09 V                  ; 2.4 V              ; -0.0305 V          ; 0.177 V                             ; 0.04 V                              ; 2.77e-10 s                 ; 3.05e-10 s                 ; Yes                       ; Yes                       ;
+; o_data_ram[7]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.77e-09 V                   ; 2.4 V               ; -0.0305 V           ; 0.177 V                              ; 0.04 V                               ; 2.77e-10 s                  ; 3.05e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.77e-09 V                  ; 2.4 V              ; -0.0305 V          ; 0.177 V                             ; 0.04 V                              ; 2.77e-10 s                 ; 3.05e-10 s                 ; Yes                       ; Yes                       ;
+; o_done_write_data ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.77e-09 V                   ; 2.4 V               ; -0.0305 V           ; 0.177 V                              ; 0.04 V                               ; 2.77e-10 s                  ; 3.05e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.77e-09 V                  ; 2.4 V              ; -0.0305 V          ; 0.177 V                             ; 0.04 V                              ; 2.77e-10 s                 ; 3.05e-10 s                 ; Yes                       ; Yes                       ;
+; ~ALTERA_DCLK~     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 8.78e-10 V                   ; 2.4 V               ; -0.0686 V           ; 0.125 V                              ; 0.094 V                              ; 2.65e-10 s                  ; 2.36e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 8.78e-10 V                  ; 2.4 V              ; -0.0686 V          ; 0.125 V                             ; 0.094 V                             ; 2.65e-10 s                 ; 2.36e-10 s                 ; Yes                       ; Yes                       ;
+; ~ALTERA_nCEO~     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.6e-09 V                    ; 2.4 V               ; -0.025 V            ; 0.127 V                              ; 0.071 V                              ; 4.5e-10 s                   ; 5.61e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.6e-09 V                   ; 2.4 V              ; -0.025 V           ; 0.127 V                             ; 0.071 V                             ; 4.5e-10 s                  ; 5.61e-10 s                 ; No                        ; Yes                       ;
++-------------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Signal Integrity Metrics (Slow 1000mv 100c Model)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ;
++-------------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; Pin               ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
++-------------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; o_we_ram          ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.18e-06 V                   ; 2.35 V              ; -0.0275 V           ; 0.112 V                              ; 0.049 V                              ; 4.57e-10 s                  ; 4.37e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 2.18e-06 V                  ; 2.35 V             ; -0.0275 V          ; 0.112 V                             ; 0.049 V                             ; 4.57e-10 s                 ; 4.37e-10 s                 ; Yes                       ; Yes                       ;
+; o_addr_ram[0]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.18e-06 V                   ; 2.35 V              ; -0.0275 V           ; 0.112 V                              ; 0.049 V                              ; 4.57e-10 s                  ; 4.37e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 2.18e-06 V                  ; 2.35 V             ; -0.0275 V          ; 0.112 V                             ; 0.049 V                             ; 4.57e-10 s                 ; 4.37e-10 s                 ; Yes                       ; Yes                       ;
+; o_addr_ram[1]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.18e-06 V                   ; 2.35 V              ; -0.0275 V           ; 0.112 V                              ; 0.049 V                              ; 4.57e-10 s                  ; 4.37e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 2.18e-06 V                  ; 2.35 V             ; -0.0275 V          ; 0.112 V                             ; 0.049 V                             ; 4.57e-10 s                 ; 4.37e-10 s                 ; Yes                       ; Yes                       ;
+; o_addr_ram[2]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.18e-06 V                   ; 2.35 V              ; -0.0275 V           ; 0.112 V                              ; 0.049 V                              ; 4.57e-10 s                  ; 4.37e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 2.18e-06 V                  ; 2.35 V             ; -0.0275 V          ; 0.112 V                             ; 0.049 V                             ; 4.57e-10 s                 ; 4.37e-10 s                 ; Yes                       ; Yes                       ;
+; o_addr_ram[3]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.18e-06 V                   ; 2.35 V              ; -0.0275 V           ; 0.112 V                              ; 0.049 V                              ; 4.57e-10 s                  ; 4.37e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 2.18e-06 V                  ; 2.35 V             ; -0.0275 V          ; 0.112 V                             ; 0.049 V                             ; 4.57e-10 s                 ; 4.37e-10 s                 ; Yes                       ; Yes                       ;
+; o_addr_ram[4]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.18e-06 V                   ; 2.35 V              ; -0.0275 V           ; 0.112 V                              ; 0.049 V                              ; 4.57e-10 s                  ; 4.37e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 2.18e-06 V                  ; 2.35 V             ; -0.0275 V          ; 0.112 V                             ; 0.049 V                             ; 4.57e-10 s                 ; 4.37e-10 s                 ; Yes                       ; Yes                       ;
+; o_addr_ram[5]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.18e-06 V                   ; 2.35 V              ; -0.0275 V           ; 0.112 V                              ; 0.049 V                              ; 4.57e-10 s                  ; 4.37e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 2.18e-06 V                  ; 2.35 V             ; -0.0275 V          ; 0.112 V                             ; 0.049 V                             ; 4.57e-10 s                 ; 4.37e-10 s                 ; Yes                       ; Yes                       ;
+; o_data_ram[0]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.18e-06 V                   ; 2.33 V              ; -0.00367 V          ; 0.119 V                              ; 0.091 V                              ; 3.4e-09 s                   ; 3.25e-09 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 2.18e-06 V                  ; 2.33 V             ; -0.00367 V         ; 0.119 V                             ; 0.091 V                             ; 3.4e-09 s                  ; 3.25e-09 s                 ; Yes                       ; Yes                       ;
+; o_data_ram[1]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.18e-06 V                   ; 2.35 V              ; -0.0275 V           ; 0.112 V                              ; 0.049 V                              ; 4.57e-10 s                  ; 4.37e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 2.18e-06 V                  ; 2.35 V             ; -0.0275 V          ; 0.112 V                             ; 0.049 V                             ; 4.57e-10 s                 ; 4.37e-10 s                 ; Yes                       ; Yes                       ;
+; o_data_ram[2]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.18e-06 V                   ; 2.35 V              ; -0.0275 V           ; 0.112 V                              ; 0.049 V                              ; 4.57e-10 s                  ; 4.37e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 2.18e-06 V                  ; 2.35 V             ; -0.0275 V          ; 0.112 V                             ; 0.049 V                             ; 4.57e-10 s                 ; 4.37e-10 s                 ; Yes                       ; Yes                       ;
+; o_data_ram[3]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.18e-06 V                   ; 2.35 V              ; -0.0275 V           ; 0.112 V                              ; 0.049 V                              ; 4.57e-10 s                  ; 4.37e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 2.18e-06 V                  ; 2.35 V             ; -0.0275 V          ; 0.112 V                             ; 0.049 V                             ; 4.57e-10 s                 ; 4.37e-10 s                 ; Yes                       ; Yes                       ;
+; o_data_ram[4]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.18e-06 V                   ; 2.35 V              ; -0.0275 V           ; 0.112 V                              ; 0.049 V                              ; 4.57e-10 s                  ; 4.37e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 2.18e-06 V                  ; 2.35 V             ; -0.0275 V          ; 0.112 V                             ; 0.049 V                             ; 4.57e-10 s                 ; 4.37e-10 s                 ; Yes                       ; Yes                       ;
+; o_data_ram[5]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.18e-06 V                   ; 2.35 V              ; -0.0275 V           ; 0.112 V                              ; 0.049 V                              ; 4.57e-10 s                  ; 4.37e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 2.18e-06 V                  ; 2.35 V             ; -0.0275 V          ; 0.112 V                             ; 0.049 V                             ; 4.57e-10 s                 ; 4.37e-10 s                 ; Yes                       ; Yes                       ;
+; o_data_ram[6]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.18e-06 V                   ; 2.35 V              ; -0.0275 V           ; 0.112 V                              ; 0.049 V                              ; 4.57e-10 s                  ; 4.37e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 2.18e-06 V                  ; 2.35 V             ; -0.0275 V          ; 0.112 V                             ; 0.049 V                             ; 4.57e-10 s                 ; 4.37e-10 s                 ; Yes                       ; Yes                       ;
+; o_data_ram[7]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.18e-06 V                   ; 2.35 V              ; -0.0275 V           ; 0.112 V                              ; 0.049 V                              ; 4.57e-10 s                  ; 4.37e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 2.18e-06 V                  ; 2.35 V             ; -0.0275 V          ; 0.112 V                             ; 0.049 V                             ; 4.57e-10 s                 ; 4.37e-10 s                 ; Yes                       ; Yes                       ;
+; o_done_write_data ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 2.18e-06 V                   ; 2.35 V              ; -0.0275 V           ; 0.112 V                              ; 0.049 V                              ; 4.57e-10 s                  ; 4.37e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 2.18e-06 V                  ; 2.35 V             ; -0.0275 V          ; 0.112 V                             ; 0.049 V                             ; 4.57e-10 s                 ; 4.37e-10 s                 ; Yes                       ; Yes                       ;
+; ~ALTERA_DCLK~     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.18e-06 V                   ; 2.35 V              ; -0.0248 V           ; 0.076 V                              ; 0.049 V                              ; 4.18e-10 s                  ; 3.71e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.18e-06 V                  ; 2.35 V             ; -0.0248 V          ; 0.076 V                             ; 0.049 V                             ; 4.18e-10 s                 ; 3.71e-10 s                 ; Yes                       ; Yes                       ;
+; ~ALTERA_nCEO~     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.94e-06 V                   ; 2.35 V              ; -0.0163 V           ; 0.084 V                              ; 0.054 V                              ; 5.57e-10 s                  ; 7.93e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.94e-06 V                  ; 2.35 V             ; -0.0163 V          ; 0.084 V                             ; 0.054 V                             ; 5.57e-10 s                 ; 7.93e-10 s                 ; Yes                       ; Yes                       ;
++-------------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Signal Integrity Metrics (Fast 1000mv n40c Model)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ;
++-------------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; Pin               ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
++-------------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; o_we_ram          ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 3.42e-09 V                   ; 2.75 V              ; -0.0579 V           ; 0.171 V                              ; 0.109 V                              ; 2.62e-10 s                  ; 2.4e-10 s                   ; Yes                        ; Yes                        ; 2.62 V                      ; 3.42e-09 V                  ; 2.75 V             ; -0.0579 V          ; 0.171 V                             ; 0.109 V                             ; 2.62e-10 s                 ; 2.4e-10 s                  ; Yes                       ; Yes                       ;
+; o_addr_ram[0]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 3.42e-09 V                   ; 2.75 V              ; -0.0579 V           ; 0.171 V                              ; 0.109 V                              ; 2.62e-10 s                  ; 2.4e-10 s                   ; Yes                        ; Yes                        ; 2.62 V                      ; 3.42e-09 V                  ; 2.75 V             ; -0.0579 V          ; 0.171 V                             ; 0.109 V                             ; 2.62e-10 s                 ; 2.4e-10 s                  ; Yes                       ; Yes                       ;
+; o_addr_ram[1]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 3.42e-09 V                   ; 2.75 V              ; -0.0579 V           ; 0.171 V                              ; 0.109 V                              ; 2.62e-10 s                  ; 2.4e-10 s                   ; Yes                        ; Yes                        ; 2.62 V                      ; 3.42e-09 V                  ; 2.75 V             ; -0.0579 V          ; 0.171 V                             ; 0.109 V                             ; 2.62e-10 s                 ; 2.4e-10 s                  ; Yes                       ; Yes                       ;
+; o_addr_ram[2]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 3.42e-09 V                   ; 2.75 V              ; -0.0579 V           ; 0.171 V                              ; 0.109 V                              ; 2.62e-10 s                  ; 2.4e-10 s                   ; Yes                        ; Yes                        ; 2.62 V                      ; 3.42e-09 V                  ; 2.75 V             ; -0.0579 V          ; 0.171 V                             ; 0.109 V                             ; 2.62e-10 s                 ; 2.4e-10 s                  ; Yes                       ; Yes                       ;
+; o_addr_ram[3]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 3.42e-09 V                   ; 2.75 V              ; -0.0579 V           ; 0.171 V                              ; 0.109 V                              ; 2.62e-10 s                  ; 2.4e-10 s                   ; Yes                        ; Yes                        ; 2.62 V                      ; 3.42e-09 V                  ; 2.75 V             ; -0.0579 V          ; 0.171 V                             ; 0.109 V                             ; 2.62e-10 s                 ; 2.4e-10 s                  ; Yes                       ; Yes                       ;
+; o_addr_ram[4]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 3.42e-09 V                   ; 2.75 V              ; -0.0579 V           ; 0.171 V                              ; 0.109 V                              ; 2.62e-10 s                  ; 2.4e-10 s                   ; Yes                        ; Yes                        ; 2.62 V                      ; 3.42e-09 V                  ; 2.75 V             ; -0.0579 V          ; 0.171 V                             ; 0.109 V                             ; 2.62e-10 s                 ; 2.4e-10 s                  ; Yes                       ; Yes                       ;
+; o_addr_ram[5]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 3.42e-09 V                   ; 2.75 V              ; -0.0579 V           ; 0.171 V                              ; 0.109 V                              ; 2.62e-10 s                  ; 2.4e-10 s                   ; Yes                        ; Yes                        ; 2.62 V                      ; 3.42e-09 V                  ; 2.75 V             ; -0.0579 V          ; 0.171 V                             ; 0.109 V                             ; 2.62e-10 s                 ; 2.4e-10 s                  ; Yes                       ; Yes                       ;
+; o_data_ram[0]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 3.42e-09 V                   ; 2.65 V              ; -0.0149 V           ; 0.207 V                              ; 0.18 V                               ; 2.16e-09 s                  ; 2.03e-09 s                  ; No                         ; Yes                        ; 2.62 V                      ; 3.42e-09 V                  ; 2.65 V             ; -0.0149 V          ; 0.207 V                             ; 0.18 V                              ; 2.16e-09 s                 ; 2.03e-09 s                 ; No                        ; Yes                       ;
+; o_data_ram[1]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 3.42e-09 V                   ; 2.75 V              ; -0.0579 V           ; 0.171 V                              ; 0.109 V                              ; 2.62e-10 s                  ; 2.4e-10 s                   ; Yes                        ; Yes                        ; 2.62 V                      ; 3.42e-09 V                  ; 2.75 V             ; -0.0579 V          ; 0.171 V                             ; 0.109 V                             ; 2.62e-10 s                 ; 2.4e-10 s                  ; Yes                       ; Yes                       ;
+; o_data_ram[2]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 3.42e-09 V                   ; 2.75 V              ; -0.0579 V           ; 0.171 V                              ; 0.109 V                              ; 2.62e-10 s                  ; 2.4e-10 s                   ; Yes                        ; Yes                        ; 2.62 V                      ; 3.42e-09 V                  ; 2.75 V             ; -0.0579 V          ; 0.171 V                             ; 0.109 V                             ; 2.62e-10 s                 ; 2.4e-10 s                  ; Yes                       ; Yes                       ;
+; o_data_ram[3]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 3.42e-09 V                   ; 2.75 V              ; -0.0579 V           ; 0.171 V                              ; 0.109 V                              ; 2.62e-10 s                  ; 2.4e-10 s                   ; Yes                        ; Yes                        ; 2.62 V                      ; 3.42e-09 V                  ; 2.75 V             ; -0.0579 V          ; 0.171 V                             ; 0.109 V                             ; 2.62e-10 s                 ; 2.4e-10 s                  ; Yes                       ; Yes                       ;
+; o_data_ram[4]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 3.42e-09 V                   ; 2.75 V              ; -0.0579 V           ; 0.171 V                              ; 0.109 V                              ; 2.62e-10 s                  ; 2.4e-10 s                   ; Yes                        ; Yes                        ; 2.62 V                      ; 3.42e-09 V                  ; 2.75 V             ; -0.0579 V          ; 0.171 V                             ; 0.109 V                             ; 2.62e-10 s                 ; 2.4e-10 s                  ; Yes                       ; Yes                       ;
+; o_data_ram[5]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 3.42e-09 V                   ; 2.75 V              ; -0.0579 V           ; 0.171 V                              ; 0.109 V                              ; 2.62e-10 s                  ; 2.4e-10 s                   ; Yes                        ; Yes                        ; 2.62 V                      ; 3.42e-09 V                  ; 2.75 V             ; -0.0579 V          ; 0.171 V                             ; 0.109 V                             ; 2.62e-10 s                 ; 2.4e-10 s                  ; Yes                       ; Yes                       ;
+; o_data_ram[6]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 3.42e-09 V                   ; 2.75 V              ; -0.0579 V           ; 0.171 V                              ; 0.109 V                              ; 2.62e-10 s                  ; 2.4e-10 s                   ; Yes                        ; Yes                        ; 2.62 V                      ; 3.42e-09 V                  ; 2.75 V             ; -0.0579 V          ; 0.171 V                             ; 0.109 V                             ; 2.62e-10 s                 ; 2.4e-10 s                  ; Yes                       ; Yes                       ;
+; o_data_ram[7]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 3.42e-09 V                   ; 2.75 V              ; -0.0579 V           ; 0.171 V                              ; 0.109 V                              ; 2.62e-10 s                  ; 2.4e-10 s                   ; Yes                        ; Yes                        ; 2.62 V                      ; 3.42e-09 V                  ; 2.75 V             ; -0.0579 V          ; 0.171 V                             ; 0.109 V                             ; 2.62e-10 s                 ; 2.4e-10 s                  ; Yes                       ; Yes                       ;
+; o_done_write_data ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 3.42e-09 V                   ; 2.75 V              ; -0.0579 V           ; 0.171 V                              ; 0.109 V                              ; 2.62e-10 s                  ; 2.4e-10 s                   ; Yes                        ; Yes                        ; 2.62 V                      ; 3.42e-09 V                  ; 2.75 V             ; -0.0579 V          ; 0.171 V                             ; 0.109 V                             ; 2.62e-10 s                 ; 2.4e-10 s                  ; Yes                       ; Yes                       ;
+; ~ALTERA_DCLK~     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.17e-09 V                   ; 2.78 V              ; -0.0934 V           ; 0.191 V                              ; 0.111 V                              ; 2.64e-10 s                  ; 1.98e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 2.17e-09 V                  ; 2.78 V             ; -0.0934 V          ; 0.191 V                             ; 0.111 V                             ; 2.64e-10 s                 ; 1.98e-10 s                 ; No                        ; Yes                       ;
+; ~ALTERA_nCEO~     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.9e-09 V                    ; 2.73 V              ; -0.0133 V           ; 0.23 V                               ; 0.032 V                              ; 2.9e-10 s                   ; 4.45e-10 s                  ; Yes                        ; Yes                        ; 2.62 V                      ; 2.9e-09 V                   ; 2.73 V             ; -0.0133 V          ; 0.23 V                              ; 0.032 V                             ; 2.9e-10 s                  ; 4.45e-10 s                 ; Yes                       ; Yes                       ;
++-------------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+
+
++-------------------------------------------------------------------+
+; Setup Transfers                                                   ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; i_clk      ; i_clk    ; 55       ; 0        ; 0        ; 0        ;
++------------+----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
++-------------------------------------------------------------------+
+; Hold Transfers                                                    ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; i_clk      ; i_clk    ; 55       ; 0        ; 0        ; 0        ;
++------------+----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
+---------------
+; Report TCCS ;
+---------------
+No dedicated SERDES Transmitter circuitry present in device or used in design
+
+
+---------------
+; Report RSKM ;
+---------------
+No non-DPA dedicated SERDES Receiver circuitry present in device or used in design
+
+
++------------------------------------------------+
+; Unconstrained Paths Summary                    ;
++---------------------------------+-------+------+
+; Property                        ; Setup ; Hold ;
++---------------------------------+-------+------+
+; Illegal Clocks                  ; 0     ; 0    ;
+; Unconstrained Clocks            ; 0     ; 0    ;
+; Unconstrained Input Ports       ; 23    ; 23   ;
+; Unconstrained Input Port Paths  ; 55    ; 55   ;
+; Unconstrained Output Ports      ; 16    ; 16   ;
+; Unconstrained Output Port Paths ; 16    ; 16   ;
++---------------------------------+-------+------+
+
+
++-------------------------------------+
+; Clock Status Summary                ;
++--------+-------+------+-------------+
+; Target ; Clock ; Type ; Status      ;
++--------+-------+------+-------------+
+; i_clk  ; i_clk ; Base ; Constrained ;
++--------+-------+------+-------------+
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Unconstrained Input Ports                                                                                 ;
++--------------------+--------------------------------------------------------------------------------------+
+; Input Port         ; Comment                                                                              ;
++--------------------+--------------------------------------------------------------------------------------+
+; i_data_ram[0]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_data_ram[1]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_data_ram[2]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_data_ram[3]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_data_ram[4]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_data_ram[5]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_data_ram[6]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_data_ram[7]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_ei_ram[0]        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_ei_ram[1]        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_ei_ram[2]        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_ei_ram[3]        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_ei_ram[4]        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_ei_ram[5]        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_en_write_data    ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_rst_n            ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_si_ram[0]        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_si_ram[1]        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_si_ram[2]        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_si_ram[3]        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_si_ram[4]        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_si_ram[5]        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_start_write_data ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
++--------------------+--------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Unconstrained Output Ports                                                                                ;
++-------------------+---------------------------------------------------------------------------------------+
+; Output Port       ; Comment                                                                               ;
++-------------------+---------------------------------------------------------------------------------------+
+; o_addr_ram[0]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_addr_ram[1]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_addr_ram[2]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_addr_ram[3]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_addr_ram[4]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_addr_ram[5]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_data_ram[0]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_data_ram[1]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_data_ram[2]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_data_ram[3]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_data_ram[4]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_data_ram[5]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_data_ram[6]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_data_ram[7]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_done_write_data ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_we_ram          ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
++-------------------+---------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Unconstrained Input Ports                                                                                 ;
++--------------------+--------------------------------------------------------------------------------------+
+; Input Port         ; Comment                                                                              ;
++--------------------+--------------------------------------------------------------------------------------+
+; i_data_ram[0]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_data_ram[1]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_data_ram[2]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_data_ram[3]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_data_ram[4]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_data_ram[5]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_data_ram[6]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_data_ram[7]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_ei_ram[0]        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_ei_ram[1]        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_ei_ram[2]        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_ei_ram[3]        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_ei_ram[4]        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_ei_ram[5]        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_en_write_data    ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_rst_n            ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_si_ram[0]        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_si_ram[1]        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_si_ram[2]        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_si_ram[3]        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_si_ram[4]        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_si_ram[5]        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; i_start_write_data ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
++--------------------+--------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Unconstrained Output Ports                                                                                ;
++-------------------+---------------------------------------------------------------------------------------+
+; Output Port       ; Comment                                                                               ;
++-------------------+---------------------------------------------------------------------------------------+
+; o_addr_ram[0]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_addr_ram[1]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_addr_ram[2]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_addr_ram[3]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_addr_ram[4]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_addr_ram[5]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_data_ram[0]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_data_ram[1]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_data_ram[2]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_data_ram[3]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_data_ram[4]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_data_ram[5]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_data_ram[6]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_data_ram[7]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_done_write_data ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; o_we_ram          ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
++-------------------+---------------------------------------------------------------------------------------+
+
+
++--------------------------+
+; Timing Analyzer Messages ;
++--------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Timing Analyzer
+    Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+    Info: Processing started: Fri Aug  8 10:11:21 2025
+Info: Command: quartus_sta SS_write_data -c SS_write_data
+Info: qsta_default_script.tcl version: #1
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (21077): Low junction temperature is -40 degrees C
+Info (21077): High junction temperature is 100 degrees C
+Critical Warning (332012): Synopsys Design Constraints File file not found: 'SS_write_data.sdc'. A Synopsys Design Constraints File is required by the Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
+Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
+Info (332105): Deriving Clocks
+    Info (332105): create_clock -period 1.000 -name i_clk i_clk
+Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
+Info: Analyzing Slow 1000mV 100C Model
+Critical Warning (332148): Timing requirements not met
+    Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
+Info (332146): Worst-case setup slack is -1.500
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -1.500             -19.267 i_clk 
+Info (332146): Worst-case hold slack is 0.542
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.542               0.000 i_clk 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is -3.000
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -3.000             -34.734 i_clk 
+Info: Analyzing Slow 1000mV -40C Model
+Info (334003): Started post-fitting delay annotation
+Info (334004): Delay annotation completed successfully
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Critical Warning (332148): Timing requirements not met
+    Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
+Info (332146): Worst-case setup slack is -1.426
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -1.426             -18.407 i_clk 
+Info (332146): Worst-case hold slack is 0.513
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.513               0.000 i_clk 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is -3.000
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -3.000             -34.734 i_clk 
+Info: Analyzing Fast 1000mV -40C Model
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Critical Warning (332148): Timing requirements not met
+    Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
+Info (332146): Worst-case setup slack is -0.365
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -0.365              -3.358 i_clk 
+Info (332146): Worst-case hold slack is 0.287
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.287               0.000 i_clk 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is -3.000
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -3.000             -34.734 i_clk 
+Info (332102): Design is not fully constrained for setup requirements
+Info (332102): Design is not fully constrained for hold requirements
+Info: Quartus Prime Timing Analyzer was successful. 0 errors, 5 warnings
+    Info: Peak virtual memory: 521 megabytes
+    Info: Processing ended: Fri Aug  8 10:11:22 2025
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01
+
+
