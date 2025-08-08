@@ -21,17 +21,17 @@ i_data[4] => Add0.IN5
 i_data[5] => Add0.IN4
 i_data[6] => Add0.IN3
 i_data[7] => Add0.IN2
-o_sum[0] <= o_sum[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-o_sum[1] <= o_sum[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-o_sum[2] <= o_sum[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-o_sum[3] <= o_sum[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-o_sum[4] <= o_sum[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-o_sum[5] <= o_sum[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-o_sum[6] <= o_sum[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-o_sum[7] <= o_sum[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-o_sum[8] <= o_sum[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-o_en_next_value <= o_en_next_value~reg0.DB_MAX_OUTPUT_PORT_TYPE
-o_done <= SS_detect_edge:detect_edge_unit_2.o_signal
+o_sum[0] << o_sum[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_sum[1] << o_sum[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_sum[2] << o_sum[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_sum[3] << o_sum[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_sum[4] << o_sum[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_sum[5] << o_sum[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_sum[6] << o_sum[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_sum[7] << o_sum[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_sum[8] << o_sum[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_en_next_value << o_en_next_value~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_done << SS_detect_edge:detect_edge_unit_2.o_signal
 
 
 |SS_cal_sum|SS_detect_edge:detect_edge_unit

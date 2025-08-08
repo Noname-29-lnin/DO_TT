@@ -13,7 +13,7 @@ module SS_read_data #(
 
     output logic                    o_re_ram    ,
     output logic [SIZE_ADDR-1:0]    o_addr_ram  ,
-    output logic                    o_done_raad_data
+    output logic                    o_done_read_data
 );
 
 logic [SIZE_ADDR-1:0] w_next_addr_ram;
@@ -59,9 +59,9 @@ end
 
 always_ff @( posedge i_clk or negedge i_rst_n ) begin : proc_o_done_read_data
     if(~i_rst_n)
-        o_done_raad_data <= 1'b0;
+        o_done_read_data <= 1'b0;
     else
-        o_done_raad_data <= w_compare_ei;
+        o_done_read_data <= w_compare_ei;
 end
 
 endmodule

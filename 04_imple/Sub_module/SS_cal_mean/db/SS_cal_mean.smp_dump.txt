@@ -1,0 +1,7 @@
+
+State Machine - |SS_cal_mean|SS_Division:Division_unit|state
+Name state.RESTORE state.SUBTRACT state.SHIFT state.IDLE 
+state.IDLE 0 0 0 0 
+state.SHIFT 0 0 1 1 
+state.SUBTRACT 0 1 0 1 
+state.RESTORE 1 0 0 1 

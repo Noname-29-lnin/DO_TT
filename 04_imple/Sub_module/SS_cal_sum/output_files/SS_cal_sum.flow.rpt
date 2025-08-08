@@ -1,5 +1,5 @@
 Flow report for SS_cal_sum
-Fri Aug  8 10:42:35 2025
+Fri Aug  8 10:51:43 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -41,22 +41,22 @@ on the Quartus Prime software download page.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Fri Aug  8 10:42:35 2025           ;
+; Flow Status                        ; Successful - Fri Aug  8 10:51:43 2025           ;
 ; Quartus Prime Version              ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                      ; SS_cal_sum                                      ;
 ; Top-level Entity Name              ; SS_cal_sum                                      ;
 ; Family                             ; Cyclone 10 LP                                   ;
 ; Device                             ; 10CL120ZF484I8G                                 ;
 ; Timing Models                      ; Final                                           ;
-; Total logic elements               ; N/A until Partition Merge                       ;
-;     Total combinational functions  ; N/A until Partition Merge                       ;
-;     Dedicated logic registers      ; N/A until Partition Merge                       ;
-; Total registers                    ; N/A until Partition Merge                       ;
-; Total pins                         ; N/A until Partition Merge                       ;
-; Total virtual pins                 ; N/A until Partition Merge                       ;
-; Total memory bits                  ; N/A until Partition Merge                       ;
-; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                       ;
-; Total PLLs                         ; N/A until Partition Merge                       ;
+; Total logic elements               ; 25 / 119,088 ( < 1 % )                          ;
+;     Total combinational functions  ; 14 / 119,088 ( < 1 % )                          ;
+;     Dedicated logic registers      ; 23 / 119,088 ( < 1 % )                          ;
+; Total registers                    ; 23                                              ;
+; Total pins                         ; 24 / 278 ( 9 % )                                ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 0 / 3,981,312 ( 0 % )                           ;
+; Embedded Multiplier 9-bit elements ; 0 / 576 ( 0 % )                                 ;
+; Total PLLs                         ; 0 / 4 ( 0 % )                                   ;
 +------------------------------------+-------------------------------------------------+
 
 
@@ -65,7 +65,7 @@ on the Quartus Prime software download page.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 08/08/2025 10:42:30 ;
+; Start date & time ; 08/08/2025 10:51:18 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; SS_cal_sum          ;
 +-------------------+---------------------+
@@ -76,7 +76,7 @@ on the Quartus Prime software download page.
 +-------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id                        ;
 +-------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
-; COMPILER_SIGNATURE_ID               ; 18039803683899.175462455025628         ; --            ; --          ; --                                ;
+; COMPILER_SIGNATURE_ID               ; 18039803683899.175462507828916         ; --            ; --          ; --                                ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_timing           ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_boundary_scan    ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_signal_integrity ;
@@ -96,29 +96,41 @@ on the Quartus Prime software download page.
 +-------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------+
-; Flow Elapsed Time                                                                                                          ;
-+------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Module Name            ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
-+------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Elaboration ; 00:00:05     ; 1.0                     ; 651 MB              ; 00:00:14                           ;
-; Total                  ; 00:00:05     ; --                      ; --                  ; 00:00:14                           ;
-+------------------------+--------------+-------------------------+---------------------+------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                        ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis ; 00:00:07     ; 1.0                     ; 379 MB              ; 00:00:19                           ;
+; Fitter               ; 00:00:10     ; 1.0                     ; 1056 MB             ; 00:00:14                           ;
+; Assembler            ; 00:00:02     ; 1.0                     ; 358 MB              ; 00:00:02                           ;
+; Timing Analyzer      ; 00:00:02     ; 1.0                     ; 529 MB              ; 00:00:01                           ;
+; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 585 MB              ; 00:00:00                           ;
+; Total                ; 00:00:21     ; --                      ; --                  ; 00:00:36                           ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
-+-----------------------------------------------------------------------------------+
-; Flow OS Summary                                                                   ;
-+------------------------+------------------+---------+------------+----------------+
-; Module Name            ; Machine Hostname ; OS Name ; OS Version ; Processor type ;
-+------------------------+------------------+---------+------------+----------------+
-; Analysis & Elaboration ; noname-lnin      ; Ubuntu  ; 22         ; x86_64         ;
-+------------------------+------------------+---------+------------+----------------+
++---------------------------------------------------------------------------------+
+; Flow OS Summary                                                                 ;
++----------------------+------------------+---------+------------+----------------+
+; Module Name          ; Machine Hostname ; OS Name ; OS Version ; Processor type ;
++----------------------+------------------+---------+------------+----------------+
+; Analysis & Synthesis ; noname-lnin      ; Ubuntu  ; 22         ; x86_64         ;
+; Fitter               ; noname-lnin      ; Ubuntu  ; 22         ; x86_64         ;
+; Assembler            ; noname-lnin      ; Ubuntu  ; 22         ; x86_64         ;
+; Timing Analyzer      ; noname-lnin      ; Ubuntu  ; 22         ; x86_64         ;
+; EDA Netlist Writer   ; noname-lnin      ; Ubuntu  ; 22         ; x86_64         ;
++----------------------+------------------+---------+------------+----------------+
 
 
 ------------
 ; Flow Log ;
 ------------
-quartus_map --read_settings_files=on --write_settings_files=off SS_cal_sum -c SS_cal_sum --analysis_and_elaboration
+quartus_map --read_settings_files=on --write_settings_files=off SS_cal_sum -c SS_cal_sum
+quartus_fit --read_settings_files=off --write_settings_files=off SS_cal_sum -c SS_cal_sum
+quartus_asm --read_settings_files=off --write_settings_files=off SS_cal_sum -c SS_cal_sum
+quartus_sta SS_cal_sum -c SS_cal_sum
+quartus_eda --read_settings_files=off --write_settings_files=off SS_cal_sum -c SS_cal_sum
 
 
 
