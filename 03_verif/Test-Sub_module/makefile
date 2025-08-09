@@ -12,22 +12,22 @@ all: clean compile run
 all_wave: clean compile run sim
 
 compile:
-	@echo "-> Creating output directory..."
+	@echo "-> mkdir..."
 	@mkdir -p $(INC_DIR)
-	@echo "-> Compiling..."
+	@echo "-> compile..."
 	@$(TOOL) $(VERILATOR_FLAGS) -f $(INC_DIR)/flist.f $(INC_FLAGS) $(WARNING_IGNORE) --Mdir $(INC_DIR)/obj_dir --trace --o Vtb_$(TOPMODULE)
 
 run:
-	@echo "-> Running..."
+	@echo "-> run..."
 	@$(INC_DIR)/obj_dir/Vtb_$(TOPMODULE) | tee $(INC_DIR)/simulation.log
 	@mv ./tb_$(TOPMODULE).vcd $(INC_DIR)
 
 sim:
-	@echo "-> Opening waveform viewer..."
+	@echo "-> sim..."
 	@gtkwave $(INC_DIR)/tb_$(TOPMODULE).vcd &> /dev/null
 
 clean:
-	@echo "-> Cleaning project..."
+	@echo "-> clean..."
 	@rm -rf $(INC_DIR)/obj_dir
 
 help:
