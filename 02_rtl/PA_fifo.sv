@@ -1,4 +1,4 @@
-module fifo #(
+module PA_fifo #(
     parameter SIZE_DATA  = 8,
     parameter SIZE_DEPTH = 2048
 )(

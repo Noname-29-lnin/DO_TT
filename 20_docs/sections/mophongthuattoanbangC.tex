@@ -1,0 +1,132 @@
+\section{MÔ PHỎNG THUẬT TOÁN BẰNG C}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\linewidth]{sections/pic/mophongbangC/system_conv.png}
+	\caption{Sơ đồ khối hệ thống.}
+	\label{f_system_conv}
+\end{figure}
+
+Tín hiệu sau khi được số hóa thành các bit, các bit này sẽ được đưa đến bộ mã hóa Mã chập. Sau khi được mã hóa, tín hiệu (các bit) đươc truyền qua kênh truyền có nhiễu, ở đây có thể coi nhiễu là nhiễu Gauss trắng. Tín hiệu đã bị thay đổi bởi nhiễu được thu vào và giải mã bởi bộ giải mã Viterbi. Ngờ thuật toán Viterbi, tín hiệu được giải mã sẽ gần giống nhất với tín hiệu ban đầu.
+
+Dựa vào hình \ref{f_system_conv}, ta thực hiện theo sơ đồ sau:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.6\linewidth]{sections/pic/mophongbangC/flowchart_diagram_withC.png}
+	\caption{Lưu đồ mô phỏng.}
+\end{figure}
+
+\subsection{Khối nhận chuỗi Bits đầu vào}
+
+Cho phép người dùng nhập giá trị chuỗi bit đầu vào ở dạng chuỗi (\texttt{char}) và chuỗi chuỗi vừa nhận thành mảng một chuỗi chứa các giá trị số thực (\texttt{int}).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.44\linewidth]{sections/pic/mophongbangC/Trans_string_to_binary.png}
+	\caption{Lưu đồ của Khối nhận chuỗi bits đầu vào.}
+\end{figure}
+
+% Thêm đoạn code hiển thị kết quả ở đây
+
+\subsection{Bộ mã tích chập}
+
+Với việc mô phỏng bộ Viterbi ($3, 1, 2$), thì giá trị $G$ và $K$ được cho trước là:
+
+\[
+G = \begin{bmatrix}
+	1 & 1 & 1\\
+	1 & 0 & 1
+\end{bmatrix}, K = 3
+\]
+
+Ta có lưu đồ giải thuật của Bộ mã Tích chập,
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\linewidth]{sections/pic/mophongbangC/flowchart_conv_block_withC.png}
+	\caption{Lưu đồ giải thuật của Bộ mã Tích chập.}
+\end{figure}
+
+\subsection{Bộ giải mã Viterbi}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.6\linewidth]{sections/pic/mophongbangC/flowchart_VD_312.png}
+	\caption{Lưu đồ giải thuật của Bộ giải mã Viterbi.}
+\end{figure}
+
+\subsection{Kết quả}
+
+\begin{lstlisting}[style=StyleResult, caption={Mô phỏng việc mã hóa và giải mã với 0bit sai.}]
+	------------------- Input Data -------------------
+	Input data: 110110
+	The constraint length K = 3
+	The number of input M = 1
+	The number of output N = 2
+	Enter the Generator Polynomial Matrix (G[n][k]): = [(1 1 1) (1 0 1)]
+	
+	Input data: 110110
+	
+	------------- Ouput Conv Data -------------
+	
+	Conv Data: 110101000101
+	
+	
+	------------------- Input Data -------------------
+	Input data: 110110
+	The constraint length K = 3
+	The number of input M = 1
+	The number of output N = 2
+	Enter the Generator Polynomial Matrix (G[n][k]): = [(1 1 1) (1 0 1)]
+	
+	Input data: 110110
+	
+	------------- Ouput Conv Data -------------
+	
+	Conv Data: 110101000101
+	
+	------------- Viterbi Decoder -------------
+	Viterbi Data: 110101000101 - BER = 0
+	Viterbi Data: 110110
+\end{lstlisting}
+
+\begin{lstlisting}[style=StyleResult, caption={Mô phỏng việc mã hóa và giải mã với 1bit sai.}, escapeinside={\%*}{*)}]
+	------------------- Input Data -------------------
+	Input data: 110110
+	The constraint length K = 3
+	The number of input M = 1
+	The number of output N = 2
+	Enter the Generator Polynomial Matrix (G[n][k]): = [(1 1 1) (1 0 1)]
+	
+	Input data: 110110
+	
+	------------- Ouput Conv Data -------------
+	
+	Conv Data: 110101000101
+	
+	------------- Viterbi Decoder -------------
+	Viterbi data: 1101%*\textcolor{red}{1}*)1000101 - BER = 1
+	Viterbi Data: 110110
+\end{lstlisting}
+
+\begin{lstlisting}[style=StyleResult, caption={Mô phỏng việc mã hóa và giải mã với 0bit sai.}, escapeinside={\%*}{*)}]
+	------------------- Input Data -------------------
+	Input data: 110110
+	The constraint length K = 3
+	The number of input M = 1
+	The number of output N = 2
+	Enter the Generator Polynomial Matrix (G[n][k]): = [(1 1 1) (1 0 1)]
+	
+	Input data: 110110
+	
+	------------- Ouput Conv Data -------------
+	
+	Conv Data: 110101000101
+	
+	------------- Viterbi Decoder -------------
+	Viterbi data: 1101%*\textcolor{red}{1}*)10001%*\textcolor{red}{1}*)1 - BER = 2
+	Viterbi Data: 110110
+\end{lstlisting}
+
+%\lstinputlisting[style=StyleCode, language=C, caption={SystemVerilog Example}]{../01_system_lever_test/VD_312/VD_312.c}

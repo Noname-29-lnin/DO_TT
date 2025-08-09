@@ -4,7 +4,6 @@ module tb_simple_dual_port_ram_single_clock#(
     parameter MEM_INIT_FILE = "./mem_init.hex"
 )(
     input  logic                     clk,
-    input  logic                     rst_n,
     input  logic                     we,
     input  logic [DATA_WIDTH-1:0]    data,
     input  logic [ADDR_WIDTH-1:0]    read_addr,
@@ -12,24 +11,22 @@ module tb_simple_dual_port_ram_single_clock#(
     output logic [DATA_WIDTH-1:0]    q
 );
 
-
     logic [DATA_WIDTH-1:0] ram [0:(2**ADDR_WIDTH)-1];
 
+    // Load toàn bộ file vào RAM ban đầu
     initial begin
         if (MEM_INIT_FILE != "") begin
-            $display("Loading memory contents from %s", MEM_INIT_FILE);
+            $display("Initial load memory contents from %s", MEM_INIT_FILE);
             $readmemh(MEM_INIT_FILE, ram);
         end
     end
 
-    always_ff @(negedge rst_n) begin
-        if (!rst_n && MEM_INIT_FILE != "") begin
-            $readmemh(MEM_INIT_FILE, ram);
-        end
-    end
-
+    // Đọc và ghi
     always_ff @(posedge clk) begin
+        // Đọc giá trị tại read_addr
         q <= ram[read_addr];
+
+        // Nếu ghi thì ghi vào RAM
         if (we)
             ram[write_addr] <= data;
     end

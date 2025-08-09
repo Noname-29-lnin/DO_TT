@@ -1,13 +1,13 @@
-Analysis & Synthesis Status : Successful - Fri Aug  8 10:34:57 2025
+Analysis & Synthesis Status : Successful - Sat Aug  9 21:19:06 2025
 Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 Revision Name : SS_read_data
 Top-level Entity Name : SS_read_data
 Family : Cyclone 10 LP
-Total logic elements : 15
-    Total combinational functions : 13
-    Dedicated logic registers : 11
-Total registers : 11
-Total pins : 24
+Total logic elements : 24
+    Total combinational functions : 22
+    Dedicated logic registers : 12
+Total registers : 12
+Total pins : 40
 Total virtual pins : 0
 Total memory bits : 0
 Embedded Multiplier 9-bit elements : 0

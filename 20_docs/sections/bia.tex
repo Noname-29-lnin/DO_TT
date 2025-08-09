@@ -1,0 +1,62 @@
+\BgThispage
+\begin{center}
+	\Large\textbf{ĐẠI HỌC QUỐC GIA TP.HỒ CHÍ MINH \\ TRƯỜNG ĐẠI HỌC BÁCH KHOA\\ KHOA ĐIỆN - ĐIỆN TỬ \\ BỘ MÔN ĐIỆN TỬ \\--oo0oo--}
+\end{center}
+\vspace{0.4cm}
+\begin{center}
+	\includegraphics[width=0.3\linewidth]{sections/pic/01_logobachkhoatoi.png}
+\end{center}
+\vspace{0.4cm}
+\begin{center}
+	\LARGE\textbf{BÁO CÁO ĐỒ ÁN 1}
+	\vspace{0.1cm}
+	
+	\Large{Design and Implementation of a Power-Efficient Viterbi
+		Encoding and Decoding Architecture on FPGA: From
+		Theory to Practical Application}
+\end{center}
+\vspace{1cm}
+
+\LARGE
+
+\hspace{2cm}\begin{tabular}{p{0.4\linewidth} p{0.5\linewidth}}
+	Giảng viên hướng dẫn: & Nguyễn Trung Hiếu\\
+	Sinh viên thực hiện:  & Nguyễn Đại Đồng \\
+	Mã số sinh viên:      & 2210780
+\end{tabular}
+
+\vspace{5cm}
+\begin{center}
+	\fontsize{8pt}{5pt}\selectfont\textbf{Tp.HCM, \dots/\dots/20\dots}
+\end{center}
+
+\newpage
+\pagestyle{fancy}
+\fontsize{13}{14}\selectfont
+\fancyhead[L]{Lời cảm ơn}
+\fancyhead[R]{GVHD: Nguyễn Trung Hiếu}
+\section*{\centering LỜI CẢM ƠN}
+
+Trước tiên, tôi xin gửi lời cảm ơn chân thành đến các thầy cô trong khoa Điện tử - Viễn thông, những người đã tận tình giảng dạy, truyền đạt kiến thức và kinh nghiệm quý báu trong suốt quá trình học tập, giúp tôi có nền tảng vững chắc để thực hiện đồ án này. Đặc biệt, tôi xin bày tỏ lòng biết ơn sâu sắc đến thầy Nguyễn Trung Hiếu, người đã trực tiếp hướng dẫn, hỗ trợ và định hướng tôi trong suốt quá trình nghiên cứu và hoàn thiện đồ án. Những góp ý quý giá và sự động viên của thầy đã giúp tôi vượt qua nhiều khó khăn và hoàn thành công việc một cách tốt nhất.
+
+Tôi cũng xin gửi lời cảm ơn đến gia đình, bạn bè và các đồng nghiệp đã luôn ủng hộ, động viên và chia sẻ cùng tôi trong suốt quá trình thực hiện. Sự hỗ trợ về tinh thần lẫn vật chất từ mọi người là nguồn động lực lớn lao để tôi hoàn thành đồ án này.
+
+Cuối cùng, tôi xin cảm ơn các tài liệu tham khảo, nguồn thông tin từ sách, báo, và các công cụ mô phỏng như ngôn ngữ lập trình C và SystemVerilog, đã cung cấp nền tảng lý thuyết và thực tiễn để tôi triển khai thành công nội dung đồ án. Mặc dù đã cố gắng hết sức, đồ án vẫn có thể còn những thiếu sót, tôi rất mong nhận được những ý kiến đóng góp để hoàn thiện hơn.
+
+Trân trọng,
+
+\vspace{6cm}
+\hspace{6cm} \textit{Tp. Hồ Chí Minh, ngày \dots tháng \dots năm \dots }
+
+\hspace{10cm} \textbf{Sinh viên}
+
+\newpage
+\fancyhead[L]{Đồ án môn học}
+\section*{\centering TÓM TẮT ĐỒ ÁN}
+
+Đồ án này trình bày về quá trình nghiên cứu, thiết kế và mô phỏng thuật toán giải mã Viterbi trong hệ thống truyền thông số, tập trung vào mã hóa và giải mã kênh sử dụng mã chập (Convolutional Codes). Nội dung bao gồm cơ sở lý thuyết về mã hóa kênh truyền, cấu trúc bộ mã hóa chập, và nguyên lý hoạt động của thuật toán Viterbi, một phương pháp giải mã tối ưu dựa trên quy hoạch động. Đồ án mô phỏng thuật toán Viterbi bằng ngôn ngữ lập trình C và SystemVerilog, với việc triển khai các khối chức năng như Branch Metric Unit (BMU), Add Compare Select Unit (ACSU) và Survivor Path Memory Unit (SPMU). Kết quả mô phỏng cho thấy khả năng khôi phục chính xác chuỗi bit gốc từ tín hiệu bị nhiễu, với ví dụ cụ thể sử dụng bộ mã hóa chập (3,1,2) và chuỗi đầu vào “110110”. Đồ án không chỉ cung cấp cái nhìn sâu sắc về kỹ thuật mã hóa và giải mã mà còn chứng minh tính hiệu quả của thuật toán Viterbi trong việc cải thiện độ tin cậy của hệ thống truyền thông.
+
+\newpage
+\tableofcontents
+\listoffigures
+\listoftables

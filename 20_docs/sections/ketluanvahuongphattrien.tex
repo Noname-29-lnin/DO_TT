@@ -1,0 +1,26 @@
+\section{KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN}
+
+\subsection{Kết luận}
+Trong đồ án này, chúng tôi đã thiết kế thành công bộ giải mã Viterbi với thông số kỹ thuật:
+\begin{itemize}[label=-]
+	\item Độ dài ràng buộc K=3
+	\item Tỷ lệ mã hóa (rate) 1/2
+	\item Sử dụng thuật toán giải mã tối ưu dựa trên độ đo khoảng cách Hamming
+\end{itemize}
+
+Các kết quả đạt được bao gồm:
+\begin{itemize}[label=-]
+	\item Thiết kế hoàn chỉnh kiến trúc bộ giải mã gồm 3 khối chính: Khối tính toán BMU (Branch Metric Unit), ACSU (Add-Compare-Select Unit) và SPMU (Survivor Path Memory Unit)
+	\item Mô phỏng kiểm chứng hoạt động chính xác với BER (Bit Error Rate) thấp hơn so với giải mã hard-decision thông thường
+	\item Tối ưu hóa tài nguyên phần cứng khi triển khai trên FPGA
+\end{itemize}
+
+\subsection{Hướng phát triển}
+Để nâng cao hiệu năng và ứng dụng thực tế của bộ giải mã, các hướng phát triển trong tương lai bao gồm:
+\begin{itemize}[label=-]
+	\item \textbf{Tích hợp giải mã soft-decision}: Sử dụng 3-4 bit lượng tử hóa để cải thiện khoảng 2dB hiệu năng so với giải mã hard-decision
+	\item \textbf{Tăng độ dài ràng buộc (K=7 hoặc K=9)}: Đạt hiệu năng giải mã tốt hơn nhưng đòi hỏi tài nguyên phần cứng lớn hơn
+	\item \textbf{Ứng dụng cho chuẩn không dây}: Triển khai cho các chuẩn thông tin di động (4G/5G) và vệ tinh
+	\item \textbf{Tối ưu kiến trúc pipeline}: Nâng cao tốc độ xử lý phù hợp cho các ứng dụng tốc độ cao
+	\item \textbf{Tích hợp với các hệ thống mã hóa khác}: Kết hợp với mã hóa Reed-Solomon trong hệ thống mã chập xếp chồng
+\end{itemize}

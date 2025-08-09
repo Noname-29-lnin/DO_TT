@@ -1,0 +1,181 @@
+\documentclass[a4paper, 12pt]{article}
+%\usepackage[utf8]{inputenc}
+%\usepackage[vietnamese,english]{babel}
+\usepackage[utf8]{vietnam}
+\usepackage[margin = 2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{nameref}
+\usepackage{babel}
+\usepackage{hyperref}
+\usepackage{background}
+\usepackage{graphics}
+\usepackage{float}
+\usepackage{enumerate}
+\usepackage[]{enumitem}
+\usepackage{indentfirst}
+\setlength{\parindent}{0.5cm}
+
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{setspace}
+\usepackage{array}
+\onehalfspacing
+
+% Cấu hình header và footer
+\usepackage[]{fancyhdr}
+\usepackage{titlesec}   % Để tạo sectioning tùy chỉnh
+%\usepackage{chngcntr}   % Để reset counter
+\usepackage{tocloft}
+\fancyhf{}
+\renewcommand{\thesection}{CHƯƠNG \arabic{section}.}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}.}
+\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.}
+
+%\usepackage[backend=biber, style=ieee]{biblatex}
+%\usepackage[style=ieee]{biblatex}
+%\addbibresource{ref.bib} % Đường dẫn đúng đến tệp .bib
+
+%% Định nghĩa counter trước
+%\newcounter{subsubsubsection}[subsubsection]
+%\renewcommand{\thesubsubsubsection}{\alph{subsubsubsection})}
+%
+%% Định nghĩa lệnh subsubsubsection
+%\titleclass{\subsubsubsection}{straight}[\subsubsection]
+%\titleformat{\subsubsubsection}[runin]
+%{\normalfont\bfseries}
+%{\thesubsubsubsection\ }
+%{0pt}
+%{}
+%\titlespacing*{\subsubsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{0.5em}
+%
+%% Thiết lập counter
+%\counterwithin*{subsubsubsection}{subsubsection}
+
+% Định nghĩa mục lục (sửa lỗi command đã tồn tại)
+%\makeatletter
+%\newcommand{\l@subsubsubsectioncustom}{\@dottedtocline{4}{4em}{2.3em}}
+%\newcommand{\subsubsubsectionmark}[1]{
+%	\addcontentsline{toc}{subsubsubsection}{\protect\numberline{\thesubsubsubsection}#1}
+%}
+%\makeatother
+
+% Cấu hình mục lục
+\renewcommand{\cftsecnumwidth}{8em} % Độ rộng cho "Chương X."
+\renewcommand{\cftsubsecnumwidth}{4em} % Cho "X.Y."
+\setlength{\cftsubsecindent}{2em} % Thụt lề subsection
+
+%\fancyhead[R]{\texttt{GVHD: Nguyễn Trung Hiếu}}
+%\fancyhead[R]{\thesection \leftmark}
+%\fancyhead[L]{\includegraphics[width=0.4\linewidth]{sections/pic/bk_name_en.png}}
+
+%\fancyfoot[L]{
+%%	\includegraphics[height=12pt]{sections/pic/logo_DEE.png} \hspace{4pt}
+%%	\textbf{Department of Electronics}%\\
+%%%	\textit{EE3117/EE4451 – Digital IC Design Laboratory}
+%	\texttt{SVTH: Nguyễn Đại Đồng - 2210780}
+%}
+\fancyfoot[R]{Page|\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Cấu hình background
+\backgroundsetup{
+	scale=1,
+	color=black,
+	opacity=0.4,
+	angle=0,
+	contents={%
+		\includegraphics[width=\paperwidth,height=\paperheight]{sections/pic/bia.jpg}
+	}
+}
+
+
+\usepackage{listings}
+
+% Cấu hình màu sắc cho code
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% Định nghĩa style cho code
+\lstdefinestyle{StyleCode}{
+	backgroundcolor=\color{white},  % Màu nền trắng
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	keepspaces=true,
+	numbers=left,
+	numbersep=9pt,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=3,
+	frame=single,                  % Khung đơn bao quanh code
+	rulecolor=\color{black},       % Màu khung (đen)
+	framexleftmargin=5pt,          % Khoảng cách lề trái khung
+	framexrightmargin=5pt,         % Khoảng cách lề phải khung
+	framextopmargin=3pt,           % Khoảng cách lề trên khung
+	framexbottommargin=3pt         % Khoảng cách lề dưới khung
+}
+% Định nghĩa ngôn ngữ cho C
+\lstdefinelanguage{C}{
+	keywords={break, case, char, const, continue, default, do, double, else, enum, extern, float, for, goto, if, int, long, register, return, short, signed, sizeof, static, struct, switch, typedef, union, unsigned, void, volatile, while},
+	sensitive=true,
+	comment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	morestring=[b]",
+	morestring=[b]'
+}
+% Định nghĩa ngôn ngữ cho SystemVerilog
+\lstdefinelanguage{SystemVerilog}{
+	keywords={module, endmodule, input, output, wire, reg, logic, always, assign, begin, end, if, else, case, default, for, while, repeat, forever, fork, join, initial, task, function, return, break, continue, typedef, struct, enum, union, package, import, export, parameter, localparam, defparam, generate, endgenerate, always_comb, always_ff, always_latch, posedge, negedge, edge, wait, assert, assume, cover, property, sequence, rand, randc, constraint, randomize, with, inside, dist, class, endclass, extends, virtual, interface, endinterface, clocking, endclocking, modport, covergroup, endgroup, forkjoin, unique, priority, casex, casez, packed, unsigned, signed, static, automatic, protected, local, const, ref, this, super, new, null, extern, pure, forkjoin_none, time, bit, byte, shortint, int, longint, integer, time, real, shortreal, chandle, string, event, void, null, input, output, inout, tri, triand, trior, tri0, tri1, supply0, supply1, wand, wor, weak0, weak1, pullup, pulldown, highz0, highz1, small, medium, large, scalared, vectored},
+	sensitive=true,
+	morecomment=[l]//,
+	morecomment=[s]{/*}{*/},
+	morestring=[b]",
+	morestring=[b]'
+}
+
+% Định nghĩa style cho result
+\lstdefinestyle{StyleResult}{
+	backgroundcolor=\color{backcolour},
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	keepspaces=true,
+	numbers=none,
+	numbersep=5pt,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=2,
+	language=Result
+}
+% Định nghĩa cho thêm result
+\lstdefinelanguage{Result}{
+	keywords={PASS, FAIL, Time, TestCase},
+	sensitive=true
+}
+
+\begin{document}
+	\pagestyle{empty}
+	\include{sections/bia.tex}
+	\pagestyle{fancy}
+	\fontsize{13}{14}\selectfont
+	\include{sections/cosolythuyet.tex}
+\end{document}

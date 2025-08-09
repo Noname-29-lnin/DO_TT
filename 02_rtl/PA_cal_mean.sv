@@ -1,6 +1,6 @@
 // Using Cal mean of all address begin si from ei
 // 
-module SS_cal_mean #(
+module PA_cal_mean #(
     parameter DATA_WIDTH=8	,
 	parameter ADDR_WIDTH=6	
 )(

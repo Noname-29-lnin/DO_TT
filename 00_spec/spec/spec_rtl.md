@@ -18,6 +18,7 @@
     + PA_swap_and_compare: Sử dụng mean để so sánh các giá trị hiện tại với mean, và quyết định giá trị đó lớn hay nhỏ hơn mean.
     + PA_buf_less: bộ nhớ tạm chứa các giá trị nhỏ hơn mean (có thể là FIFO, Flip-Flop, BRAM,...).
     + PA_buf_greater: tương tự bộ PA_buf_less nhưng là lưu các giá trị lớn hơn mean.
+      + Note: về bộ buf lưu giá trị thì các giá trị nhỏ hơn mean được lưu thẳng vào Main Memory, còn các giá trị lớn hơn thì phải lưu trữ lại vào một bộ nhớ đệm. Sau khi xét hết Main Memory thì cũng sẽ cho ta được BI (position of partition return). 
     + PA_write_data: bộ ghi dữ liệu ngược vào bộ nhớ chính với thứ tự là ghi giá trị của bộ less trước sau đó đến greater.
 + Division
   + DI_control: có trách nhiệm phân bổ công việc cho việc quyết định các giá si và ei.

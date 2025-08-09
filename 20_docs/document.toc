@@ -1,0 +1,12 @@
+\babel@toc {nil}{}\relax 
+\contentsline {section}{\numberline {CHƯƠNG 1.}CỞ SỞ LÝ THUYẾT}{6}{section.1}%
+\contentsline {subsection}{\numberline {1.1.}Mã hóa kênh truyền trong lĩnh vực truyền thông thông tin}{6}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2.}Mã hóa sử dụng Mã chập (Convolutional Encoder)}{7}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1.}Ma trận sinh (Generator matrix)}{8}{subsubsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.2.}Sơ đồ lưới (Trellis Diagram)}{8}{subsubsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.3.}Giải mã kênh truyền trong lĩnh vực truyền thông thông tin}{10}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4.}Giải mã kênh truyền sửa dụng thuật toán Viterbi}{10}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5.}Hard Decision và Soft Decision trong Giải Mã Mã Hóa Sửa Lỗi}{12}{subsection.1.5}%
+\contentsline {subsubsection}{\numberline {1.5.1.}Hard decision (Quyết định cứng)}{12}{subsubsection.1.5.1}%
+\contentsline {subsubsection}{\numberline {1.5.2.}Soft decision (Quyết định mềm)}{13}{subsubsection.1.5.2}%
+\contentsline {subsubsection}{\numberline {1.5.3.}So sánh Hard Decision và Soft Decision}{13}{subsubsection.1.5.3}%

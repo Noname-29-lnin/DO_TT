@@ -4,7 +4,7 @@ module tb_SS_read_data();
 
     parameter SIZE_ADDR = 6;
     parameter SIZE_DATA = 8;
-    parameter MEM_INIT_FILE = "./../MODULE_TB/mem_init.hex";
+    parameter MEM_INIT_FILE = "/home/noname/Documents/project_tiny/DO_TT/03_verif/Test-Sub_module/MODULE_TB/mem_init.hex";
     logic                     i_clk;
     logic                     i_rst_n;
     logic                     i_start_read_data;
@@ -26,7 +26,6 @@ module tb_SS_read_data();
         .MEM_INIT_FILE(MEM_INIT_FILE)
     ) BRAM_UNIT (
         .clk        (i_clk),
-        .rst_n      (i_rst_n),
         .we         (1'b0),
         .data       (),
         .read_addr  (o_addr_ram),
@@ -57,37 +56,32 @@ module tb_SS_read_data();
         $dumpvars(0, tb_SS_read_data);
     end
 
-    // Clock 20ns
     initial begin
         i_clk = 1'b0;
         forever #10 i_clk = ~i_clk;
     end
 
-    // Test sequence
     initial begin
-        // Init
         i_rst_n = 1'b0;
         i_start_read_data = 1'b0;
         i_en_read_data = 1'b0;
         i_si_ram = 0;
         i_ei_ram = 0;
 
-        // Reset
-        repeat (3) @(posedge i_clk);
+        #30;
         i_rst_n = 1'b1;
 
+        #10;
         // --- Test 1: Đọc từ 5 -> 10 ---
         @(posedge i_clk);
         i_si_ram = 6'd5;
         i_ei_ram = 6'd10;
-        i_start_read_data = 1'b1;  // Kích start
+        i_start_read_data = 1'b1;
         @(posedge i_clk);
-        i_start_read_data = 1'b0;  // Thả start
+        i_start_read_data = 1'b0;
 
-        // Bật enable để đọc
         i_en_read_data = 1'b1;
 
-        // Chờ done
         wait (o_done_read_data);
         @(posedge i_clk);
         i_en_read_data = 1'b0;
@@ -126,7 +120,6 @@ module tb_SS_read_data();
         @(posedge i_clk);
         i_en_read_data = 1'b0;
 
-        // Kết thúc mô phỏng
         repeat (5) @(posedge i_clk);
         $finish;
     end
