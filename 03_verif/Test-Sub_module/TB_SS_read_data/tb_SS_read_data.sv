@@ -1,20 +1,134 @@
 `timescale 1ns/1ps
-`
+
 module tb_SS_read_data();
 
-SS_read_data #(
-    .SIZE_ADDR  (6)
-) DUT (
-    .i_clk              (),
-    .i_rst_n            (),
-    .i_start_read_data  (),
-    .i_en_read_data     (),
-    .i_si_ram           (),
-    .i_ei_ram           (),
-    .o_re_ram           (),
-    .o_addr_ram         (),
-    .o_done_read_data   ()
-);
+    parameter SIZE_ADDR = 6;
+    parameter SIZE_DATA = 8;
+    parameter MEM_INIT_FILE = "./../MODULE_TB/mem_init.hex";
+    logic                     i_clk;
+    logic                     i_rst_n;
+    logic                     i_start_read_data;
+    logic                     i_en_read_data;
+
+    logic [SIZE_ADDR-1:0]     i_si_ram;
+    logic [SIZE_ADDR-1:0]     i_ei_ram;
+
+    logic [SIZE_DATA-1:0]     i_data_ram;
+    logic [SIZE_ADDR-1:0]     o_addr_ram;
+    logic [SIZE_DATA-1:0]     o_data_ram;
+
+    logic                     o_data_valid;
+    logic                     o_done_read_data;   
+
+    tb_simple_dual_port_ram_single_clock #(
+        .DATA_WIDTH (SIZE_DATA),
+        .ADDR_WIDTH (SIZE_ADDR),
+        .MEM_INIT_FILE(MEM_INIT_FILE)
+    ) BRAM_UNIT (
+        .clk        (i_clk),
+        .rst_n      (i_rst_n),
+        .we         (1'b0),
+        .data       (),
+        .read_addr  (o_addr_ram),
+        .write_addr (),
+        .q          (i_data_ram)
+    );
+
+    SS_read_data #(
+        .SIZE_ADDR (SIZE_ADDR),
+        .SIZE_DATA (SIZE_DATA)
+    ) DUT (
+        .i_clk               (i_clk),
+        .i_rst_n             (i_rst_n),
+        .i_start_read_data   (i_start_read_data),
+        .i_en_read_data      (i_en_read_data),
+
+        .i_si_ram            (i_si_ram),
+        .i_ei_ram            (i_ei_ram),
+        .i_data_ram          (i_data_ram),
+        .o_addr_ram          (o_addr_ram),
+        .o_data_ram          (o_data_ram),
+        .o_data_valid        (o_data_valid),
+        .o_done_read_data    (o_done_read_data)
+    );
+
+    initial begin
+        $dumpfile("./tb_SS_read_data.vcd");
+        $dumpvars(0, tb_SS_read_data);
+    end
+
+    // Clock 20ns
+    initial begin
+        i_clk = 1'b0;
+        forever #10 i_clk = ~i_clk;
+    end
+
+    // Test sequence
+    initial begin
+        // Init
+        i_rst_n = 1'b0;
+        i_start_read_data = 1'b0;
+        i_en_read_data = 1'b0;
+        i_si_ram = 0;
+        i_ei_ram = 0;
+
+        // Reset
+        repeat (3) @(posedge i_clk);
+        i_rst_n = 1'b1;
+
+        // --- Test 1: Đọc từ 5 -> 10 ---
+        @(posedge i_clk);
+        i_si_ram = 6'd5;
+        i_ei_ram = 6'd10;
+        i_start_read_data = 1'b1;  // Kích start
+        @(posedge i_clk);
+        i_start_read_data = 1'b0;  // Thả start
+
+        // Bật enable để đọc
+        i_en_read_data = 1'b1;
+
+        // Chờ done
+        wait (o_done_read_data);
+        @(posedge i_clk);
+        i_en_read_data = 1'b0;
+
+        // --- Test 2: Đọc lại từ 0 -> 3 ---
+        repeat (5) @(posedge i_clk);
+        i_si_ram = 6'd0;
+        i_ei_ram = 6'd3;
+        i_start_read_data = 1'b1;
+        @(posedge i_clk);
+        i_start_read_data = 1'b0;
+        i_en_read_data = 1'b1;
+
+        wait (o_done_read_data);
+        @(posedge i_clk);
+        i_en_read_data = 1'b0;
+
+        // --- Test 3: Ngắt giữa chừng ---
+        repeat (5) @(posedge i_clk);
+        i_si_ram = 6'd8;
+        i_ei_ram = 6'd12;
+        i_start_read_data = 1'b1;
+        @(posedge i_clk);
+        i_start_read_data = 1'b0;
+        i_en_read_data = 1'b1;
+
+        // Đọc được 2 giá trị thì tắt enable
+        repeat (2) @(posedge i_clk);
+        i_en_read_data = 1'b0;
+
+        // Đợi vài chu kỳ rồi bật lại enable
+        repeat (3) @(posedge i_clk);
+        i_en_read_data = 1'b1;
+
+        wait (o_done_read_data);
+        @(posedge i_clk);
+        i_en_read_data = 1'b0;
+
+        // Kết thúc mô phỏng
+        repeat (5) @(posedge i_clk);
+        $finish;
+    end
 
 endmodule
-

@@ -20,7 +20,7 @@ compile:
 run:
 	@echo "-> Running..."
 	@$(INC_DIR)/obj_dir/Vtb_$(TOPMODULE) | tee $(INC_DIR)/simulation.log
-	@if [ -f ./tb_$(TOPMODULE).vcd ]; then mv ./tb_$(TOPMODULE).vcd $(INC_DIR)/; fi
+	@mv ./tb_$(TOPMODULE).vcd $(INC_DIR)
 
 sim:
 	@echo "-> Opening waveform viewer..."

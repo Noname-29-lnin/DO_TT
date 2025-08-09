@@ -279,7 +279,7 @@ void P_Division(std::vector<int>& arr, int si, int ei, int M, int S_cnt, int siz
             if (t.joinable()) t.join();
         }
 
-        if (std::all_of(partCoreSSCheck.begin(), partCoreSSCheck.end(), [](bool b) { return b; })) return;
+        // if (std::all_of(partCoreSSCheck.begin(), partCoreSSCheck.end(), [](bool b) { return b; })) return;
 
         int mean = F_Cal_mean(arr, si, ei);
         std::vector<std::vector<int>> LessThanMean(num_parts), GreaterThanMean(num_parts);

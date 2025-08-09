@@ -1,0 +1,6 @@
+Loading memory contents from ./../MODULE_TB/mem_init.hex
+%Warning: ./../MODULE_TB/mem_init.hex:0: $readmem file not found
+- TB_SS_read_data/tb_SS_read_data.sv:131: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.024 2024-04-05
+- Verilator: $finish at 780ns; walltime 0.000 s; speed 0.000 s/s
+- Verilator: cpu 0.000 s on 1 threads; alloced 57 MB

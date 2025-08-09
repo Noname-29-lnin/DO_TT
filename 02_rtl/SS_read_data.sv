@@ -1,24 +1,24 @@
-// Using read data by address in BRAM
 module SS_read_data #(
-    parameter SIZE_ADDR = 6
+    parameter SIZE_ADDR = 6 ,
+    parameter SIZE_DATA = 8
 )(
-    input logic                     i_clk       ,
-    input logic                     i_rst_n     ,
+    input logic                     i_clk               ,
+    input logic                     i_rst_n             ,
+    input logic                     i_start_read_data   ,
+    input logic                     i_en_read_data      ,
 
-    input logic                     i_start_read_data,
-    input logic                     i_en_read_data,
+    input logic [SIZE_ADDR-1:0]     i_si_ram            ,
+    input logic [SIZE_ADDR-1:0]     i_ei_ram            ,
 
-    input logic [SIZE_ADDR-1:0]     i_si_ram    ,
-    input logic [SIZE_ADDR-1:0]     i_ei_ram    ,
+    input logic [SIZE_DATA-1:0]     i_data_ram          ,
+    output logic [SIZE_ADDR-1:0]    o_addr_ram          ,
+    output logic [SIZE_DATA-1:0]    o_data_ram          ,
 
-    output logic                    o_re_ram    ,
-    output logic [SIZE_ADDR-1:0]    o_addr_ram  ,
-    output logic                    o_done_read_data
+    output logic                    o_data_valid        ,
+    output logic                    o_done_read_data    
 );
 
-logic [SIZE_ADDR-1:0] w_next_addr_ram;
-assign w_next_addr_ram = o_addr_ram + 1'b1;
-
+// processing the signal detecting i_start_read_data
 logic w_update_start;
 SS_detect_edge detect_edge_unit(
     .i_clk       (i_clk),
@@ -28,40 +28,57 @@ SS_detect_edge detect_edge_unit(
     .o_signal    (w_update_start)
 );
 
-logic w_compare_ei, w_compare_ei_p;
-assign w_compare_ei_p = ~|(i_ei_ram^o_addr_ram);
+// processing the signal detecting i_en_read_data
+logic w_update_en;
+logic w_update_en_start, w_update_en_start_next;
+logic w_update_en_done;
+always_ff @( posedge i_clk or negedge i_rst_n ) begin : proc_update_en_start
+    if(~i_rst_n) begin
+        w_update_en_start_next <= 1'b0; 
+    end else begin
+        w_update_en_start_next <= (w_update_en_done) ? 1'b0 : w_update_en_start; 
+    end
+end
+assign w_update_en_start = (w_update_start) ? 1'b1 : w_update_en_start_next;
+assign w_update_en = i_en_read_data & (w_update_en_start);
+
+// processing the compare of i_ei_ram and o_addr_ram
+logic w_compare_ei;
+assign w_compare_ei = (i_ei_ram == o_addr_ram);
 always_ff @( posedge i_clk or negedge i_rst_n ) begin
     if(~i_rst_n) begin
-        w_compare_ei  <= '0; 
+        w_update_en_done  <= '0; 
     end else begin
-        w_compare_ei  <= w_compare_ei_p; 
+        w_update_en_done  <= w_compare_ei; 
     end
 end
 
-logic w_update_en;
-assign w_update_en = i_en_read_data & (~w_compare_ei);
-
-
+// processing o_addr_ram
+logic [SIZE_ADDR-1:0] w_next_addr_ram;
+assign w_next_addr_ram = o_addr_ram + 1'b1;
 always_ff @( posedge i_clk or negedge i_rst_n ) begin : proc_o_addr_ram
     if(~i_rst_n) begin
         o_addr_ram  <= '0; 
     end else begin
-        o_addr_ram  <= (w_update_start) ? i_si_ram : ((w_update_en) ? w_next_addr_ram : o_addr_ram); 
+        o_addr_ram  <= (w_update_start) ? i_si_ram : ((w_update_en) ? w_next_addr_ram :  o_addr_ram); 
     end
 end
 
-always_ff @( posedge i_clk or negedge i_rst_n ) begin : proc_o_re_ram
+// processing o_data_ram and 0_data_valid
+always_ff @( posedge i_clk or negedge i_rst_n ) begin : proc_o_data_valid
     if(~i_rst_n)
-        o_re_ram <= 1'b0;
+        o_data_valid    <= 1'b0;
     else
-        o_re_ram <= w_update_en;
+        o_data_valid    <= w_update_en;
 end
+assign o_data_ram = (o_data_valid) ? i_data_ram : '0;
 
-always_ff @( posedge i_clk or negedge i_rst_n ) begin : proc_o_done_read_data
-    if(~i_rst_n)
+// processing o_done_read_data
+always_ff @( posedge i_clk or negedge i_rst_n ) begin : proc_o_done
+    if(~i_rst_n) 
         o_done_read_data <= 1'b0;
     else
-        o_done_read_data <= w_compare_ei;
+        o_done_read_data <= w_update_en_done;
 end
 
 endmodule
